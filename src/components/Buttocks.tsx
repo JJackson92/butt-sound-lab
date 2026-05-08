@@ -184,13 +184,11 @@ export function Buttocks({ params, jiggle, stink }: { params: FartParams; jiggle
 
         {/* Sacral dimples above the cheeks */}
         <ellipse cx={cx - cheekRX * 0.5} cy={cy - cheekRY * 0.88} rx={3} ry={2} fill="oklch(0.5 0.08 35 / 0.5)" />
-        {/* Sacral dimples above the cheeks */}
-        <ellipse cx={cx - cheekRX * 0.5} cy={cy - cheekRY * 0.88} rx={3} ry={2} fill="oklch(0.5 0.08 35 / 0.5)" />
         <ellipse cx={cx + cheekRX * 0.5} cy={cy - cheekRY * 0.88} rx={3} ry={2} fill="oklch(0.5 0.08 35 / 0.5)" />
 
         {/* Skin ripple — emanates from the hole on each press */}
         {jiggle > 0 && (
-          <g key={`ripple-${jiggle}`} style={{ transformOrigin: `${cx}px ${holeCY}px` }}>
+          <g key={`ripple-${jiggle}`}>
             <defs>
               <clipPath id={`cheekClip-${jiggle}`}>
                 <ellipse cx={leftCX} cy={cy} rx={cheekRX} ry={cheekRY} />
@@ -218,9 +216,6 @@ export function Buttocks({ params, jiggle, stink }: { params: FartParams; jiggle
           </g>
         )}
       </svg>
-    </div>
-  );
-}
     </div>
   );
 }
