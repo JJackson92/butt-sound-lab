@@ -44,7 +44,10 @@ export function Buttocks({ params, jiggle, stink }: { params: FartParams; jiggle
         height={h}
         viewBox={`0 0 ${w} ${h}`}
         key={jiggle}
-        style={{ animation: jiggle ? "jiggle 0.5s ease-in-out" : undefined, transformOrigin: "center bottom" }}
+        style={{
+          animation: jiggle ? "jiggle 0.7s var(--ease-fart)" : undefined,
+          transformOrigin: "center bottom",
+        }}
       >
         <defs>
           {/* Soft peachy 3D cheek — bright top-left highlight, deep warm shadow bottom-right */}
@@ -87,12 +90,32 @@ export function Buttocks({ params, jiggle, stink }: { params: FartParams; jiggle
         <ellipse cx={leftCX} cy={cy} rx={cheekRX} ry={cheekRY} fill="url(#cheekL)" />
 
         {/* Crack — soft vertical shadow down the centerline */}
+        {/* Crack — soft vertical shadow down the centerline (with shine on press) */}
         <ellipse
+          key={`crack-${jiggle}`}
           cx={cx}
           cy={cy + cheekRY * 0.05}
           rx={Math.max(6, cheekRX * 0.05)}
           ry={cheekRY * 0.92}
           fill="url(#crack)"
+          style={{
+            transformOrigin: `${cx}px ${cy}px`,
+            animation: jiggle ? "crack-shine 0.7s var(--ease-fart)" : undefined,
+          }}
+        />
+        {/* Crack highlight streak — brightens on press */}
+        <ellipse
+          key={`crack-shine-${jiggle}`}
+          cx={cx}
+          cy={cy - cheekRY * 0.1}
+          rx={Math.max(2, cheekRX * 0.018)}
+          ry={cheekRY * 0.55}
+          fill="oklch(1 0.04 80 / 0.55)"
+          style={{
+            transformOrigin: `${cx}px ${cy}px`,
+            animation: jiggle ? "crack-shine 0.7s var(--ease-fart)" : undefined,
+            opacity: 0.25,
+          }}
         />
 
         {/* Subtle inner-cheek shading near the crack for depth */}
@@ -153,7 +176,7 @@ export function Buttocks({ params, jiggle, stink }: { params: FartParams; jiggle
               </clipPath>
             </defs>
             <g clipPath={`url(#cheekClip-${jiggle})`}>
-              {[0, 0.18, 0.36].map((delay, i) => (
+              {[0, 0.14, 0.28].map((delay, i) => (
                 <ellipse
                   key={i}
                   cx={cx}
@@ -165,7 +188,7 @@ export function Buttocks({ params, jiggle, stink }: { params: FartParams; jiggle
                   strokeWidth={2}
                   style={{
                     transformOrigin: `${cx}px ${holeCY}px`,
-                    animation: `skin-ripple 0.9s ease-out ${delay}s both`,
+                    animation: `skin-ripple 0.7s var(--ease-fart) ${delay}s both`,
                   }}
                 />
               ))}
