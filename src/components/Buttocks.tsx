@@ -89,20 +89,6 @@ export function Buttocks({ params, jiggle, stink }: { params: FartParams; jiggle
         {/* Left cheek */}
         <ellipse cx={leftCX} cy={cy} rx={cheekRX} ry={cheekRY} fill="url(#cheekL)" />
 
-        {/* Crack — soft vertical shadow down the centerline */}
-        {/* Crack — soft vertical shadow down the centerline (with shine on press) */}
-        <ellipse
-          key={`crack-${jiggle}`}
-          cx={cx}
-          cy={cy + cheekRY * 0.05}
-          rx={Math.max(6, cheekRX * 0.05)}
-          ry={cheekRY * 0.92}
-          fill="url(#crack)"
-          style={{
-            transformOrigin: `${cx}px ${cy}px`,
-            animation: jiggle ? "crack-shine 0.7s var(--ease-fart)" : undefined,
-          }}
-        />
         {/* Crack highlight streak — brightens on press */}
         <ellipse
           key={`crack-shine-${jiggle}`}
@@ -118,21 +104,6 @@ export function Buttocks({ params, jiggle, stink }: { params: FartParams; jiggle
           }}
         />
 
-        {/* Subtle inner-cheek shading near the crack for depth */}
-        <ellipse
-          cx={cx - cheekRX * 0.08}
-          cy={cy}
-          rx={cheekRX * 0.14}
-          ry={cheekRY * 0.85}
-          fill="oklch(0.55 0.13 40 / 0.25)"
-        />
-        <ellipse
-          cx={cx + cheekRX * 0.08}
-          cy={cy}
-          rx={cheekRX * 0.14}
-          ry={cheekRY * 0.85}
-          fill="oklch(0.55 0.13 40 / 0.25)"
-        />
 
         {/* Glossy highlights — top of each cheek */}
         <ellipse
