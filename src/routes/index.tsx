@@ -8,6 +8,7 @@ import { FOODS, FartParams, FoodKey, playFart } from "@/lib/fart-synth";
 import { PresetLibrary } from "@/components/PresetLibrary";
 import { FART_PRESETS, type FartPreset } from "@/lib/fart-presets";
 import { playPresetAudio, type FartAudioEntry } from "@/lib/fart-audio";
+import { ENVIRONMENTS, applyEnvironment, type EnvKey } from "@/lib/fart-reverb";
 
 // Find the preset whose params are closest to the current slider settings.
 function findNearestPreset(p: FartParams): FartPreset {
@@ -46,6 +47,17 @@ function Index() {
   const [stink, setStink] = useState(0);
   const [presetId, setPresetId] = useState<string | undefined>();
   const [credit, setCredit] = useState<FartAudioEntry | null>(null);
+  const [env, setEnv] = useState<EnvKey>("dry");
+  const [wet, setWet] = useState(1);
+
+  const changeEnv = (e: EnvKey) => {
+    setEnv(e);
+    applyEnvironment(e, wet);
+  };
+  const changeWet = (w: number) => {
+    setWet(w);
+    applyEnvironment(env, w);
+  };
 
   const update = <K extends keyof FartParams>(k: K, v: FartParams[K]) => {
     setParams((p) => ({ ...p, [k]: v }));
