@@ -184,6 +184,36 @@ function Index() {
           </Card>
         </div>
 
+        <Card className="mt-6 p-6 space-y-4">
+          <div className="flex items-baseline justify-between">
+            <h2 className="font-semibold text-lg">🌀 Echo Environment</h2>
+            <span className="text-xs text-muted-foreground">Where are you ripping it?</span>
+          </div>
+          <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
+            {ENVIRONMENTS.map((e) => (
+              <button
+                key={e.key}
+                onClick={() => changeEnv(e.key)}
+                className={`rounded-lg border-2 p-2 text-center transition-all hover:scale-105 ${
+                  env === e.key ? "border-primary bg-accent shadow-md" : "border-border bg-card"
+                }`}
+              >
+                <div className="text-2xl">{e.emoji}</div>
+                <div className="text-[10px] mt-1 leading-tight">{e.label.replace(" (no echo)", "")}</div>
+              </button>
+            ))}
+          </div>
+          <ControlSlider
+            label="Echo Amount"
+            hint="Subtle ↔ Drenched"
+            value={wet}
+            min={0}
+            max={1.5}
+            step={0.02}
+            onChange={changeWet}
+          />
+        </Card>
+
         <div className="mt-6">
           <PresetLibrary onPick={pickPreset} currentId={presetId} />
         </div>
