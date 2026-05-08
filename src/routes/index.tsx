@@ -147,6 +147,15 @@ function Index() {
           <PresetLibrary onPick={pickPreset} currentId={presetId} />
         </div>
 
+        {credit && (
+          <p className="text-center text-xs text-muted-foreground mt-3">
+            🔊 Real recording:{" "}
+            <a href={credit.url} target="_blank" rel="noreferrer" className="underline">
+              "{credit.name}"
+            </a>{" "}
+            by <span className="font-medium">{credit.user}</span> on Freesound ({credit.license.split("/").slice(-3, -2)[0] || "CC"})
+          </p>
+        )}
         <p className="text-center text-xs text-muted-foreground mt-6">
           Headphones recommended. Volume varies wildly. Don't blame us.
         </p>
