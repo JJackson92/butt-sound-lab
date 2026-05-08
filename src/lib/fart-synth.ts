@@ -7,7 +7,7 @@ export type FartParams = {
   food: FoodKey;
 };
 
-export type FoodKey = "beans" | "broccoli" | "cheese" | "eggs" | "soda" | "spicy" | "salad";
+export type FoodKey = "beans" | "broccoli" | "cheese" | "eggs" | "soda" | "spicy" | "salad" | "burrito";
 
 export const FOODS: { key: FoodKey; label: string; emoji: string }[] = [
   { key: "beans", label: "Beans", emoji: "🫘" },
@@ -17,6 +17,7 @@ export const FOODS: { key: FoodKey; label: string; emoji: string }[] = [
   { key: "soda", label: "Soda", emoji: "🥤" },
   { key: "spicy", label: "Spicy", emoji: "🌶️" },
   { key: "salad", label: "Salad", emoji: "🥗" },
+  { key: "burrito", label: "Burrito", emoji: "🌯" },
 ];
 
 const FOOD_PROFILES: Record<FoodKey, { dur: number; wob: number; rumble: number; sputter: number; pitch: number }> = {
@@ -27,6 +28,7 @@ const FOOD_PROFILES: Record<FoodKey, { dur: number; wob: number; rumble: number;
   soda:     { dur: 0.6, wob: 22, rumble: 0.4, sputter: 0.2, pitch: 1.4 },
   spicy:    { dur: 0.8, wob: 28, rumble: 0.6, sputter: 0.9, pitch: 1.25 },
   salad:    { dur: 0.4, wob: 18, rumble: 0.3, sputter: 0.4, pitch: 1.5 },
+  burrito:  { dur: 2.0, wob: 12, rumble: 1.4, sputter: 0.85, pitch: 0.8 },
 };
 
 let ctx: AudioContext | null = null;
