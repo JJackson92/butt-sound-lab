@@ -31,11 +31,9 @@ const FOOD_PROFILES: Record<FoodKey, { dur: number; wob: number; rumble: number;
   burrito:  { dur: 2.0, wob: 12, rumble: 1.4, sputter: 0.85, pitch: 0.8 },
 };
 
-let ctx: AudioContext | null = null;
+import { getReverbInput } from "./fart-reverb";
 function getCtx() {
-  if (!ctx) ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
-  if (ctx.state === "suspended") ctx.resume();
-  return ctx;
+  return getReverbInput().ac;
 }
 
 export function playFart(params: FartParams) {
@@ -52,7 +50,7 @@ export function playFart(params: FartParams) {
   master.gain.setValueAtTime(0, now);
   master.gain.linearRampToValueAtTime(volume, now + 0.02 * params.pressure);
   master.gain.exponentialRampToValueAtTime(0.001, now + dur);
-  master.connect(ac.destination);
+  master.connect(getReverbInput().input);
 
   // Lowpass shaped by cheek shape (rounder = more resonance)
   const filter = ac.createBiquadFilter();

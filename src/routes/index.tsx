@@ -8,6 +8,7 @@ import { FOODS, FartParams, FoodKey, playFart } from "@/lib/fart-synth";
 import { PresetLibrary } from "@/components/PresetLibrary";
 import { FART_PRESETS, type FartPreset } from "@/lib/fart-presets";
 import { playPresetAudio, type FartAudioEntry } from "@/lib/fart-audio";
+import { ENVIRONMENTS, applyEnvironment, type EnvKey } from "@/lib/fart-reverb";
 
 // Find the preset whose params are closest to the current slider settings.
 function findNearestPreset(p: FartParams): FartPreset {
@@ -46,6 +47,17 @@ function Index() {
   const [stink, setStink] = useState(0);
   const [presetId, setPresetId] = useState<string | undefined>();
   const [credit, setCredit] = useState<FartAudioEntry | null>(null);
+  const [env, setEnv] = useState<EnvKey>("dry");
+  const [wet, setWet] = useState(1);
+
+  const changeEnv = (e: EnvKey) => {
+    setEnv(e);
+    applyEnvironment(e, wet);
+  };
+  const changeWet = (w: number) => {
+    setWet(w);
+    applyEnvironment(env, w);
+  };
 
   const update = <K extends keyof FartParams>(k: K, v: FartParams[K]) => {
     setParams((p) => ({ ...p, [k]: v }));
@@ -171,6 +183,36 @@ function Index() {
             </div>
           </Card>
         </div>
+
+        <Card className="mt-6 p-6 space-y-4">
+          <div className="flex items-baseline justify-between">
+            <h2 className="font-semibold text-lg">🌀 Echo Environment</h2>
+            <span className="text-xs text-muted-foreground">Where are you ripping it?</span>
+          </div>
+          <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
+            {ENVIRONMENTS.map((e) => (
+              <button
+                key={e.key}
+                onClick={() => changeEnv(e.key)}
+                className={`rounded-lg border-2 p-2 text-center transition-all hover:scale-105 ${
+                  env === e.key ? "border-primary bg-accent shadow-md" : "border-border bg-card"
+                }`}
+              >
+                <div className="text-2xl">{e.emoji}</div>
+                <div className="text-[10px] mt-1 leading-tight">{e.label.replace(" (no echo)", "")}</div>
+              </button>
+            ))}
+          </div>
+          <ControlSlider
+            label="Echo Amount"
+            hint="Subtle ↔ Drenched"
+            value={wet}
+            min={0}
+            max={1.5}
+            step={0.02}
+            onChange={changeWet}
+          />
+        </Card>
 
         <div className="mt-6">
           <PresetLibrary onPick={pickPreset} currentId={presetId} />
