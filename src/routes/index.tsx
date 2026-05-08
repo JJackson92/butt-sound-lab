@@ -5,6 +5,8 @@ import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { FOODS, FartParams, FoodKey, playFart } from "@/lib/fart-synth";
+import { PresetLibrary } from "@/components/PresetLibrary";
+import type { FartPreset } from "@/lib/fart-presets";
 
 export const Route = createFileRoute("/")({
   component: Index,
