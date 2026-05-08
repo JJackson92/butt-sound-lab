@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { FOODS, FartParams, FoodKey, playFart } from "@/lib/fart-synth";
 import { PresetLibrary } from "@/components/PresetLibrary";
 import type { FartPreset } from "@/lib/fart-presets";
+import { playPresetAudio, type FartAudioEntry } from "@/lib/fart-audio";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -23,6 +24,7 @@ function Index() {
   const [jiggle, setJiggle] = useState(0);
   const [stink, setStink] = useState(0);
   const [presetId, setPresetId] = useState<string | undefined>();
+  const [credit, setCredit] = useState<FartAudioEntry | null>(null);
 
   const update = <K extends keyof FartParams>(k: K, v: FartParams[K]) => {
     setParams((p) => ({ ...p, [k]: v }));
@@ -35,12 +37,19 @@ function Index() {
     setStink((n) => n + 1);
   };
 
-  const pickPreset = (preset: FartPreset) => {
+  const pickPreset = async (preset: FartPreset) => {
     setParams(preset.params);
     setPresetId(preset.id);
-    playFart(preset.params);
     setJiggle((n) => n + 1);
     setStink((n) => n + 1);
+    const entry = await playPresetAudio(preset.id);
+    if (entry) {
+      setCredit(entry);
+    } else {
+      // fall back to synth if audio missing
+      playFart(preset.params);
+      setCredit(null);
+    }
   };
 
   return (
