@@ -22,12 +22,23 @@ function Index() {
   });
   const [jiggle, setJiggle] = useState(0);
   const [stink, setStink] = useState(0);
+  const [presetId, setPresetId] = useState<string | undefined>();
 
-  const update = <K extends keyof FartParams>(k: K, v: FartParams[K]) =>
+  const update = <K extends keyof FartParams>(k: K, v: FartParams[K]) => {
     setParams((p) => ({ ...p, [k]: v }));
+    setPresetId(undefined); // manual edit clears preset selection
+  };
 
   const fart = () => {
     playFart(params);
+    setJiggle((n) => n + 1);
+    setStink((n) => n + 1);
+  };
+
+  const pickPreset = (preset: FartPreset) => {
+    setParams(preset.params);
+    setPresetId(preset.id);
+    playFart(preset.params);
     setJiggle((n) => n + 1);
     setStink((n) => n + 1);
   };
