@@ -31,8 +31,9 @@
   --color-skin: var(--skin);
   --color-skin-shadow: var(--skin-shadow);
   --color-hole: var(--hole);
-  --animate-jiggle: jiggle 0.5s ease-in-out;
+  --animate-jiggle: jiggle 0.7s var(--ease-fart);
   --animate-stink: stink 2s ease-out forwards;
+  --ease-fart: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 :root {
@@ -63,17 +64,24 @@
 }
 
 @keyframes jiggle {
-  0%, 100% { transform: scale(1, 1); }
-  20% { transform: scale(1.08, 0.92); }
-  40% { transform: scale(0.95, 1.05); }
-  60% { transform: scale(1.04, 0.96); }
-  80% { transform: scale(0.98, 1.02); }
+  0%   { transform: scale(1, 1); }
+  18%  { transform: scale(1.09, 0.9); }
+  38%  { transform: scale(0.94, 1.06); }
+  58%  { transform: scale(1.04, 0.97); }
+  78%  { transform: scale(0.98, 1.02); }
+  100% { transform: scale(1, 1); }
 }
 
 @keyframes skin-ripple {
-  0% { transform: scale(0.2); opacity: 0; }
-  20% { opacity: 0.7; }
+  0%   { transform: scale(0.25); opacity: 0; }
+  15%  { opacity: 0.75; }
   100% { transform: scale(2.4); opacity: 0; }
+}
+
+@keyframes crack-shine {
+  0%   { opacity: 0.25; filter: brightness(1); }
+  18%  { opacity: 1;    filter: brightness(1.55); }
+  100% { opacity: 0.25; filter: brightness(1); }
 }
 
 @keyframes stink {
