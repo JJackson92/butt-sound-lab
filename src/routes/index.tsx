@@ -6,8 +6,29 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { FOODS, FartParams, FoodKey, playFart } from "@/lib/fart-synth";
 import { PresetLibrary } from "@/components/PresetLibrary";
-import type { FartPreset } from "@/lib/fart-presets";
+import { FART_PRESETS, type FartPreset } from "@/lib/fart-presets";
 import { playPresetAudio, type FartAudioEntry } from "@/lib/fart-audio";
+
+// Find the preset whose params are closest to the current slider settings.
+function findNearestPreset(p: FartParams): FartPreset {
+  let best = FART_PRESETS[0];
+  let bestScore = Infinity;
+  for (const preset of FART_PRESETS) {
+    const q = preset.params;
+    // Normalized squared distance per dimension (weights reflect range size).
+    const d =
+      Math.pow((p.cheekSize - q.cheekSize) / 1.5, 2) +
+      Math.pow((p.cheekShape - q.cheekShape) / 1.0, 2) * 0.8 +
+      Math.pow((p.holeSize - q.holeSize) / 1.3, 2) * 1.4 +
+      Math.pow((p.pressure - q.pressure) / 1.2, 2) +
+      (p.food === q.food ? 0 : 0.35);
+    if (d < bestScore) {
+      bestScore = d;
+      best = preset;
+    }
+  }
+  return best;
+}
 
 export const Route = createFileRoute("/")({
   component: Index,
