@@ -134,6 +134,10 @@ function Index() {
           </Card>
         </div>
 
+        <div className="mt-6">
+          <PresetLibrary onPick={pickPreset} currentId={presetId} />
+        </div>
+
         <p className="text-center text-xs text-muted-foreground mt-6">
           Headphones recommended. Volume varies wildly. Don't blame us.
         </p>
