@@ -52,10 +52,18 @@ function Index() {
     setPresetId(undefined); // manual edit clears preset selection
   };
 
-  const fart = () => {
-    playFart(params);
+  const fart = async () => {
+    const match = findNearestPreset(params);
+    setPresetId(match.id);
     setJiggle((n) => n + 1);
     setStink((n) => n + 1);
+    const entry = await playPresetAudio(match.id);
+    if (entry) {
+      setCredit(entry);
+    } else {
+      playFart(params);
+      setCredit(null);
+    }
   };
 
   const pickPreset = async (preset: FartPreset) => {
