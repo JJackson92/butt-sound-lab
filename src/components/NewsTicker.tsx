@@ -31,6 +31,7 @@ const HEADLINES = [
   "Air freshener industry stock soars",
   "Pope issues statement of concern",
   "Time briefly moved backwards",
+  "Authorities responding to catastrophic turbulence event at airport terminal",
 ];
 
 function pickHeadlines(seed: number, count = 6): string[] {
