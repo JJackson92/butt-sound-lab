@@ -110,6 +110,10 @@ function Index() {
           </p>
         </header>
 
+        <div className="mb-6">
+          <NewsTicker trigger={jiggle} />
+        </div>
+
         <div className="grid md:grid-cols-2 gap-6">
           {/* Stage */}
           <Card className="p-6 flex flex-col items-center justify-between bg-gradient-to-b from-secondary to-card">
