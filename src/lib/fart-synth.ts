@@ -4,9 +4,9 @@ export type FartParams = {
   cheekShape: number;       // 0 - 1 (round vs flat -> filter Q)
   holeSize: number;         // 0.2 - 1.5 (smaller = higher pitch, tighter)
   pressure: number;         // 0.3 - 1.5 (loudness/attack) — drives PSI gauge
-  gasDensity: number;       // 0.3 - 2 (denser = lower pitch, darker)
-  resonance: number;        // 0 - 1 (formant Q on top of cheek shape)
-  turbulence: number;       // 0 - 1 (chaotic sputter + noise)
+  gasDensity?: number;      // 0.3 - 2 (denser = lower pitch, darker)
+  resonance?: number;       // 0 - 1 (formant Q)
+  turbulence?: number;      // 0 - 1 (chaotic sputter + noise)
   food: FoodKey;
 };
 
