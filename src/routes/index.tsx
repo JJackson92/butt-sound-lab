@@ -87,9 +87,16 @@ function Index() {
 
   const fart = async () => {
     const match = findNearestPreset(params);
-    setPresetId(match.id);
     setJiggle((n) => n + 1);
     setStink((n) => n + 1);
+    if (!match) {
+      // No preset within the pressure band — use the synth.
+      setPresetId(undefined);
+      setCredit(null);
+      playFart(params);
+      return;
+    }
+    setPresetId(match.id);
     const entry = await playPresetAudio(match.id);
     if (entry) {
       setCredit(entry);
