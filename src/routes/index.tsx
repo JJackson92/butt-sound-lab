@@ -4,11 +4,12 @@ import { Buttocks } from "@/components/Buttocks";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { FOODS, FartParams, FoodKey, playFart } from "@/lib/fart-synth";
+import { FOODS, FartParams, FoodKey, playFart, pressureToPsi } from "@/lib/fart-synth";
 import { PresetLibrary } from "@/components/PresetLibrary";
 import { FART_PRESETS, type FartPreset } from "@/lib/fart-presets";
 import { playPresetAudio, type FartAudioEntry } from "@/lib/fart-audio";
 import { ENVIRONMENTS, applyEnvironment, type EnvKey } from "@/lib/fart-reverb";
+import { PsiGauge } from "@/components/PsiGauge";
 
 // Find the preset whose params are closest to the current slider settings.
 function findNearestPreset(p: FartParams): FartPreset {
@@ -41,6 +42,9 @@ function Index() {
     cheekShape: 0.5,
     holeSize: 0.7,
     pressure: 1,
+    gasDensity: 1,
+    resonance: 0.5,
+    turbulence: 0.5,
     food: "beans",
   });
   const [jiggle, setJiggle] = useState(0);
@@ -111,6 +115,15 @@ function Index() {
             <div className="flex-1 flex items-center justify-center w-full">
               <Buttocks params={params} jiggle={jiggle} stink={stink} />
             </div>
+            <div className="w-full flex items-center justify-between gap-4 mt-2">
+              <PsiGauge pressure={params.pressure} />
+              <div className="text-right">
+                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Resonance</div>
+                <div className="font-mono font-bold text-lg leading-none">
+                  {Math.round((80 / params.holeSize / Math.sqrt(params.gasDensity ?? 1)) * (3 + (params.resonance ?? 0.5) * 5))} Hz
+                </div>
+              </div>
+            </div>
             <Button
               size="lg"
               onClick={fart}
@@ -151,12 +164,39 @@ function Index() {
             />
             <ControlSlider
               label="Pressure"
-              hint="How hard you push"
+              hint={`How hard you push — ${pressureToPsi(params.pressure)} PSI`}
               value={params.pressure}
               min={0.3}
               max={1.5}
               step={0.02}
               onChange={(v) => update("pressure", v)}
+            />
+            <ControlSlider
+              label="Gas Density"
+              hint="Helium ↔ Methane sludge"
+              value={params.gasDensity ?? 1}
+              min={0.3}
+              max={2}
+              step={0.02}
+              onChange={(v) => update("gasDensity", v)}
+            />
+            <ControlSlider
+              label="Resonance"
+              hint="Hollow ↔ Howling formant"
+              value={params.resonance ?? 0.5}
+              min={0}
+              max={1}
+              step={0.02}
+              onChange={(v) => update("resonance", v)}
+            />
+            <ControlSlider
+              label="Turbulence"
+              hint="Smooth glide ↔ Chaotic sputter"
+              value={params.turbulence ?? 0.5}
+              min={0}
+              max={1}
+              step={0.02}
+              onChange={(v) => update("turbulence", v)}
             />
 
             <div>

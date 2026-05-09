@@ -1,11 +1,19 @@
 // Web Audio fart synthesis. Parameters control timbre.
 export type FartParams = {
-  cheekSize: number;      // 0.5 - 2 (volume/body)
-  cheekShape: number;     // 0 - 1 (round vs flat -> filter Q)
-  holeSize: number;       // 0.2 - 1.5 (smaller = higher pitch, tighter)
-  pressure: number;       // 0.3 - 1.5 (loudness/attack)
+  cheekSize: number;        // 0.5 - 2 (volume/body)
+  cheekShape: number;       // 0 - 1 (round vs flat -> filter Q)
+  holeSize: number;         // 0.2 - 1.5 (smaller = higher pitch, tighter)
+  pressure: number;         // 0.3 - 1.5 (loudness/attack) — drives PSI gauge
+  gasDensity?: number;      // 0.3 - 2 (denser = lower pitch, darker)
+  resonance?: number;       // 0 - 1 (formant Q)
+  turbulence?: number;      // 0 - 1 (chaotic sputter + noise)
   food: FoodKey;
 };
+
+// Map pressure (0.3-1.5) to a friendly PSI value (0-100).
+export function pressureToPsi(pressure: number) {
+  return Math.round(((pressure - 0.3) / 1.2) * 100);
+}
 
 export type FoodKey = "beans" | "broccoli" | "cheese" | "eggs" | "soda" | "spicy" | "salad" | "burrito";
 
@@ -41,8 +49,12 @@ export function playFart(params: FartParams) {
   const now = ac.currentTime;
   const food = FOOD_PROFILES[params.food];
 
-  const dur = food.dur * (0.6 + params.cheekSize * 0.5);
-  const basePitch = 80 * food.pitch / params.holeSize;
+  const density = params.gasDensity ?? 1;
+  const turb = params.turbulence ?? 0.5;
+  const reso = params.resonance ?? 0.5;
+
+  const dur = food.dur * (0.6 + params.cheekSize * 0.5) * (0.85 + density * 0.25);
+  const basePitch = (80 * food.pitch / params.holeSize) / Math.sqrt(density);
   const volume = Math.min(1, params.pressure * params.cheekSize * 0.7);
 
   // Master gain with envelope
@@ -52,12 +64,19 @@ export function playFart(params: FartParams) {
   master.gain.exponentialRampToValueAtTime(0.001, now + dur);
   master.connect(getReverbInput().input);
 
-  // Lowpass shaped by cheek shape (rounder = more resonance)
+  // Lowpass shaped by cheek shape + density
   const filter = ac.createBiquadFilter();
   filter.type = "lowpass";
-  filter.frequency.value = 600 + params.cheekShape * 1400;
-  filter.Q.value = 4 + (1 - params.cheekShape) * 12;
+  filter.frequency.value = (600 + params.cheekShape * 1400) / (0.7 + density * 0.6);
+  filter.Q.value = 4 + (1 - params.cheekShape) * 12 + reso * 18;
   filter.connect(master);
+
+  // Resonant bandpass "formant" stage driven by resonance knob
+  const formant = ac.createBiquadFilter();
+  formant.type = "bandpass";
+  formant.frequency.value = basePitch * (3 + reso * 5);
+  formant.Q.value = 1 + reso * 14;
+  formant.connect(filter);
 
   // Sawtooth core with pitch wobble (sputter)
   const osc = ac.createOscillator();
@@ -68,21 +87,23 @@ export function playFart(params: FartParams) {
   pitchEnv.connect(osc.frequency);
   osc.frequency.setValueAtTime(basePitch, now);
 
-  // LFO wobble
+  // LFO wobble — turbulence raises rate and depth
   const lfo = ac.createOscillator();
-  lfo.frequency.value = food.wob * (1 / params.holeSize);
+  lfo.frequency.value = food.wob * (1 / params.holeSize) * (0.6 + turb * 1.8);
   const lfoGain = ac.createGain();
-  lfoGain.gain.value = basePitch * 0.4 * food.sputter;
+  lfoGain.gain.value = basePitch * 0.4 * food.sputter * (0.5 + turb * 1.5);
   lfo.connect(lfoGain).connect(osc.frequency);
 
-  osc.connect(filter);
+  osc.connect(formant);
 
-  // Noise rumble layer
+  // Noise rumble layer — turbulence boosts it
   const bufSize = Math.floor(ac.sampleRate * dur);
   const buf = ac.createBuffer(1, bufSize, ac.sampleRate);
   const data = buf.getChannelData(0);
   for (let i = 0; i < bufSize; i++) {
-    data[i] = (Math.random() * 2 - 1) * (1 - i / bufSize);
+    // Turbulence injects bursty amplitude modulation on top of noise
+    const burst = 1 + turb * (Math.random() < 0.05 ? 3 : 0);
+    data[i] = (Math.random() * 2 - 1) * (1 - i / bufSize) * burst;
   }
   const noise = ac.createBufferSource();
   noise.buffer = buf;
@@ -91,7 +112,7 @@ export function playFart(params: FartParams) {
   noiseFilter.frequency.value = basePitch * 2;
   noiseFilter.Q.value = 0.8;
   const noiseGain = ac.createGain();
-  noiseGain.gain.value = food.rumble * 0.4;
+  noiseGain.gain.value = food.rumble * 0.4 * (0.6 + turb * 1.2);
   noise.connect(noiseFilter).connect(noiseGain).connect(filter);
 
   osc.start(now);
