@@ -12,25 +12,40 @@ import { ENVIRONMENTS, applyEnvironment, type EnvKey } from "@/lib/fart-reverb";
 import { PsiGauge } from "@/components/PsiGauge";
 import { NewsTicker } from "@/components/NewsTicker";
 
-// Find the preset whose params are closest to the current slider settings.
+// Score a preset against current slider settings. Lower = closer.
+// Weights reflect what actually defines a fart's character perceptually:
+// holeSize / pressure / turbulence dominate, cheekShape barely matters.
+function scorePreset(p: FartParams, q: FartParams): number {
+  const pDensity = p.gasDensity ?? 1;
+  const qDensity = q.gasDensity ?? 1;
+  const pReso = p.resonance ?? 0.5;
+  const qReso = q.resonance ?? 0.5;
+  const pTurb = p.turbulence ?? 0.5;
+  const qTurb = q.turbulence ?? 0.5;
+  return (
+    Math.pow((p.holeSize - q.holeSize) / 1.3, 2) * 3.0 +
+    Math.pow((p.pressure - q.pressure) / 1.2, 2) * 2.5 +
+    Math.pow((pTurb - qTurb) / 1.0, 2) * 2.0 +
+    Math.pow((pDensity - qDensity) / 1.7, 2) * 1.5 +
+    Math.pow((p.cheekSize - q.cheekSize) / 1.5, 2) * 0.8 +
+    Math.pow((pReso - qReso) / 1.0, 2) * 0.8 +
+    Math.pow((p.cheekShape - q.cheekShape) / 1.0, 2) * 0.3 +
+    (p.food === q.food ? 0 : 0.25)
+  );
+}
+
+// Pick a preset that matches current settings: hard-filter by pressure band
+// (so a soft squeak never returns a blast), then random pick from the top N
+// closest so repeated presses don't replay the same clip.
 function findNearestPreset(p: FartParams): FartPreset {
-  let best = FART_PRESETS[0];
-  let bestScore = Infinity;
-  for (const preset of FART_PRESETS) {
-    const q = preset.params;
-    // Normalized squared distance per dimension (weights reflect range size).
-    const d =
-      Math.pow((p.cheekSize - q.cheekSize) / 1.5, 2) +
-      Math.pow((p.cheekShape - q.cheekShape) / 1.0, 2) * 0.8 +
-      Math.pow((p.holeSize - q.holeSize) / 1.3, 2) * 1.4 +
-      Math.pow((p.pressure - q.pressure) / 1.2, 2) +
-      (p.food === q.food ? 0 : 0.35);
-    if (d < bestScore) {
-      bestScore = d;
-      best = preset;
-    }
-  }
-  return best;
+  // Hard filter on pressure: must be within ±0.45 (out of 1.2 range).
+  let pool = FART_PRESETS.filter((x) => Math.abs(x.params.pressure - p.pressure) < 0.45);
+  if (pool.length < 5) pool = FART_PRESETS; // fall back if too restrictive
+  const ranked = pool
+    .map((preset) => ({ preset, score: scorePreset(p, preset.params) }))
+    .sort((a, b) => a.score - b.score)
+    .slice(0, 4);
+  return ranked[Math.floor(Math.random() * ranked.length)].preset;
 }
 
 export const Route = createFileRoute("/")({
