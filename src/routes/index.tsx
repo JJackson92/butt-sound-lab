@@ -10,6 +10,7 @@ import { FART_PRESETS, type FartPreset } from "@/lib/fart-presets";
 import { playPresetAudio, type FartAudioEntry } from "@/lib/fart-audio";
 import { ENVIRONMENTS, applyEnvironment, type EnvKey } from "@/lib/fart-reverb";
 import { PsiGauge } from "@/components/PsiGauge";
+import { NewsTicker } from "@/components/NewsTicker";
 
 // Find the preset whose params are closest to the current slider settings.
 function findNearestPreset(p: FartParams): FartPreset {
@@ -108,6 +109,10 @@ function Index() {
             Design the perfect toot. Adjust the cheeks, tighten the hole, pick your meal.
           </p>
         </header>
+
+        <div className="mb-6">
+          <NewsTicker trigger={jiggle} />
+        </div>
 
         <div className="grid md:grid-cols-2 gap-6">
           {/* Stage */}
