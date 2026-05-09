@@ -37,10 +37,11 @@ function scorePreset(p: FartParams, q: FartParams): number {
 // Pick a preset that matches current settings: hard-filter by pressure band
 // (so a soft squeak never returns a blast), then random pick from the top N
 // closest so repeated presses don't replay the same clip.
-function findNearestPreset(p: FartParams): FartPreset {
+function findNearestPreset(p: FartParams): FartPreset | null {
   // Hard filter on pressure: must be within ±0.45 (out of 1.2 range).
-  let pool = FART_PRESETS.filter((x) => Math.abs(x.params.pressure - p.pressure) < 0.45);
-  if (pool.length < 5) pool = FART_PRESETS; // fall back if too restrictive
+  // If nothing passes, return null so the caller can fall back to the synth.
+  const pool = FART_PRESETS.filter((x) => Math.abs(x.params.pressure - p.pressure) < 0.45);
+  if (pool.length === 0) return null;
   const ranked = pool
     .map((preset) => ({ preset, score: scorePreset(p, preset.params) }))
     .sort((a, b) => a.score - b.score)
