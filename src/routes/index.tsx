@@ -4,11 +4,12 @@ import { Buttocks } from "@/components/Buttocks";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { FOODS, FartParams, FoodKey, playFart } from "@/lib/fart-synth";
+import { FOODS, FartParams, FoodKey, playFart, pressureToPsi } from "@/lib/fart-synth";
 import { PresetLibrary } from "@/components/PresetLibrary";
 import { FART_PRESETS, type FartPreset } from "@/lib/fart-presets";
 import { playPresetAudio, type FartAudioEntry } from "@/lib/fart-audio";
 import { ENVIRONMENTS, applyEnvironment, type EnvKey } from "@/lib/fart-reverb";
+import { PsiGauge } from "@/components/PsiGauge";
 
 // Find the preset whose params are closest to the current slider settings.
 function findNearestPreset(p: FartParams): FartPreset {
@@ -41,6 +42,9 @@ function Index() {
     cheekShape: 0.5,
     holeSize: 0.7,
     pressure: 1,
+    gasDensity: 1,
+    resonance: 0.5,
+    turbulence: 0.5,
     food: "beans",
   });
   const [jiggle, setJiggle] = useState(0);
