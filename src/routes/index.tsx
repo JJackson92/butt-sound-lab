@@ -115,6 +115,15 @@ function Index() {
             <div className="flex-1 flex items-center justify-center w-full">
               <Buttocks params={params} jiggle={jiggle} stink={stink} />
             </div>
+            <div className="w-full flex items-center justify-between gap-4 mt-2">
+              <PsiGauge pressure={params.pressure} />
+              <div className="text-right">
+                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Resonance</div>
+                <div className="font-mono font-bold text-lg leading-none">
+                  {Math.round((80 / params.holeSize / Math.sqrt(params.gasDensity ?? 1)) * (3 + (params.resonance ?? 0.5) * 5))} Hz
+                </div>
+              </div>
+            </div>
             <Button
               size="lg"
               onClick={fart}
@@ -155,12 +164,39 @@ function Index() {
             />
             <ControlSlider
               label="Pressure"
-              hint="How hard you push"
+              hint={`How hard you push — ${pressureToPsi(params.pressure)} PSI`}
               value={params.pressure}
               min={0.3}
               max={1.5}
               step={0.02}
               onChange={(v) => update("pressure", v)}
+            />
+            <ControlSlider
+              label="Gas Density"
+              hint="Helium ↔ Methane sludge"
+              value={params.gasDensity ?? 1}
+              min={0.3}
+              max={2}
+              step={0.02}
+              onChange={(v) => update("gasDensity", v)}
+            />
+            <ControlSlider
+              label="Resonance"
+              hint="Hollow ↔ Howling formant"
+              value={params.resonance ?? 0.5}
+              min={0}
+              max={1}
+              step={0.02}
+              onChange={(v) => update("resonance", v)}
+            />
+            <ControlSlider
+              label="Turbulence"
+              hint="Smooth glide ↔ Chaotic sputter"
+              value={params.turbulence ?? 0.5}
+              min={0}
+              max={1}
+              step={0.02}
+              onChange={(v) => update("turbulence", v)}
             />
 
             <div>
