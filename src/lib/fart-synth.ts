@@ -4,7 +4,6 @@ export type FartParams = {
   cheekShape: number;       // 0 - 1 (round vs flat -> filter Q)
   holeSize: number;         // 0.2 - 1.5 (smaller = higher pitch, tighter)
   pressure: number;         // 0.3 - 1.5 (loudness/attack) — drives PSI gauge
-  gasDensity?: number;      // 0.3 - 2 (denser = lower pitch, darker)
   resonance?: number;       // 0 - 1 (formant Q)
   turbulence?: number;      // 0 - 1 (chaotic sputter + noise)
   food: FoodKey;
@@ -49,12 +48,12 @@ export function playFart(params: FartParams) {
   const now = ac.currentTime;
   const food = FOOD_PROFILES[params.food];
 
-  const density = params.gasDensity ?? 1;
   const turb = params.turbulence ?? 0.5;
   const reso = params.resonance ?? 0.5;
 
-  const dur = food.dur * (0.6 + params.cheekSize * 0.5) * (0.85 + density * 0.25);
-  const basePitch = (80 * food.pitch / params.holeSize) / Math.sqrt(density);
+  const dur = food.dur * (0.6 + params.cheekSize * 0.5);
+  const basePitch = 80 * food.pitch / params.holeSize;
+
   const volume = Math.min(1, params.pressure * params.cheekSize * 0.7);
 
   // Master gain with envelope
@@ -64,10 +63,11 @@ export function playFart(params: FartParams) {
   master.gain.exponentialRampToValueAtTime(0.001, now + dur);
   master.connect(getReverbInput().input);
 
-  // Lowpass shaped by cheek shape + density
+  // Lowpass shaped by cheek shape
   const filter = ac.createBiquadFilter();
   filter.type = "lowpass";
-  filter.frequency.value = (600 + params.cheekShape * 1400) / (0.7 + density * 0.6);
+  filter.frequency.value = 600 + params.cheekShape * 1400;
+
   filter.Q.value = 4 + (1 - params.cheekShape) * 12 + reso * 18;
   filter.connect(master);
 
