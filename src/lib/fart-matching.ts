@@ -35,8 +35,8 @@ export function measuredParams(profile: AcousticProfile, original: FartParams): 
     cheekSize: clamp(0.5 + profile.activeDuration * 0.65, 0.5, 2),
     cheekShape: clamp(1 - profile.flatness * 3, 0, 1),
     pressure: clamp(0.3 + Math.sqrt(profile.rms / 0.4) * 1.2, 0.3, 1.5),
-    gasDensity: clamp(0.3 + Math.sqrt(profile.lowEnergy) * 1.7, 0.3, 2),
     resonance: clamp(profile.tonality, 0, 1),
+
     turbulence: clamp((profile.variation - 0.15) / 0.7, 0, 1),
   };
 }
@@ -63,8 +63,8 @@ export function scorePreset(p: FartParams, q: FartParams) {
     ((p.holeSize - q.holeSize) / 1.3) ** 2 * 8 +
     ((p.pressure - q.pressure) / 1.2) ** 2 * 3 +
     ((p.turbulence ?? 0.5) - (q.turbulence ?? 0.5)) ** 2 * 2 +
-    (((p.gasDensity ?? 1) - (q.gasDensity ?? 1)) / 1.7) ** 2 * 1.5 +
     ((p.cheekSize - q.cheekSize) / 1.5) ** 2 * 0.8 +
+
     ((p.resonance ?? 0.5) - (q.resonance ?? 0.5)) ** 2 * 0.8 +
     (p.cheekShape - q.cheekShape) ** 2 * 0.3 +
     (p.food === q.food ? 0 : 0.04)

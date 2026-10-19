@@ -31,7 +31,6 @@ function Index() {
     cheekShape: 0.5,
     holeSize: 0.7,
     pressure: 1,
-    gasDensity: 1,
     resonance: 0.5,
     turbulence: 0.5,
     food: "beans",
@@ -120,7 +119,7 @@ function Index() {
               <div className="text-right">
                 <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Resonance</div>
                 <div className="font-mono font-bold text-lg leading-none">
-                  {Math.round((80 / params.holeSize / Math.sqrt(params.gasDensity ?? 1)) * (3 + (params.resonance ?? 0.5) * 5))} Hz
+                  {Math.round((80 / params.holeSize) * (3 + (params.resonance ?? 0.5) * 5))} Hz
                 </div>
               </div>
             </div>
@@ -170,15 +169,6 @@ function Index() {
               max={1.5}
               step={0.02}
               onChange={(v) => update("pressure", v)}
-            />
-            <ControlSlider
-              label="Gas Density"
-              hint="Helium ↔ Methane sludge"
-              value={params.gasDensity ?? 1}
-              min={0.3}
-              max={2}
-              step={0.02}
-              onChange={(v) => update("gasDensity", v)}
             />
             <ControlSlider
               label="Resonance"
