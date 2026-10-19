@@ -6,50 +6,22 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { FOODS, FartParams, FoodKey, playFart, pressureToPsi } from "@/lib/fart-synth";
 import { PresetLibrary } from "@/components/PresetLibrary";
-import { FART_PRESETS, type FartPreset } from "@/lib/fart-presets";
+import type { FartPreset } from "@/lib/fart-presets";
+import { findNearestPreset } from "@/lib/fart-matching";
 import { playPresetAudio, type FartAudioEntry } from "@/lib/fart-audio";
 import { ENVIRONMENTS, applyEnvironment, type EnvKey } from "@/lib/fart-reverb";
 import { PsiGauge } from "@/components/PsiGauge";
 import { NewsTicker } from "@/components/NewsTicker";
 
-// Score a preset against current slider settings. Lower = closer.
-// Weights reflect what actually defines a fart's character perceptually:
-// holeSize / pressure / turbulence dominate, cheekShape barely matters.
-function scorePreset(p: FartParams, q: FartParams): number {
-  const pDensity = p.gasDensity ?? 1;
-  const qDensity = q.gasDensity ?? 1;
-  const pReso = p.resonance ?? 0.5;
-  const qReso = q.resonance ?? 0.5;
-  const pTurb = p.turbulence ?? 0.5;
-  const qTurb = q.turbulence ?? 0.5;
-  return (
-    Math.pow((p.holeSize - q.holeSize) / 1.3, 2) * 3.0 +
-    Math.pow((p.pressure - q.pressure) / 1.2, 2) * 2.5 +
-    Math.pow((pTurb - qTurb) / 1.0, 2) * 2.0 +
-    Math.pow((pDensity - qDensity) / 1.7, 2) * 1.5 +
-    Math.pow((p.cheekSize - q.cheekSize) / 1.5, 2) * 0.8 +
-    Math.pow((pReso - qReso) / 1.0, 2) * 0.8 +
-    Math.pow((p.cheekShape - q.cheekShape) / 1.0, 2) * 0.3 +
-    (p.food === q.food ? 0 : 0.25)
-  );
-}
-
-// Pick a preset that matches current settings: hard-filter by pressure band
-// (so a soft squeak never returns a blast), then random pick from the top N
-// closest so repeated presses don't replay the same clip.
-function findNearestPreset(p: FartParams): FartPreset | null {
-  // Hard filter on pressure: must be within ±0.45 (out of 1.2 range).
-  // If nothing passes, return null so the caller can fall back to the synth.
-  const pool = FART_PRESETS.filter((x) => Math.abs(x.params.pressure - p.pressure) < 0.45);
-  if (pool.length === 0) return null;
-  const ranked = pool
-    .map((preset) => ({ preset, score: scorePreset(p, preset.params) }))
-    .sort((a, b) => a.score - b.score)
-    .slice(0, 4);
-  return ranked[Math.floor(Math.random() * ranked.length)].preset;
-}
-
 export const Route = createFileRoute("/")({
+  head: () => ({ meta: [
+    { title: "Fart Simulator — Sound Lab" },
+    { name: "description", content: "Customize your fart sound with adjustable cheeks, pressure, meals and echo environments, plus 200 real recordings." },
+    { property: "og:title", content: "Fart Simulator — Sound Lab" },
+    { property: "og:description", content: "Create a custom toot and explore 200 real fart recordings." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+  ] }),
   component: Index,
 });
 
@@ -97,7 +69,7 @@ function Index() {
       return;
     }
     setPresetId(match.id);
-    const entry = await playPresetAudio(match.id);
+    const entry = await playPresetAudio(match.id, params.pressure / 1.5);
     if (entry) {
       setCredit(entry);
     } else {
