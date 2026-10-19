@@ -27,7 +27,13 @@ let currentAudio: HTMLAudioElement | null = null;
 const sourceMap = new WeakMap<HTMLAudioElement, MediaElementAudioSourceNode>();
 
 export async function playPresetAudio(presetId: string, volume = 1): Promise<FartAudioEntry | null> {
-  const m = await loadManifest();
+  let m: Record<string, FartAudioEntry>;
+  try {
+    m = await loadManifest();
+  } catch {
+    loading = null;
+    return null;
+  }
   const entry = m[presetId];
   if (!entry) return null;
   if (currentAudio) {
@@ -53,6 +59,10 @@ export async function playPresetAudio(presetId: string, volume = 1): Promise<Far
     // ignore — element will play directly
   }
 
-  a.play().catch(() => {});
-  return entry;
+  try {
+    await a.play();
+    return currentAudio === a ? entry : null;
+  } catch {
+    return null;
+  }
 }

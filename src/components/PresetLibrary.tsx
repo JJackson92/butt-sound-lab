@@ -2,7 +2,8 @@ import { useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { FART_PRESETS, type FartPreset } from "@/lib/fart-presets";
+import type { FartPreset } from "@/lib/fart-presets";
+import { FART_PRESETS } from "@/lib/fart-matching";
 import { FOODS } from "@/lib/fart-synth";
 
 const FOOD_EMOJI = Object.fromEntries(FOODS.map((f) => [f.key, f.emoji]));
@@ -44,10 +45,11 @@ export function PresetLibrary({
         {filtered.map((p) => {
           const active = p.id === currentId;
           return (
-            <button
+            <Button
+              variant="outline"
               key={p.id}
               onClick={() => onPick(p)}
-              className={`w-full text-left rounded-md border p-2.5 transition-all hover:bg-accent hover:border-primary ${
+              className={`w-full h-auto block whitespace-normal text-left rounded-md border p-2.5 transition-all hover:bg-accent hover:border-primary ${
                 active ? "border-primary bg-accent shadow-sm" : "border-border"
               }`}
             >
@@ -63,7 +65,7 @@ export function PresetLibrary({
               <div className="text-xs text-muted-foreground mt-0.5 line-clamp-1">
                 {p.description}
               </div>
-            </button>
+            </Button>
           );
         })}
         {filtered.length === 0 && (
@@ -74,7 +76,7 @@ export function PresetLibrary({
       </div>
       <div className="mt-3 pt-3 border-t">
         <Button asChild variant="outline" size="sm" className="w-full">
-          <a href="/fart-presets.json" download>
+          <a href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(FART_PRESETS, null, 2))}`} download="fart-presets.json">
             ⬇ Download all 200 as JSON
           </a>
         </Button>
