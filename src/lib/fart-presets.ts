@@ -13,7 +13,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.32,
       "holeSize": 0.2,
       "pressure": 1.23,
-      "gasDensity": 0.41,
       "resonance": 0.9,
       "turbulence": 0.47,
       "food": "soda"
@@ -28,7 +27,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.42,
       "holeSize": 0.78,
       "pressure": 1.5,
-      "gasDensity": 0.9,
       "resonance": 0.92,
       "turbulence": 0.31,
       "food": "soda"
@@ -43,7 +41,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.39,
       "holeSize": 0.89,
       "pressure": 1.45,
-      "gasDensity": 0.77,
       "resonance": 1.0,
       "turbulence": 0.16,
       "food": "soda"
@@ -58,7 +55,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.3,
       "holeSize": 0.2,
       "pressure": 1.13,
-      "gasDensity": 0.44,
       "resonance": 0.69,
       "turbulence": 0.63,
       "food": "spicy"
@@ -73,7 +69,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.5,
       "holeSize": 0.62,
       "pressure": 1.5,
-      "gasDensity": 0.9,
       "resonance": 0.96,
       "turbulence": 0.67,
       "food": "spicy"
@@ -88,7 +83,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.68,
       "holeSize": 1.04,
       "pressure": 1.5,
-      "gasDensity": 1.92,
       "resonance": 1.0,
       "turbulence": 0.17,
       "food": "eggs"
@@ -103,7 +97,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.23,
       "holeSize": 0.2,
       "pressure": 1.39,
-      "gasDensity": 0.34,
       "resonance": 0.82,
       "turbulence": 1.0,
       "food": "spicy"
@@ -118,7 +111,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.25,
       "holeSize": 0.41,
       "pressure": 1.25,
-      "gasDensity": 0.47,
       "resonance": 0.98,
       "turbulence": 0.32,
       "food": "soda"
@@ -133,7 +125,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.4,
       "holeSize": 0.85,
       "pressure": 1.45,
-      "gasDensity": 0.84,
       "resonance": 0.97,
       "turbulence": 0.21,
       "food": "soda"
@@ -148,7 +139,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.22,
       "holeSize": 0.2,
       "pressure": 1.5,
-      "gasDensity": 0.35,
       "resonance": 0.71,
       "turbulence": 1.0,
       "food": "spicy"
@@ -163,7 +153,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.31,
       "holeSize": 0.73,
       "pressure": 1.5,
-      "gasDensity": 0.71,
       "resonance": 0.81,
       "turbulence": 0.25,
       "food": "soda"
@@ -178,7 +167,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.0,
       "holeSize": 0.2,
       "pressure": 1.13,
-      "gasDensity": 0.3,
       "resonance": 1.0,
       "turbulence": 1.0,
       "food": "spicy"
@@ -193,7 +181,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.46,
       "holeSize": 0.84,
       "pressure": 1.5,
-      "gasDensity": 0.84,
       "resonance": 1.0,
       "turbulence": 0.23,
       "food": "eggs"
@@ -208,7 +195,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.0,
       "holeSize": 0.2,
       "pressure": 1.16,
-      "gasDensity": 0.3,
       "resonance": 1.0,
       "turbulence": 1.0,
       "food": "spicy"
@@ -223,7 +209,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.39,
       "holeSize": 0.89,
       "pressure": 0.78,
-      "gasDensity": 0.76,
       "resonance": 0.9,
       "turbulence": 0.36,
       "food": "salad"
@@ -238,7 +223,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.25,
       "holeSize": 0.28,
       "pressure": 1.32,
-      "gasDensity": 0.5,
       "resonance": 0.81,
       "turbulence": 0.51,
       "food": "soda"
@@ -253,7 +237,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.16,
       "holeSize": 0.2,
       "pressure": 1.41,
-      "gasDensity": 0.3,
       "resonance": 0.5,
       "turbulence": 1.0,
       "food": "spicy"
@@ -268,7 +251,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.16,
       "holeSize": 0.2,
       "pressure": 0.61,
-      "gasDensity": 0.3,
       "resonance": 0.82,
       "turbulence": 0.78,
       "food": "soda"
@@ -283,7 +265,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.31,
       "holeSize": 0.37,
       "pressure": 1.07,
-      "gasDensity": 0.58,
       "resonance": 0.92,
       "turbulence": 0.48,
       "food": "soda"
@@ -298,7 +279,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.42,
       "holeSize": 0.62,
       "pressure": 1.5,
-      "gasDensity": 0.71,
       "resonance": 1.0,
       "turbulence": 0.27,
       "food": "soda"
@@ -313,7 +293,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.49,
       "holeSize": 1.08,
       "pressure": 1.5,
-      "gasDensity": 0.79,
       "resonance": 1.0,
       "turbulence": 0.11,
       "food": "eggs"
@@ -328,7 +307,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.23,
       "holeSize": 0.58,
       "pressure": 1.5,
-      "gasDensity": 0.6,
       "resonance": 0.76,
       "turbulence": 0.28,
       "food": "soda"
@@ -343,7 +321,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.35,
       "holeSize": 0.51,
       "pressure": 1.17,
-      "gasDensity": 0.68,
       "resonance": 0.92,
       "turbulence": 0.57,
       "food": "soda"
@@ -358,7 +335,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.35,
       "holeSize": 0.63,
       "pressure": 0.61,
-      "gasDensity": 0.68,
       "resonance": 0.76,
       "turbulence": 0.31,
       "food": "salad"
@@ -373,7 +349,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.43,
       "holeSize": 0.42,
       "pressure": 0.8,
-      "gasDensity": 0.77,
       "resonance": 0.91,
       "turbulence": 0.57,
       "food": "soda"
@@ -388,7 +363,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.22,
       "holeSize": 0.2,
       "pressure": 0.84,
-      "gasDensity": 0.48,
       "resonance": 0.65,
       "turbulence": 1.0,
       "food": "beans"
@@ -403,7 +377,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.26,
       "holeSize": 0.2,
       "pressure": 1.06,
-      "gasDensity": 0.64,
       "resonance": 0.88,
       "turbulence": 0.56,
       "food": "soda"
@@ -418,7 +391,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.45,
       "holeSize": 0.99,
       "pressure": 1.38,
-      "gasDensity": 0.84,
       "resonance": 1.0,
       "turbulence": 0.14,
       "food": "eggs"
@@ -433,7 +405,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.11,
       "holeSize": 0.2,
       "pressure": 1.5,
-      "gasDensity": 0.3,
       "resonance": 0.57,
       "turbulence": 1.0,
       "food": "spicy"
@@ -448,7 +419,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.3,
       "holeSize": 0.57,
       "pressure": 1.34,
-      "gasDensity": 0.61,
       "resonance": 1.0,
       "turbulence": 0.51,
       "food": "soda"
@@ -463,7 +433,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.2,
       "holeSize": 0.2,
       "pressure": 1.5,
-      "gasDensity": 0.3,
       "resonance": 0.8,
       "turbulence": 1.0,
       "food": "spicy"
@@ -478,7 +447,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.33,
       "holeSize": 0.81,
       "pressure": 1.5,
-      "gasDensity": 0.71,
       "resonance": 1.0,
       "turbulence": 0.18,
       "food": "soda"
@@ -493,7 +461,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.38,
       "holeSize": 0.72,
       "pressure": 1.5,
-      "gasDensity": 0.68,
       "resonance": 1.0,
       "turbulence": 0.32,
       "food": "soda"
@@ -508,7 +475,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.54,
       "holeSize": 1.12,
       "pressure": 1.49,
-      "gasDensity": 0.88,
       "resonance": 1.0,
       "turbulence": 1.0,
       "food": "spicy"
@@ -523,7 +489,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.22,
       "holeSize": 0.23,
       "pressure": 0.97,
-      "gasDensity": 0.51,
       "resonance": 0.65,
       "turbulence": 0.63,
       "food": "spicy"
@@ -538,7 +503,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.43,
       "holeSize": 1.0,
       "pressure": 1.41,
-      "gasDensity": 0.83,
       "resonance": 1.0,
       "turbulence": 0.15,
       "food": "eggs"
@@ -553,7 +517,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.53,
       "holeSize": 0.79,
       "pressure": 0.48,
-      "gasDensity": 1.11,
       "resonance": 1.0,
       "turbulence": 0.59,
       "food": "eggs"
@@ -568,7 +531,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.38,
       "holeSize": 0.73,
       "pressure": 1.5,
-      "gasDensity": 0.79,
       "resonance": 1.0,
       "turbulence": 0.77,
       "food": "spicy"
@@ -583,7 +545,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.17,
       "holeSize": 0.2,
       "pressure": 0.78,
-      "gasDensity": 0.3,
       "resonance": 0.65,
       "turbulence": 0.59,
       "food": "salad"
@@ -598,7 +559,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.12,
       "holeSize": 0.2,
       "pressure": 1.5,
-      "gasDensity": 0.34,
       "resonance": 0.76,
       "turbulence": 0.66,
       "food": "soda"
@@ -613,7 +573,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.25,
       "holeSize": 0.2,
       "pressure": 1.5,
-      "gasDensity": 0.47,
       "resonance": 0.63,
       "turbulence": 0.77,
       "food": "soda"
@@ -628,7 +587,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.52,
       "holeSize": 0.78,
       "pressure": 1.5,
-      "gasDensity": 1.13,
       "resonance": 1.0,
       "turbulence": 0.26,
       "food": "eggs"
@@ -643,7 +601,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.93,
       "holeSize": 1.43,
       "pressure": 1.5,
-      "gasDensity": 2.0,
       "resonance": 1.0,
       "turbulence": 0.02,
       "food": "eggs"
@@ -658,7 +615,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.34,
       "holeSize": 0.58,
       "pressure": 0.76,
-      "gasDensity": 0.72,
       "resonance": 0.91,
       "turbulence": 0.48,
       "food": "soda"
@@ -673,7 +629,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.38,
       "holeSize": 0.67,
       "pressure": 0.48,
-      "gasDensity": 0.66,
       "resonance": 1.0,
       "turbulence": 0.12,
       "food": "eggs"
@@ -688,7 +643,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.49,
       "holeSize": 0.99,
       "pressure": 0.7,
-      "gasDensity": 1.07,
       "resonance": 1.0,
       "turbulence": 0.32,
       "food": "eggs"
@@ -703,7 +657,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.08,
       "holeSize": 0.2,
       "pressure": 1.24,
-      "gasDensity": 0.3,
       "resonance": 0.61,
       "turbulence": 0.66,
       "food": "spicy"
@@ -718,7 +671,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.18,
       "holeSize": 0.21,
       "pressure": 0.91,
-      "gasDensity": 0.45,
       "resonance": 0.69,
       "turbulence": 0.47,
       "food": "soda"
@@ -733,7 +685,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.28,
       "holeSize": 0.2,
       "pressure": 0.89,
-      "gasDensity": 0.42,
       "resonance": 0.73,
       "turbulence": 0.5,
       "food": "soda"
@@ -748,7 +699,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.23,
       "holeSize": 0.2,
       "pressure": 1.5,
-      "gasDensity": 0.49,
       "resonance": 0.89,
       "turbulence": 1.0,
       "food": "spicy"
@@ -763,7 +713,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.15,
       "holeSize": 0.2,
       "pressure": 1.31,
-      "gasDensity": 0.3,
       "resonance": 0.93,
       "turbulence": 1.0,
       "food": "spicy"
@@ -778,7 +727,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.22,
       "holeSize": 0.2,
       "pressure": 0.86,
-      "gasDensity": 0.3,
       "resonance": 0.64,
       "turbulence": 1.0,
       "food": "soda"
@@ -793,7 +741,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.12,
       "holeSize": 0.2,
       "pressure": 1.13,
-      "gasDensity": 0.3,
       "resonance": 0.55,
       "turbulence": 1.0,
       "food": "spicy"
@@ -808,7 +755,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.35,
       "holeSize": 0.52,
       "pressure": 1.5,
-      "gasDensity": 0.99,
       "resonance": 1.0,
       "turbulence": 0.36,
       "food": "soda"
@@ -823,7 +769,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.34,
       "holeSize": 0.72,
       "pressure": 0.46,
-      "gasDensity": 0.65,
       "resonance": 0.95,
       "turbulence": 0.23,
       "food": "soda"
@@ -838,7 +783,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.15,
       "holeSize": 0.26,
       "pressure": 1.33,
-      "gasDensity": 0.42,
       "resonance": 0.7,
       "turbulence": 0.62,
       "food": "spicy"
@@ -853,7 +797,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.43,
       "holeSize": 0.7,
       "pressure": 0.92,
-      "gasDensity": 0.86,
       "resonance": 0.92,
       "turbulence": 1.0,
       "food": "spicy"
@@ -868,7 +811,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.43,
       "holeSize": 0.95,
       "pressure": 1.5,
-      "gasDensity": 1.23,
       "resonance": 1.0,
       "turbulence": 0.22,
       "food": "soda"
@@ -883,7 +825,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.23,
       "holeSize": 0.31,
       "pressure": 0.84,
-      "gasDensity": 0.54,
       "resonance": 0.72,
       "turbulence": 0.4,
       "food": "soda"
@@ -898,7 +839,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.58,
       "holeSize": 0.56,
       "pressure": 0.8,
-      "gasDensity": 1.31,
       "resonance": 0.97,
       "turbulence": 0.36,
       "food": "salad"
@@ -913,7 +853,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.5,
       "holeSize": 0.9,
       "pressure": 1.5,
-      "gasDensity": 0.99,
       "resonance": 1.0,
       "turbulence": 0.21,
       "food": "soda"
@@ -928,7 +867,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.48,
       "holeSize": 0.99,
       "pressure": 1.5,
-      "gasDensity": 0.85,
       "resonance": 0.96,
       "turbulence": 0.15,
       "food": "eggs"
@@ -943,7 +881,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.36,
       "holeSize": 0.78,
       "pressure": 1.5,
-      "gasDensity": 0.81,
       "resonance": 0.87,
       "turbulence": 0.24,
       "food": "soda"
@@ -958,7 +895,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.24,
       "holeSize": 0.55,
       "pressure": 1.09,
-      "gasDensity": 0.72,
       "resonance": 1.0,
       "turbulence": 0.28,
       "food": "soda"
@@ -973,7 +909,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.52,
       "holeSize": 1.06,
       "pressure": 0.67,
-      "gasDensity": 0.98,
       "resonance": 1.0,
       "turbulence": 0.13,
       "food": "eggs"
@@ -988,7 +923,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.44,
       "holeSize": 0.84,
       "pressure": 0.74,
-      "gasDensity": 0.76,
       "resonance": 1.0,
       "turbulence": 0.2,
       "food": "salad"
@@ -1003,7 +937,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.17,
       "holeSize": 0.2,
       "pressure": 0.99,
-      "gasDensity": 0.3,
       "resonance": 0.82,
       "turbulence": 0.78,
       "food": "spicy"
@@ -1018,7 +951,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.51,
       "holeSize": 0.93,
       "pressure": 1.23,
-      "gasDensity": 0.92,
       "resonance": 1.0,
       "turbulence": 1.0,
       "food": "spicy"
@@ -1033,7 +965,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.37,
       "holeSize": 0.4,
       "pressure": 1.5,
-      "gasDensity": 0.65,
       "resonance": 0.94,
       "turbulence": 0.4,
       "food": "soda"
@@ -1048,7 +979,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.31,
       "holeSize": 0.2,
       "pressure": 1.5,
-      "gasDensity": 0.42,
       "resonance": 0.77,
       "turbulence": 1.0,
       "food": "spicy"
@@ -1063,7 +993,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.13,
       "holeSize": 0.2,
       "pressure": 0.82,
-      "gasDensity": 0.3,
       "resonance": 0.65,
       "turbulence": 1.0,
       "food": "soda"
@@ -1078,7 +1007,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.19,
       "holeSize": 0.2,
       "pressure": 1.19,
-      "gasDensity": 0.3,
       "resonance": 0.84,
       "turbulence": 0.61,
       "food": "spicy"
@@ -1093,7 +1021,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.36,
       "holeSize": 0.69,
       "pressure": 1.5,
-      "gasDensity": 1.06,
       "resonance": 1.0,
       "turbulence": 0.41,
       "food": "soda"
@@ -1108,7 +1035,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.63,
       "holeSize": 1.14,
       "pressure": 1.5,
-      "gasDensity": 1.52,
       "resonance": 1.0,
       "turbulence": 0.13,
       "food": "eggs"
@@ -1123,7 +1049,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.25,
       "holeSize": 0.2,
       "pressure": 1.5,
-      "gasDensity": 0.53,
       "resonance": 0.8,
       "turbulence": 1.0,
       "food": "spicy"
@@ -1138,7 +1063,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.44,
       "holeSize": 0.92,
       "pressure": 1.5,
-      "gasDensity": 0.98,
       "resonance": 0.92,
       "turbulence": 0.18,
       "food": "eggs"
@@ -1153,7 +1077,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.12,
       "holeSize": 0.2,
       "pressure": 0.72,
-      "gasDensity": 0.3,
       "resonance": 0.49,
       "turbulence": 1.0,
       "food": "soda"
@@ -1168,7 +1091,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.4,
       "holeSize": 0.48,
       "pressure": 1.5,
-      "gasDensity": 0.97,
       "resonance": 0.87,
       "turbulence": 0.46,
       "food": "soda"
@@ -1183,7 +1105,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.22,
       "holeSize": 0.31,
       "pressure": 0.91,
-      "gasDensity": 0.55,
       "resonance": 0.74,
       "turbulence": 0.53,
       "food": "soda"
@@ -1198,7 +1119,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.52,
       "holeSize": 0.86,
       "pressure": 1.5,
-      "gasDensity": 1.02,
       "resonance": 1.0,
       "turbulence": 0.28,
       "food": "soda"
@@ -1213,7 +1133,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.39,
       "holeSize": 0.97,
       "pressure": 1.17,
-      "gasDensity": 0.78,
       "resonance": 1.0,
       "turbulence": 0.11,
       "food": "eggs"
@@ -1228,7 +1147,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.52,
       "holeSize": 0.85,
       "pressure": 0.94,
-      "gasDensity": 1.01,
       "resonance": 1.0,
       "turbulence": 0.28,
       "food": "eggs"
@@ -1243,7 +1161,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.07,
       "holeSize": 0.2,
       "pressure": 1.5,
-      "gasDensity": 0.3,
       "resonance": 0.61,
       "turbulence": 0.62,
       "food": "spicy"
@@ -1258,7 +1175,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.75,
       "holeSize": 1.21,
       "pressure": 1.5,
-      "gasDensity": 1.65,
       "resonance": 1.0,
       "turbulence": 0.08,
       "food": "eggs"
@@ -1273,7 +1189,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.32,
       "holeSize": 0.8,
       "pressure": 1.3,
-      "gasDensity": 0.67,
       "resonance": 0.98,
       "turbulence": 0.42,
       "food": "soda"
@@ -1288,7 +1203,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.28,
       "holeSize": 0.28,
       "pressure": 1.24,
-      "gasDensity": 0.54,
       "resonance": 0.88,
       "turbulence": 0.65,
       "food": "soda"
@@ -1303,7 +1217,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.25,
       "holeSize": 0.56,
       "pressure": 1.5,
-      "gasDensity": 0.58,
       "resonance": 0.78,
       "turbulence": 0.3,
       "food": "soda"
@@ -1318,7 +1231,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.16,
       "holeSize": 0.2,
       "pressure": 1.26,
-      "gasDensity": 0.3,
       "resonance": 0.9,
       "turbulence": 1.0,
       "food": "spicy"
@@ -1333,7 +1245,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.53,
       "holeSize": 0.56,
       "pressure": 1.5,
-      "gasDensity": 1.42,
       "resonance": 1.0,
       "turbulence": 0.39,
       "food": "soda"
@@ -1348,7 +1259,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.23,
       "holeSize": 0.2,
       "pressure": 0.77,
-      "gasDensity": 0.44,
       "resonance": 0.58,
       "turbulence": 0.84,
       "food": "salad"
@@ -1363,7 +1273,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.51,
       "holeSize": 0.76,
       "pressure": 1.5,
-      "gasDensity": 1.05,
       "resonance": 1.0,
       "turbulence": 0.29,
       "food": "eggs"
@@ -1378,7 +1287,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.32,
       "holeSize": 0.75,
       "pressure": 1.38,
-      "gasDensity": 0.73,
       "resonance": 0.95,
       "turbulence": 0.53,
       "food": "soda"
@@ -1393,7 +1301,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.28,
       "holeSize": 0.67,
       "pressure": 1.5,
-      "gasDensity": 0.67,
       "resonance": 0.87,
       "turbulence": 0.21,
       "food": "soda"
@@ -1408,7 +1315,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.36,
       "holeSize": 0.67,
       "pressure": 1.5,
-      "gasDensity": 0.69,
       "resonance": 1.0,
       "turbulence": 0.27,
       "food": "soda"
@@ -1423,7 +1329,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.34,
       "holeSize": 0.71,
       "pressure": 1.5,
-      "gasDensity": 0.87,
       "resonance": 0.91,
       "turbulence": 0.24,
       "food": "soda"
@@ -1438,7 +1343,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.18,
       "holeSize": 0.2,
       "pressure": 1.2,
-      "gasDensity": 0.3,
       "resonance": 0.57,
       "turbulence": 1.0,
       "food": "spicy"
@@ -1453,7 +1357,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.19,
       "holeSize": 0.2,
       "pressure": 1.41,
-      "gasDensity": 0.3,
       "resonance": 0.82,
       "turbulence": 1.0,
       "food": "spicy"
@@ -1468,7 +1371,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.44,
       "holeSize": 0.61,
       "pressure": 1.15,
-      "gasDensity": 0.84,
       "resonance": 0.97,
       "turbulence": 0.49,
       "food": "eggs"
@@ -1483,7 +1385,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.8,
       "holeSize": 1.27,
       "pressure": 1.5,
-      "gasDensity": 1.74,
       "resonance": 1.0,
       "turbulence": 0.07,
       "food": "eggs"
@@ -1498,7 +1399,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.09,
       "holeSize": 0.2,
       "pressure": 0.94,
-      "gasDensity": 0.3,
       "resonance": 0.36,
       "turbulence": 1.0,
       "food": "spicy"
@@ -1513,7 +1413,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.29,
       "holeSize": 0.35,
       "pressure": 1.4,
-      "gasDensity": 0.45,
       "resonance": 0.96,
       "turbulence": 0.38,
       "food": "soda"
@@ -1528,7 +1427,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 1.0,
       "holeSize": 1.46,
       "pressure": 1.5,
-      "gasDensity": 2.0,
       "resonance": 1.0,
       "turbulence": 0.02,
       "food": "cheese"
@@ -1543,7 +1441,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.47,
       "holeSize": 0.8,
       "pressure": 1.5,
-      "gasDensity": 0.94,
       "resonance": 0.97,
       "turbulence": 0.31,
       "food": "eggs"
@@ -1558,7 +1455,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.18,
       "holeSize": 0.2,
       "pressure": 1.2,
-      "gasDensity": 0.3,
       "resonance": 0.87,
       "turbulence": 1.0,
       "food": "spicy"
@@ -1573,7 +1469,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 1.0,
       "holeSize": 1.48,
       "pressure": 1.5,
-      "gasDensity": 2.0,
       "resonance": 1.0,
       "turbulence": 0.01,
       "food": "cheese"
@@ -1588,7 +1483,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.19,
       "holeSize": 0.2,
       "pressure": 1.12,
-      "gasDensity": 0.3,
       "resonance": 0.88,
       "turbulence": 1.0,
       "food": "spicy"
@@ -1603,7 +1497,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 1.0,
       "holeSize": 1.49,
       "pressure": 1.5,
-      "gasDensity": 2.0,
       "resonance": 1.0,
       "turbulence": 0.01,
       "food": "cheese"
@@ -1618,7 +1511,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.36,
       "holeSize": 0.86,
       "pressure": 1.1,
-      "gasDensity": 0.74,
       "resonance": 1.0,
       "turbulence": 0.17,
       "food": "soda"
@@ -1633,7 +1525,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.12,
       "holeSize": 0.2,
       "pressure": 1.31,
-      "gasDensity": 0.3,
       "resonance": 0.97,
       "turbulence": 0.81,
       "food": "spicy"
@@ -1648,7 +1539,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.15,
       "holeSize": 0.2,
       "pressure": 1.14,
-      "gasDensity": 0.3,
       "resonance": 1.0,
       "turbulence": 0.69,
       "food": "spicy"
@@ -1663,7 +1553,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.43,
       "holeSize": 0.82,
       "pressure": 1.5,
-      "gasDensity": 0.79,
       "resonance": 1.0,
       "turbulence": 0.29,
       "food": "soda"
@@ -1678,7 +1567,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.18,
       "holeSize": 0.2,
       "pressure": 0.66,
-      "gasDensity": 0.3,
       "resonance": 0.54,
       "turbulence": 0.92,
       "food": "soda"
@@ -1693,7 +1581,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.3,
       "holeSize": 0.38,
       "pressure": 1.5,
-      "gasDensity": 0.82,
       "resonance": 1.0,
       "turbulence": 0.85,
       "food": "spicy"
@@ -1708,7 +1595,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.39,
       "holeSize": 0.95,
       "pressure": 1.3,
-      "gasDensity": 0.8,
       "resonance": 1.0,
       "turbulence": 0.28,
       "food": "eggs"
@@ -1723,7 +1609,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.54,
       "holeSize": 1.11,
       "pressure": 1.5,
-      "gasDensity": 0.97,
       "resonance": 1.0,
       "turbulence": 0.16,
       "food": "eggs"
@@ -1738,7 +1623,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.47,
       "holeSize": 1.02,
       "pressure": 1.5,
-      "gasDensity": 0.76,
       "resonance": 1.0,
       "turbulence": 0.13,
       "food": "eggs"
@@ -1753,7 +1637,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.33,
       "holeSize": 0.2,
       "pressure": 1.5,
-      "gasDensity": 0.91,
       "resonance": 0.87,
       "turbulence": 1.0,
       "food": "spicy"
@@ -1768,7 +1651,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.2,
       "holeSize": 0.2,
       "pressure": 1.0,
-      "gasDensity": 0.3,
       "resonance": 0.56,
       "turbulence": 1.0,
       "food": "spicy"
@@ -1783,7 +1665,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.38,
       "holeSize": 0.76,
       "pressure": 1.5,
-      "gasDensity": 0.83,
       "resonance": 0.83,
       "turbulence": 0.26,
       "food": "soda"
@@ -1798,7 +1679,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.23,
       "holeSize": 0.2,
       "pressure": 1.5,
-      "gasDensity": 0.47,
       "resonance": 0.84,
       "turbulence": 0.75,
       "food": "spicy"
@@ -1813,7 +1693,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.26,
       "holeSize": 0.2,
       "pressure": 1.26,
-      "gasDensity": 0.4,
       "resonance": 0.91,
       "turbulence": 0.48,
       "food": "soda"
@@ -1828,7 +1707,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.29,
       "holeSize": 0.58,
       "pressure": 1.01,
-      "gasDensity": 0.83,
       "resonance": 1.0,
       "turbulence": 0.55,
       "food": "soda"
@@ -1843,7 +1721,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.21,
       "holeSize": 0.2,
       "pressure": 0.9,
-      "gasDensity": 0.32,
       "resonance": 0.65,
       "turbulence": 1.0,
       "food": "beans"
@@ -1858,7 +1735,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.28,
       "holeSize": 0.2,
       "pressure": 1.5,
-      "gasDensity": 0.72,
       "resonance": 0.99,
       "turbulence": 1.0,
       "food": "spicy"
@@ -1873,7 +1749,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.72,
       "holeSize": 1.13,
       "pressure": 1.26,
-      "gasDensity": 1.63,
       "resonance": 1.0,
       "turbulence": 0.12,
       "food": "eggs"
@@ -1888,7 +1763,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.36,
       "holeSize": 0.52,
       "pressure": 1.5,
-      "gasDensity": 0.69,
       "resonance": 0.98,
       "turbulence": 0.79,
       "food": "spicy"
@@ -1903,7 +1777,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.33,
       "holeSize": 0.66,
       "pressure": 1.12,
-      "gasDensity": 0.69,
       "resonance": 0.96,
       "turbulence": 0.51,
       "food": "soda"
@@ -1918,7 +1791,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.9,
       "holeSize": 1.4,
       "pressure": 1.5,
-      "gasDensity": 2.0,
       "resonance": 1.0,
       "turbulence": 0.03,
       "food": "eggs"
@@ -1933,7 +1805,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.24,
       "holeSize": 0.2,
       "pressure": 1.25,
-      "gasDensity": 0.4,
       "resonance": 0.59,
       "turbulence": 0.94,
       "food": "spicy"
@@ -1948,7 +1819,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.45,
       "holeSize": 0.58,
       "pressure": 1.5,
-      "gasDensity": 0.85,
       "resonance": 0.95,
       "turbulence": 0.42,
       "food": "eggs"
@@ -1963,7 +1833,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.21,
       "holeSize": 0.2,
       "pressure": 0.9,
-      "gasDensity": 0.3,
       "resonance": 0.7,
       "turbulence": 0.72,
       "food": "soda"
@@ -1978,7 +1847,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.36,
       "holeSize": 0.26,
       "pressure": 1.43,
-      "gasDensity": 0.68,
       "resonance": 0.87,
       "turbulence": 0.43,
       "food": "soda"
@@ -1993,7 +1861,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.31,
       "holeSize": 0.2,
       "pressure": 0.76,
-      "gasDensity": 0.56,
       "resonance": 0.66,
       "turbulence": 1.0,
       "food": "salad"
@@ -2008,7 +1875,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.15,
       "holeSize": 0.2,
       "pressure": 0.92,
-      "gasDensity": 0.33,
       "resonance": 0.8,
       "turbulence": 0.59,
       "food": "soda"
@@ -2023,7 +1889,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.26,
       "holeSize": 0.25,
       "pressure": 1.37,
-      "gasDensity": 0.74,
       "resonance": 0.82,
       "turbulence": 0.41,
       "food": "soda"
@@ -2038,7 +1903,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.09,
       "holeSize": 0.2,
       "pressure": 1.5,
-      "gasDensity": 0.3,
       "resonance": 0.41,
       "turbulence": 1.0,
       "food": "spicy"
@@ -2053,7 +1917,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.18,
       "holeSize": 0.2,
       "pressure": 1.15,
-      "gasDensity": 0.3,
       "resonance": 0.87,
       "turbulence": 1.0,
       "food": "spicy"
@@ -2068,7 +1931,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.89,
       "holeSize": 1.37,
       "pressure": 1.5,
-      "gasDensity": 2.0,
       "resonance": 1.0,
       "turbulence": 0.04,
       "food": "eggs"
@@ -2083,7 +1945,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.24,
       "holeSize": 0.25,
       "pressure": 0.95,
-      "gasDensity": 0.46,
       "resonance": 0.91,
       "turbulence": 0.48,
       "food": "soda"
@@ -2098,7 +1959,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.46,
       "holeSize": 0.73,
       "pressure": 1.5,
-      "gasDensity": 0.88,
       "resonance": 1.0,
       "turbulence": 0.34,
       "food": "soda"
@@ -2113,7 +1973,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.68,
       "holeSize": 1.18,
       "pressure": 1.41,
-      "gasDensity": 1.37,
       "resonance": 1.0,
       "turbulence": 0.14,
       "food": "eggs"
@@ -2128,7 +1987,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.35,
       "holeSize": 0.6,
       "pressure": 0.56,
-      "gasDensity": 0.71,
       "resonance": 0.92,
       "turbulence": 0.48,
       "food": "salad"
@@ -2143,7 +2001,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.19,
       "holeSize": 0.2,
       "pressure": 1.5,
-      "gasDensity": 0.3,
       "resonance": 0.8,
       "turbulence": 1.0,
       "food": "spicy"
@@ -2158,7 +2015,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.2,
       "holeSize": 0.2,
       "pressure": 0.86,
-      "gasDensity": 0.33,
       "resonance": 0.55,
       "turbulence": 0.85,
       "food": "soda"
@@ -2173,7 +2029,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.39,
       "holeSize": 0.23,
       "pressure": 0.73,
-      "gasDensity": 0.61,
       "resonance": 0.94,
       "turbulence": 0.43,
       "food": "soda"
@@ -2188,7 +2043,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.17,
       "holeSize": 0.2,
       "pressure": 1.5,
-      "gasDensity": 0.3,
       "resonance": 0.54,
       "turbulence": 1.0,
       "food": "spicy"
@@ -2203,7 +2057,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.49,
       "holeSize": 0.74,
       "pressure": 1.5,
-      "gasDensity": 0.89,
       "resonance": 1.0,
       "turbulence": 0.26,
       "food": "soda"
@@ -2218,7 +2071,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.41,
       "holeSize": 0.47,
       "pressure": 1.5,
-      "gasDensity": 0.7,
       "resonance": 0.76,
       "turbulence": 0.42,
       "food": "soda"
@@ -2233,7 +2085,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.18,
       "holeSize": 0.2,
       "pressure": 1.16,
-      "gasDensity": 0.37,
       "resonance": 0.7,
       "turbulence": 0.62,
       "food": "soda"
@@ -2248,7 +2099,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.2,
       "holeSize": 0.21,
       "pressure": 1.5,
-      "gasDensity": 0.39,
       "resonance": 0.93,
       "turbulence": 0.5,
       "food": "soda"
@@ -2263,7 +2113,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.28,
       "holeSize": 0.44,
       "pressure": 1.27,
-      "gasDensity": 0.56,
       "resonance": 0.93,
       "turbulence": 0.49,
       "food": "soda"
@@ -2278,7 +2127,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.61,
       "holeSize": 0.99,
       "pressure": 0.79,
-      "gasDensity": 1.37,
       "resonance": 1.0,
       "turbulence": 0.19,
       "food": "eggs"
@@ -2293,7 +2141,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.36,
       "holeSize": 0.75,
       "pressure": 1.5,
-      "gasDensity": 0.78,
       "resonance": 0.94,
       "turbulence": 0.31,
       "food": "soda"
@@ -2308,7 +2155,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.14,
       "holeSize": 0.2,
       "pressure": 1.11,
-      "gasDensity": 0.3,
       "resonance": 1.0,
       "turbulence": 0.72,
       "food": "spicy"
@@ -2323,7 +2169,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.25,
       "holeSize": 0.31,
       "pressure": 1.49,
-      "gasDensity": 0.54,
       "resonance": 0.67,
       "turbulence": 0.51,
       "food": "soda"
@@ -2338,7 +2183,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.27,
       "holeSize": 0.2,
       "pressure": 1.5,
-      "gasDensity": 0.38,
       "resonance": 0.84,
       "turbulence": 0.57,
       "food": "soda"
@@ -2353,7 +2197,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.21,
       "holeSize": 0.31,
       "pressure": 1.5,
-      "gasDensity": 0.44,
       "resonance": 0.97,
       "turbulence": 0.41,
       "food": "soda"
@@ -2368,7 +2211,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.24,
       "holeSize": 0.31,
       "pressure": 1.5,
-      "gasDensity": 0.56,
       "resonance": 0.88,
       "turbulence": 0.77,
       "food": "spicy"
@@ -2383,7 +2225,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.43,
       "holeSize": 0.2,
       "pressure": 1.09,
-      "gasDensity": 0.73,
       "resonance": 0.9,
       "turbulence": 0.44,
       "food": "soda"
@@ -2398,7 +2239,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.48,
       "holeSize": 0.78,
       "pressure": 1.5,
-      "gasDensity": 1.28,
       "resonance": 0.94,
       "turbulence": 0.31,
       "food": "soda"
@@ -2413,7 +2253,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.28,
       "holeSize": 0.46,
       "pressure": 1.36,
-      "gasDensity": 0.5,
       "resonance": 1.0,
       "turbulence": 0.27,
       "food": "soda"
@@ -2428,7 +2267,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.42,
       "holeSize": 0.88,
       "pressure": 1.5,
-      "gasDensity": 0.88,
       "resonance": 1.0,
       "turbulence": 0.16,
       "food": "eggs"
@@ -2443,7 +2281,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.58,
       "holeSize": 0.2,
       "pressure": 1.5,
-      "gasDensity": 1.38,
       "resonance": 0.91,
       "turbulence": 0.42,
       "food": "soda"
@@ -2458,7 +2295,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.47,
       "holeSize": 0.62,
       "pressure": 1.5,
-      "gasDensity": 0.98,
       "resonance": 0.97,
       "turbulence": 0.58,
       "food": "soda"
@@ -2473,7 +2309,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.29,
       "holeSize": 0.58,
       "pressure": 1.5,
-      "gasDensity": 0.7,
       "resonance": 0.81,
       "turbulence": 0.33,
       "food": "soda"
@@ -2488,7 +2323,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.23,
       "holeSize": 0.2,
       "pressure": 1.15,
-      "gasDensity": 0.34,
       "resonance": 0.78,
       "turbulence": 0.51,
       "food": "soda"
@@ -2503,7 +2337,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.12,
       "holeSize": 0.2,
       "pressure": 1.26,
-      "gasDensity": 0.3,
       "resonance": 1.0,
       "turbulence": 0.68,
       "food": "spicy"
@@ -2518,7 +2351,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.32,
       "holeSize": 0.44,
       "pressure": 0.74,
-      "gasDensity": 0.49,
       "resonance": 0.95,
       "turbulence": 0.5,
       "food": "soda"
@@ -2533,7 +2365,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.39,
       "holeSize": 0.84,
       "pressure": 1.5,
-      "gasDensity": 1.14,
       "resonance": 1.0,
       "turbulence": 0.3,
       "food": "soda"
@@ -2548,7 +2379,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.6,
       "holeSize": 0.87,
       "pressure": 0.9,
-      "gasDensity": 1.33,
       "resonance": 1.0,
       "turbulence": 0.22,
       "food": "eggs"
@@ -2563,7 +2393,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.39,
       "holeSize": 0.8,
       "pressure": 0.94,
-      "gasDensity": 0.8,
       "resonance": 0.91,
       "turbulence": 0.24,
       "food": "soda"
@@ -2578,7 +2407,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.13,
       "holeSize": 0.2,
       "pressure": 1.19,
-      "gasDensity": 0.3,
       "resonance": 0.48,
       "turbulence": 1.0,
       "food": "spicy"
@@ -2593,7 +2421,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.47,
       "holeSize": 0.78,
       "pressure": 0.94,
-      "gasDensity": 0.86,
       "resonance": 0.94,
       "turbulence": 0.23,
       "food": "eggs"
@@ -2608,7 +2435,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.37,
       "holeSize": 0.2,
       "pressure": 1.28,
-      "gasDensity": 0.8,
       "resonance": 0.85,
       "turbulence": 0.52,
       "food": "soda"
@@ -2623,7 +2449,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.29,
       "holeSize": 0.73,
       "pressure": 1.27,
-      "gasDensity": 0.72,
       "resonance": 1.0,
       "turbulence": 0.19,
       "food": "soda"
@@ -2638,7 +2463,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.22,
       "holeSize": 0.23,
       "pressure": 1.11,
-      "gasDensity": 0.47,
       "resonance": 0.85,
       "turbulence": 0.46,
       "food": "soda"
@@ -2653,7 +2477,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.37,
       "holeSize": 0.2,
       "pressure": 1.04,
-      "gasDensity": 0.7,
       "resonance": 0.85,
       "turbulence": 0.56,
       "food": "soda"
@@ -2668,7 +2491,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.35,
       "holeSize": 0.6,
       "pressure": 1.12,
-      "gasDensity": 0.64,
       "resonance": 0.86,
       "turbulence": 0.54,
       "food": "soda"
@@ -2683,7 +2505,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.38,
       "holeSize": 0.29,
       "pressure": 1.5,
-      "gasDensity": 0.63,
       "resonance": 0.89,
       "turbulence": 0.4,
       "food": "soda"
@@ -2698,7 +2519,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.49,
       "holeSize": 1.09,
       "pressure": 1.5,
-      "gasDensity": 0.94,
       "resonance": 1.0,
       "turbulence": 0.09,
       "food": "eggs"
@@ -2713,7 +2533,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.35,
       "holeSize": 0.45,
       "pressure": 0.81,
-      "gasDensity": 0.69,
       "resonance": 0.65,
       "turbulence": 0.64,
       "food": "soda"
@@ -2728,7 +2547,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.4,
       "holeSize": 0.6,
       "pressure": 1.5,
-      "gasDensity": 0.75,
       "resonance": 0.9,
       "turbulence": 0.37,
       "food": "soda"
@@ -2743,7 +2561,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.43,
       "holeSize": 0.68,
       "pressure": 1.5,
-      "gasDensity": 0.82,
       "resonance": 0.99,
       "turbulence": 0.29,
       "food": "soda"
@@ -2758,7 +2575,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.46,
       "holeSize": 0.86,
       "pressure": 1.5,
-      "gasDensity": 0.91,
       "resonance": 1.0,
       "turbulence": 0.29,
       "food": "eggs"
@@ -2773,7 +2589,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.18,
       "holeSize": 0.2,
       "pressure": 1.5,
-      "gasDensity": 0.3,
       "resonance": 0.49,
       "turbulence": 0.61,
       "food": "spicy"
@@ -2788,7 +2603,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.26,
       "holeSize": 0.4,
       "pressure": 1.5,
-      "gasDensity": 0.61,
       "resonance": 0.71,
       "turbulence": 1.0,
       "food": "spicy"
@@ -2803,7 +2617,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.39,
       "holeSize": 0.41,
       "pressure": 0.89,
-      "gasDensity": 0.67,
       "resonance": 0.78,
       "turbulence": 0.39,
       "food": "soda"
@@ -2818,7 +2631,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.48,
       "holeSize": 1.04,
       "pressure": 1.45,
-      "gasDensity": 0.84,
       "resonance": 1.0,
       "turbulence": 0.12,
       "food": "eggs"
@@ -2833,7 +2645,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.53,
       "holeSize": 1.05,
       "pressure": 1.49,
-      "gasDensity": 0.97,
       "resonance": 1.0,
       "turbulence": 0.19,
       "food": "eggs"
@@ -2848,7 +2659,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.35,
       "holeSize": 0.79,
       "pressure": 1.5,
-      "gasDensity": 0.75,
       "resonance": 0.91,
       "turbulence": 0.19,
       "food": "soda"
@@ -2863,7 +2673,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.61,
       "holeSize": 1.18,
       "pressure": 0.9,
-      "gasDensity": 1.2,
       "resonance": 1.0,
       "turbulence": 0.2,
       "food": "eggs"
@@ -2878,7 +2687,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.27,
       "holeSize": 0.53,
       "pressure": 0.73,
-      "gasDensity": 0.61,
       "resonance": 0.77,
       "turbulence": 0.46,
       "food": "soda"
@@ -2893,7 +2701,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.37,
       "holeSize": 0.68,
       "pressure": 1.5,
-      "gasDensity": 0.73,
       "resonance": 1.0,
       "turbulence": 0.29,
       "food": "soda"
@@ -2908,7 +2715,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.35,
       "holeSize": 0.63,
       "pressure": 1.32,
-      "gasDensity": 0.58,
       "resonance": 0.97,
       "turbulence": 0.37,
       "food": "soda"
@@ -2923,7 +2729,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.16,
       "holeSize": 0.2,
       "pressure": 1.5,
-      "gasDensity": 0.3,
       "resonance": 0.44,
       "turbulence": 0.86,
       "food": "spicy"
@@ -2938,7 +2743,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.22,
       "holeSize": 0.36,
       "pressure": 0.81,
-      "gasDensity": 0.63,
       "resonance": 0.95,
       "turbulence": 0.54,
       "food": "soda"
@@ -2953,7 +2757,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.31,
       "holeSize": 0.2,
       "pressure": 0.92,
-      "gasDensity": 0.48,
       "resonance": 0.77,
       "turbulence": 0.59,
       "food": "soda"
@@ -2968,7 +2771,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 1.0,
       "holeSize": 1.49,
       "pressure": 1.5,
-      "gasDensity": 2.0,
       "resonance": 1.0,
       "turbulence": 0.01,
       "food": "cheese"
@@ -2983,7 +2785,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.44,
       "holeSize": 0.97,
       "pressure": 1.5,
-      "gasDensity": 0.75,
       "resonance": 1.0,
       "turbulence": 0.14,
       "food": "eggs"
@@ -2998,7 +2799,6 @@ export const FART_PRESETS: FartPreset[] = [
       "cheekShape": 0.19,
       "holeSize": 0.2,
       "pressure": 0.76,
-      "gasDensity": 0.3,
       "resonance": 0.5,
       "turbulence": 0.76,
       "food": "salad"
