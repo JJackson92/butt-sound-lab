@@ -1,26 +1,14 @@
 import { scheduleFart, soundDuration } from "./fart-synth";
-import { getAudioContext, ENVIRONMENTS } from "./fart-reverb";
+import { getAudioContext, buildLocation, getLocation, locationTail, scheduleDing } from "./fart-reverb";
 import { seededRandom, type Creation } from "./creations";
 
 export async function renderCreation(c: Creation): Promise<AudioBuffer> {
-  const config = ENVIRONMENTS.find(e => e.key === c.env) ?? ENVIRONMENTS[0];
   const duration = soundDuration(c.params);
-  const tail = config.key === "dry" || c.echo === 0 ? 0.05 : config.decay + config.predelay;
+  const tail = locationTail(c.env, c.echo);
   const ac = new OfflineAudioContext(2, Math.ceil((duration + tail + 0.1) * 44100), 44100);
   const input = ac.createGain();
-  const wet = config.wet * Math.min(1.5, c.echo);
-  const dry = ac.createGain(); dry.gain.value = Math.max(0.55, 1 - wet * 0.5);
-  input.connect(dry).connect(ac.destination);
-  if (wet > 0) {
-    const rng = seededRandom(c.seed ^ 0x12345678);
-    const ir = ac.createBuffer(2, Math.max(1, Math.floor(44100 * config.decay)), 44100);
-    for (let ch = 0; ch < 2; ch++) { const data = ir.getChannelData(ch); for (let i = 0; i < data.length; i++) data[i] = (rng() * 2 - 1) * (1 - i / data.length) ** (2.2 + config.decay * 0.3); }
-    const convolver = ac.createConvolver(); convolver.buffer = ir;
-    const delay = ac.createDelay(0.5); delay.delayTime.value = config.predelay;
-    const filter = ac.createBiquadFilter(); filter.type = "lowpass"; filter.frequency.value = config.damp;
-    const gain = ac.createGain(); gain.gain.value = wet;
-    input.connect(delay).connect(convolver).connect(filter).connect(gain).connect(ac.destination);
-  }
+  buildLocation(ac, input, ac.destination, c.env, c.echo, seededRandom(c.seed ^ 0x12345678));
+  if (getLocation(c.env).ding && c.echo > 0) scheduleDing(ac, ac.destination, duration + 0.3, c.echo);
   scheduleFart(ac, input, c.params, seededRandom(c.seed));
   const buffer = await ac.startRendering();
   let peak = 0;
