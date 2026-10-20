@@ -24,6 +24,7 @@ export async function loadManifest() {
 }
 
 let currentAudio: HTMLAudioElement | null = null;
+export function stopPresetAudio() { if (currentAudio) { currentAudio.pause(); currentAudio.src = ""; currentAudio = null; } }
 const sourceMap = new WeakMap<HTMLAudioElement, MediaElementAudioSourceNode>();
 
 export async function playPresetAudio(presetId: string, volume = 1): Promise<FartAudioEntry | null> {

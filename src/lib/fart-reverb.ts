@@ -92,15 +92,16 @@ export function getReverbInput(): { ac: AudioContext; input: AudioNode } {
 
 export function applyEnvironment(env: EnvKey, wetScale = 1) {
   currentEnv = env;
-  currentWetScale = Math.max(0, Math.min(1, wetScale));
+  currentWetScale = Math.max(0, Math.min(1.5, wetScale));
   if (!inputNode) return;
-  const cfg = ENVIRONMENTS.find((e) => e.key === env)!;
+  const cfg = ENVIRONMENTS.find((e) => e.key === env);
+  if (!cfg || !convolver || !preDelay || !dampFilter || !wetGain || !dryGain) return;
   const ac = getAudioContext();
-  convolver!.buffer = buildIR(ac, cfg.decay);
-  preDelay!.delayTime.value = cfg.predelay;
-  dampFilter!.frequency.value = cfg.damp;
+  convolver.buffer = buildIR(ac, cfg.decay);
+  preDelay.delayTime.value = cfg.predelay;
+  dampFilter.frequency.value = cfg.damp;
   const wet = cfg.wet * currentWetScale;
-  wetGain!.gain.value = wet;
+  wetGain.gain.value = wet;
   // Keep some dry signal so source stays audible even at full wet.
-  dryGain!.gain.value = env === "dry" ? 1 : Math.max(0.55, 1 - wet * 0.5);
+  dryGain.gain.value = env === "dry" ? 1 : Math.max(0.55, 1 - wet * 0.5);
 }
