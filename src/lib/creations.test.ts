@@ -41,7 +41,7 @@ describe('shared sound rules',()=>{
  });
 });
 import { mealPreset } from "./creations";
-test("burrito is long, wet and loose; soda is short and tight; salad is quiet", () => {
+it("burrito is long, wet and loose; soda is short and tight; salad is quiet", () => {
   const b = mealPreset("burrito"), s = mealPreset("soda"), sa = mealPreset("salad");
   assert.ok(b.duration! >= 2 && b.wetness! >= 0.7 && b.holeSize > 1);
   assert.ok(s.duration! <= 0.5 && s.holeSize < 0.4);
