@@ -40,8 +40,8 @@ describe("lab slider matching", () => {
     assert.ok(matchRecording({ ...base, pressure: 0.3, holeSize: 0.2 }));
   });
   test("tight hole picks a squeak, loose hole picks an air blast", () => {
-    assert.match(matchRecording({ ...base, holeSize: 0.25 }).name, /Squeak/);
-    assert.match(matchRecording({ ...base, holeSize: 1.4 }).name, /Air Blast/);
+    assert.match(matchRecording({ ...base, holeSize: 0.25 }).description, /Pitched squeak/);
+    assert.match(matchRecording({ ...base, holeSize: 1.4 }).description, /Airy/);
   });
   test("longer duration picks a longer recording", () => {
     const short = matchRecording({ ...base, duration: 0.2 }).params.duration!;

@@ -1,6 +1,7 @@
 import { FART_PRESETS as ORIGINAL_PRESETS, type FartPreset } from "./fart-presets";
 import type { FartParams } from "./fart-synth";
 import measurements from "./fart-acoustics.json";
+import funnyNames from "./fart-names.json";
 
 export type AcousticProfile = {
   pitchHz: number | null;
@@ -60,7 +61,7 @@ export function measuredParams(profile: AcousticProfile, original: FartParams): 
 
 const profiles: Record<string, AcousticProfile> = measurements;
 
-// Source titles replace invented labels that described a different recording.
+// Funny names are assigned offline (scripts/assign-names.py) to the recording whose measurements fit the words.
 export const FART_PRESETS: FartPreset[] = ORIGINAL_PRESETS.map((preset) => {
   const profile = profiles[preset.id];
   if (!profile) return preset;
@@ -68,7 +69,7 @@ export const FART_PRESETS: FartPreset[] = ORIGINAL_PRESETS.map((preset) => {
   const pitch = kind !== "airy" && profile.pitchHz !== null ? ` · ~${Math.round(profile.pitchHz)} Hz` : "";
   return {
     ...preset,
-    name: describeRecording(profile),
+    name: (funnyNames as Record<string, string>)[preset.id] ?? describeRecording(profile),
     description: `${Math.round(measuredWetness(profile) * 100)}% wet · `+`${kind === "squeaky" ? "Pitched squeak" : kind === "airy" ? "Airy / noise-led" : "Low / mid pitched rumble"}${pitch} · ${profile.activeDuration.toFixed(2)}s active · estimated from audio`,
     params: measuredParams(profile, preset.params),
   };
