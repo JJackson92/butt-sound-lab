@@ -6,6 +6,8 @@ export type FartParams = {
   pressure: number;         // 0.3 - 1.5 (loudness/attack) — drives PSI gauge
   resonance?: number;       // 0 - 1 (formant Q)
   turbulence?: number;      // 0 - 1 (chaotic sputter + noise)
+  duration?: number;        // 0.2 - 8 seconds
+  wetness?: number;         // 0 - 1 bubbling character, not echo
   food: FoodKey;
 };
 
@@ -45,13 +47,18 @@ function getCtx() {
 
 export function playFart(params: FartParams) {
   const ac = getCtx();
+  return scheduleFart(ac, getReverbInput().input, params);
+}
+
+export function scheduleFart(ac: BaseAudioContext, destination: AudioNode, params: FartParams, random = Math.random) {
   const now = ac.currentTime;
   const food = FOOD_PROFILES[params.food];
 
   const turb = params.turbulence ?? 0.5;
   const reso = params.resonance ?? 0.5;
 
-  const dur = food.dur * (0.6 + params.cheekSize * 0.5);
+  const dur = params.duration ?? food.dur * (0.6 + params.cheekSize * 0.5);
+  const wetness = params.wetness ?? 0;
   const basePitch = 80 * food.pitch / params.holeSize;
 
   const volume = Math.min(1, params.pressure * params.cheekSize * 0.7);
@@ -61,7 +68,7 @@ export function playFart(params: FartParams) {
   master.gain.setValueAtTime(0, now);
   master.gain.linearRampToValueAtTime(volume, now + 0.02 * params.pressure);
   master.gain.exponentialRampToValueAtTime(0.001, now + dur);
-  master.connect(getReverbInput().input);
+  master.connect(destination);
 
   // Lowpass shaped by cheek shape
   const filter = ac.createBiquadFilter();
@@ -91,7 +98,7 @@ export function playFart(params: FartParams) {
   const lfo = ac.createOscillator();
   lfo.frequency.value = food.wob * (1 / params.holeSize) * (0.6 + turb * 1.8);
   const lfoGain = ac.createGain();
-  lfoGain.gain.value = basePitch * 0.4 * food.sputter * (0.5 + turb * 1.5);
+  lfoGain.gain.value = basePitch * 0.4 * food.sputter * (0.5 + turb * 1.5 + wetness * 2);
   lfo.connect(lfoGain).connect(osc.frequency);
 
   osc.connect(formant);
@@ -102,8 +109,9 @@ export function playFart(params: FartParams) {
   const data = buf.getChannelData(0);
   for (let i = 0; i < bufSize; i++) {
     // Turbulence injects bursty amplitude modulation on top of noise
-    const burst = 1 + turb * (Math.random() < 0.05 ? 3 : 0);
-    data[i] = (Math.random() * 2 - 1) * (1 - i / bufSize) * burst;
+    const burst = 1 + turb * (random() < 0.05 ? 3 : 0);
+    const bubble = 1 - wetness * 0.65 + wetness * Math.sin(i / ac.sampleRate * Math.PI * 2 * 19) ** 8 * 3;
+    data[i] = (random() * 2 - 1) * (1 - i / bufSize) * burst * bubble;
   }
   const noise = ac.createBufferSource();
   noise.buffer = buf;

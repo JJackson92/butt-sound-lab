@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /my-sounds
+Disallow: /fart/
+Sitemap: https://buttsounds.com/sitemap.xml

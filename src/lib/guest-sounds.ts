@@ -1,0 +1,6 @@
+import { validateCreation, encodeCreation, type Creation } from './creations';
+const KEY = 'buttsounds.favorites.v1';
+export function readSounds(): Creation[] { try { const data = JSON.parse(localStorage.getItem(KEY) ?? '[]'); return Array.isArray(data) ? data.map(validateCreation).filter((c): c is Creation => c !== null).slice(0,100) : []; } catch { return []; } }
+export function saveSound(c: Creation) { const valid = validateCreation(c); if (!valid) throw new Error('Give your masterpiece a valid name first.'); const key = encodeCreation(valid); const sounds = [valid,...readSounds().filter(s => encodeCreation(s) !== key)].slice(0,100); localStorage.setItem(KEY,JSON.stringify(sounds)); window.dispatchEvent(new Event('sounds-updated')); }
+export function removeSound(c: Creation) { localStorage.setItem(KEY,JSON.stringify(readSounds().filter(s => encodeCreation(s) !== encodeCreation(c)))); window.dispatchEvent(new Event('sounds-updated')); }
+export async function shareSound(c: Creation) { const url = `${location.origin}/fart/${encodeCreation(c)}`; if(navigator.share) { try { await navigator.share({title:c.name,text:'Spread the stink.',url}); return 'Shared!'; } catch(e) { if((e as DOMException).name === 'AbortError') return ''; } } try { await navigator.clipboard.writeText(url); return 'Link copied. Spread the stink.'; } catch { return url; } }
