@@ -38,6 +38,7 @@ export function measuredParams(profile: AcousticProfile, original: FartParams): 
     resonance: clamp(profile.tonality, 0, 1),
 
     turbulence: clamp((profile.variation - 0.15) / 0.7, 0, 1),
+    duration: clamp(profile.activeDuration, 0.2, 8),
   };
 }
 

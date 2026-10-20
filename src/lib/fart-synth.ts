@@ -50,6 +50,10 @@ export function playFart(params: FartParams) {
   return scheduleFart(ac, getReverbInput().input, params);
 }
 
+export function soundDuration(params: FartParams) {
+  return params.duration ?? FOOD_PROFILES[params.food].dur * (0.6 + params.cheekSize * 0.5);
+}
+
 export function scheduleFart(ac: BaseAudioContext, destination: AudioNode, params: FartParams, random = Math.random) {
   const now = ac.currentTime;
   const food = FOOD_PROFILES[params.food];
@@ -57,7 +61,7 @@ export function scheduleFart(ac: BaseAudioContext, destination: AudioNode, param
   const turb = params.turbulence ?? 0.5;
   const reso = params.resonance ?? 0.5;
 
-  const dur = params.duration ?? food.dur * (0.6 + params.cheekSize * 0.5);
+  const dur = soundDuration(params);
   const wetness = params.wetness ?? 0;
   const basePitch = 80 * food.pitch / params.holeSize;
 

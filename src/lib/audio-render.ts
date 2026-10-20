@@ -1,10 +1,10 @@
-import { scheduleFart } from "./fart-synth";
+import { scheduleFart, soundDuration } from "./fart-synth";
 import { getAudioContext, ENVIRONMENTS } from "./fart-reverb";
 import { seededRandom, type Creation } from "./creations";
 
 export async function renderCreation(c: Creation): Promise<AudioBuffer> {
   const config = ENVIRONMENTS.find(e => e.key === c.env) ?? ENVIRONMENTS[0];
-  const duration = c.params.duration ?? 3;
+  const duration = soundDuration(c.params);
   const tail = config.key === "dry" || c.echo === 0 ? 0.05 : config.decay + config.predelay;
   const ac = new OfflineAudioContext(2, Math.ceil((duration + tail + 0.1) * 44100), 44100);
   const input = ac.createGain();
@@ -56,7 +56,8 @@ export function wavBytes(channels: Float32Array[], rate: number) {
 }
 export function wavBlob(buffer: AudioBuffer) { return new Blob([wavBytes(Array.from({ length: buffer.numberOfChannels }, (_, ch) => buffer.getChannelData(ch)), buffer.sampleRate)], { type: "audio/wav" }); }
 export async function deliverAudio(blob: Blob, name: string) {
-  const filename = `${name.replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "").slice(0, 70) || "butt-sound"}.${blob.type.includes("wav") ? "wav" : "mp3"}`;
+  const extension = blob.type.includes("json") ? "json" : blob.type.includes("wav") ? "wav" : "mp3";
+  const filename = `${name.replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "").slice(0, 70) || "butt-sound"}.${extension}`;
   const file = new File([blob], filename, { type: blob.type });
   if (matchMedia("(pointer: coarse)").matches && navigator.canShare?.({ files: [file] })) { try { await navigator.share({ files: [file], title: name }); return; } catch (e) { if ((e as DOMException).name === "AbortError") return; } }
   const url = URL.createObjectURL(blob); const a = document.createElement("a"); a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 30000);
