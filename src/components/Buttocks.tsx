@@ -39,7 +39,7 @@ export function Buttocks({ params, jiggle, stink, style = "peach" }: { params: F
           style={{
             position: "absolute",
             left: "50%",
-            bottom: 30,
+            top: `calc(50% + ${holeCY - h / 2 - 22}px)`,
             width: 44,
             height: 44,
             borderRadius: "50%",
@@ -47,6 +47,7 @@ export function Buttocks({ params, jiggle, stink, style = "peach" }: { params: F
             animationDelay: `${i * 0.15}s`,
             opacity: 0,
             pointerEvents: "none",
+            zIndex: 2,
           }}
         />
       ))}
