@@ -38,8 +38,8 @@ export function Buttocks({ params, jiggle, stink, style = "peach" }: { params: F
           className={stink ? "animate-stink" : ""}
           style={{
             position: "absolute",
-            left: 40 + cx,
-            top: 60 + holeCY - 22,
+            left: "50%",
+            top: `calc(50% + ${holeCY - h / 2 - 22}px)`,
             width: 44,
             height: 44,
             borderRadius: "50%",
