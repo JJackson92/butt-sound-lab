@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { FOODS, type FartParams } from "./fart-synth";
+import { FOODS, type FartParams, type FoodKey } from "./fart-synth";
 import { ENVIRONMENTS } from "./fart-reverb";
 
 export const creationSchema = z.object({
@@ -64,3 +64,15 @@ export function damageRating(p: FartParams) {
   return { score: Math.round(score), label: DAMAGE_LABELS[Math.min(5, Math.floor(score / 20))] };
 }
 export function creationUrl(c: Creation) { return `https://buttsounds.com/fart/${encodeCreation(c)}`; }
+/** Each last meal is a macro preset: picking it moves the sliders to its signature sound. */
+export const MEAL_PRESETS: Record<FoodKey, Omit<FartParams, "food">> = {
+  burrito:  { cheekSize: 2.0, cheekShape: 0.7, holeSize: 1.15, pressure: 1.26, resonance: 0.45, turbulence: 0.7,  duration: 2.2, wetness: 0.75 },
+  beans:    { cheekSize: 1.5, cheekShape: 0.6, holeSize: 0.85, pressure: 1.02, resonance: 0.7,  turbulence: 0.45, duration: 1.5, wetness: 0.35 },
+  soda:     { cheekSize: 0.8, cheekShape: 0.3, holeSize: 0.35, pressure: 1.38, resonance: 0.6,  turbulence: 0.3,  duration: 0.5, wetness: 0.15 },
+  spicy:    { cheekSize: 1.1, cheekShape: 0.5, holeSize: 0.65, pressure: 1.44, resonance: 0.35, turbulence: 0.95, duration: 0.9, wetness: 0.65 },
+  cheese:   { cheekSize: 1.7, cheekShape: 0.8, holeSize: 1.30, pressure: 0.72, resonance: 0.5,  turbulence: 0.2,  duration: 2.0, wetness: 0.1 },
+  eggs:     { cheekSize: 1.0, cheekShape: 0.4, holeSize: 0.45, pressure: 0.90, resonance: 0.85, turbulence: 0.4,  duration: 1.1, wetness: 0.4 },
+  broccoli: { cheekSize: 1.2, cheekShape: 0.5, holeSize: 0.80, pressure: 0.96, resonance: 0.5,  turbulence: 0.55, duration: 0.9, wetness: 0.25 },
+  salad:    { cheekSize: 0.6, cheekShape: 0.2, holeSize: 1.25, pressure: 0.42, resonance: 0.2,  turbulence: 0.3,  duration: 0.4, wetness: 0.05 },
+};
+export function mealPreset(food: FoodKey): FartParams { return { ...MEAL_PRESETS[food], food }; }

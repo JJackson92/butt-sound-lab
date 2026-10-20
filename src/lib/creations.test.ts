@@ -40,3 +40,10 @@ describe('shared sound rules',()=>{
   assert.equal(new TextDecoder().decode(new Uint8Array(data,0,4)),'RIFF');assert.equal(view.getUint16(22,true),2);assert.equal(view.getUint32(24,true),44100);assert.equal(view.getUint32(40,true),12);assert.equal(view.getInt16(46,true),32767);assert.equal(view.getInt16(52,true),-32768);
  });
 });
+import { mealPreset } from "./creations";
+test("burrito is long, wet and loose; soda is short and tight; salad is quiet", () => {
+  const b = mealPreset("burrito"), s = mealPreset("soda"), sa = mealPreset("salad");
+  assert.ok(b.duration! >= 2 && b.wetness! >= 0.7 && b.holeSize > 1);
+  assert.ok(s.duration! <= 0.5 && s.holeSize < 0.4);
+  assert.ok(sa.pressure < 0.5);
+});
