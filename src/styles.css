@@ -92,7 +92,7 @@
 @layer base {
   * { border-color: var(--color-border); }
   body {
-    background: radial-gradient(ellipse at top, oklch(0.95 0.08 85), var(--color-background));
+    background: var(--background);
     color: var(--color-foreground);
     font-family: system-ui, -apple-system, sans-serif;
   }
@@ -112,6 +112,13 @@
  --stage-glow:inset 0 0 90px oklch(.5 .1 150 / .1); --card-shadow:0 4px 0 oklch(.2 .03 150 / .04);
 }
 body { background:var(--background); font-family:'Barlow',sans-serif; letter-spacing:0; }
+.title-puff{display:inline-block;width:48px;height:48px;vertical-align:middle;}
+.lab-intro h1{overflow-wrap:anywhere;}
+.news-ticker{box-shadow:none;}
+.news-ticker .tracking-wider{letter-spacing:0;}
+.news-ticker .font-mono{font-size:12px;}
+.lab-slider [role=slider]{border:3px solid var(--primary);width:19px;height:19px;}
+.food svg{color:var(--muted-foreground);}.food.selected svg{color:var(--foreground);}
 h1,h2,h3,.brand {font-family:'Space Grotesk',sans-serif;letter-spacing:0;}
 button,a,input,select{touch-action:manipulation;}
 .site-header{height:86px;max-width:1240px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 28px;border-bottom:1px solid var(--border);}
