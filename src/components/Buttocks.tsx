@@ -1,6 +1,16 @@
 import { FartParams } from "@/lib/fart-synth";
+import type { ButtStyle } from "@/lib/creations";
 
-export function Buttocks({ params, jiggle, stink }: { params: FartParams; jiggle: number; stink: number }) {
+type Look = { stops: [string, string, string, string]; stroke?: string; strokeW?: number; shine: string; hole: [string, string]; ring: string; grid?: boolean };
+const LOOKS: Record<ButtStyle, Look> = {
+  peach: { stops: ["oklch(0.97 0.04 70)", "oklch(0.9 0.08 60)", "oklch(0.78 0.13 50)", "oklch(0.62 0.14 40)"], shine: "oklch(1 0.02 80 / 0.7)", hole: ["oklch(0.22 0.05 30)", "oklch(0.42 0.1 35)"], ring: "oklch(0.5 0.1 35 / 0.5)" },
+  comic: { stops: ["oklch(0.86 0.12 45)", "oklch(0.86 0.12 45)", "oklch(0.8 0.14 40)", "oklch(0.72 0.15 35)"], stroke: "oklch(0.15 0.02 30)", strokeW: 7, shine: "oklch(1 0 0 / 0.95)", hole: ["oklch(0.15 0.02 30)", "oklch(0.15 0.02 30)"], ring: "oklch(0.15 0.02 30 / 0.7)" },
+  hologram: { stops: ["oklch(0.85 0.15 200 / 0.55)", "oklch(0.7 0.15 210 / 0.35)", "oklch(0.55 0.15 220 / 0.25)", "oklch(0.4 0.12 230 / 0.2)"], stroke: "oklch(0.85 0.17 195)", strokeW: 2.5, shine: "oklch(0.95 0.1 190 / 0.6)", hole: ["oklch(0.95 0.12 190)", "oklch(0.6 0.15 210)"], ring: "oklch(0.85 0.17 195 / 0.8)", grid: true },
+  gold: { stops: ["oklch(0.98 0.08 95)", "oklch(0.86 0.16 85)", "oklch(0.68 0.15 70)", "oklch(0.45 0.1 60)"], shine: "oklch(1 0.05 100 / 0.9)", hole: ["oklch(0.25 0.05 60)", "oklch(0.45 0.1 65)"], ring: "oklch(0.95 0.15 90 / 0.7)" },
+  alien: { stops: ["oklch(0.95 0.12 140)", "oklch(0.82 0.2 140)", "oklch(0.65 0.2 145)", "oklch(0.45 0.15 150)"], shine: "oklch(1 0.08 130 / 0.75)", hole: ["oklch(0.25 0.12 300)", "oklch(0.45 0.18 310)"], ring: "oklch(0.4 0.15 150 / 0.6)" },
+};
+
+export function Buttocks({ params, jiggle, stink, style = "peach" }: { params: FartParams; jiggle: number; stink: number; style?: ButtStyle }) {
   // Geometry derived from params
   const w = 260 + params.cheekSize * 90;
   const h = 240 + params.cheekSize * 70;
@@ -16,6 +26,8 @@ export function Buttocks({ params, jiggle, stink }: { params: FartParams; jiggle
   const leftCX = cx - cheekRX + overlap;
   const rightCX = cx + cheekRX - overlap;
   const holeCY = cy + cheekRY * 0.05;
+  const L = LOOKS[style] ?? LOOKS.peach;
+  const id = `b-${style}`;
 
   return (
     <div className="relative flex items-center justify-center" style={{ width: w + 80, height: h + 120 }}>
@@ -47,21 +59,22 @@ export function Buttocks({ params, jiggle, stink }: { params: FartParams; jiggle
         style={{
           animation: jiggle ? "jiggle 0.7s var(--ease-fart)" : undefined,
           transformOrigin: "center bottom",
+          overflow: "visible",
         }}
       >
         <defs>
           {/* Soft peachy 3D cheek — bright top-left highlight, deep warm shadow bottom-right */}
-          <radialGradient id="cheekL" cx="38%" cy="32%" r="78%">
-            <stop offset="0%" stopColor="oklch(0.97 0.04 70)" />
-            <stop offset="35%" stopColor="oklch(0.9 0.08 60)" />
-            <stop offset="75%" stopColor="oklch(0.78 0.13 50)" />
-            <stop offset="100%" stopColor="oklch(0.62 0.14 40)" />
+          <radialGradient id={`${id}-cheekL`} cx="38%" cy="32%" r="78%">
+            <stop offset="0%" stopColor={L.stops[0]} />
+            <stop offset="35%" stopColor={L.stops[1]} />
+            <stop offset="75%" stopColor={L.stops[2]} />
+            <stop offset="100%" stopColor={L.stops[3]} />
           </radialGradient>
-          <radialGradient id="cheekR" cx="62%" cy="32%" r="78%">
-            <stop offset="0%" stopColor="oklch(0.97 0.04 70)" />
-            <stop offset="35%" stopColor="oklch(0.9 0.08 60)" />
-            <stop offset="75%" stopColor="oklch(0.78 0.13 50)" />
-            <stop offset="100%" stopColor="oklch(0.62 0.14 40)" />
+          <radialGradient id={`${id}-cheekR`} cx="62%" cy="32%" r="78%">
+            <stop offset="0%" stopColor={L.stops[0]} />
+            <stop offset="35%" stopColor={L.stops[1]} />
+            <stop offset="75%" stopColor={L.stops[2]} />
+            <stop offset="100%" stopColor={L.stops[3]} />
           </radialGradient>
           {/* Deep crack shadow */}
           <radialGradient id="crack" cx="50%" cy="50%" r="50%">
@@ -70,9 +83,9 @@ export function Buttocks({ params, jiggle, stink }: { params: FartParams; jiggle
             <stop offset="100%" stopColor="oklch(0.6 0.12 45 / 0)" />
           </radialGradient>
           {/* Hole */}
-          <radialGradient id="holeFill" cx="50%" cy="45%" r="60%">
-            <stop offset="0%" stopColor="oklch(0.22 0.05 30)" />
-            <stop offset="100%" stopColor="oklch(0.42 0.1 35)" />
+          <radialGradient id={`${id}-holeFill`} cx="50%" cy="45%" r="60%">
+            <stop offset="0%" stopColor={L.hole[0]} />
+            <stop offset="100%" stopColor={L.hole[1]} />
           </radialGradient>
           {/* Soft contact shadow under butt */}
           <radialGradient id="ground" cx="50%" cy="50%" r="50%">
@@ -85,9 +98,12 @@ export function Buttocks({ params, jiggle, stink }: { params: FartParams; jiggle
         <ellipse cx={cx} cy={h - 8} rx={cheekW * 0.95} ry={14} fill="url(#ground)" />
 
         {/* Right cheek (drawn first so left overlaps it slightly — straight-on symmetric look) */}
-        <ellipse cx={rightCX} cy={cy} rx={cheekRX} ry={cheekRY} fill="url(#cheekR)" />
+        <ellipse cx={rightCX} cy={cy} rx={cheekRX} ry={cheekRY} fill={`url(#${id}-cheekR)`} stroke={L.stroke} strokeWidth={L.strokeW} />
         {/* Left cheek */}
-        <ellipse cx={leftCX} cy={cy} rx={cheekRX} ry={cheekRY} fill="url(#cheekL)" />
+        <ellipse cx={leftCX} cy={cy} rx={cheekRX} ry={cheekRY} fill={`url(#${id}-cheekL)`} stroke={L.stroke} strokeWidth={L.strokeW} />
+
+        {L.grid && [0.25, 0.45, 0.65, 0.85].map(f => <line key={f} x1={leftCX - cheekRX} x2={rightCX + cheekRX} y1={h * f} y2={h * f} stroke={L.ring} strokeWidth={1} opacity={0.45} />)}
+        {L.grid && <line x1={cx} x2={cx} y1={cy - cheekRY} y2={cy + cheekRY} stroke={L.ring} strokeWidth={1.5} />}
 
         {/* Crack highlight streak — brightens on press */}
         <ellipse
@@ -111,14 +127,14 @@ export function Buttocks({ params, jiggle, stink }: { params: FartParams; jiggle
           cy={cy - cheekRY * 0.55}
           rx={cheekRX * 0.32}
           ry={cheekRY * 0.16}
-          fill="oklch(1 0.02 80 / 0.7)"
+          fill={L.shine}
         />
         <ellipse
           cx={rightCX + cheekRX * 0.18}
           cy={cy - cheekRY * 0.55}
           rx={cheekRX * 0.32}
           ry={cheekRY * 0.16}
-          fill="oklch(1 0.02 80 / 0.7)"
+          fill={L.shine}
         />
 
         {/* Butthole — soft, no harsh outline */}
@@ -134,7 +150,7 @@ export function Buttocks({ params, jiggle, stink }: { params: FartParams; jiggle
           cy={holeCY}
           rx={holeR * 0.9}
           ry={holeR}
-          fill="url(#holeFill)"
+          fill={`url(#${id}-holeFill)`}
         />
 
         {/* Skin ripple on press */}
@@ -155,7 +171,7 @@ export function Buttocks({ params, jiggle, stink }: { params: FartParams; jiggle
                   rx={holeR * 1.8}
                   ry={holeR * 1.5}
                   fill="none"
-                  stroke="oklch(0.5 0.1 35 / 0.5)"
+                  stroke={L.ring}
                   strokeWidth={2}
                   style={{
                     transformOrigin: `${cx}px ${holeCY}px`,
