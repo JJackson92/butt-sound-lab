@@ -1,5 +1,5 @@
 // Loads the manifest mapping presetId -> Freesound preview URL, plays on demand.
-import { getReverbInput } from "./fart-reverb";
+import { getReverbInput, playLocationOutro } from "./fart-reverb";
 
 export type FartAudioEntry = {
   sid: number;
@@ -49,6 +49,7 @@ export async function playPresetAudio(presetId: string, volume = 1, onLevel?: (l
   a.crossOrigin = "anonymous";
   a.volume = Math.max(0, Math.min(1, volume));
   currentAudio = a;
+  a.addEventListener("ended", () => { if (currentAudio === a) playLocationOutro(); });
 
   // Try to route through reverb bus. If CORS denies the MediaElementSource,
   // fall back to plain HTMLAudio playback (no reverb but still audible).
