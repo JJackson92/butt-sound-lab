@@ -119,6 +119,7 @@ body { background:var(--background); font-family:'Barlow',sans-serif; letter-spa
 .news-ticker .font-mono{font-size:12px;}
 .lab-slider [role=slider]{border:3px solid var(--primary);width:19px;height:19px;}
 .food svg{color:var(--muted-foreground);}.food.selected svg{color:var(--foreground);}
+@media(max-width:700px){.sound-card-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}.sound-card-actions>button:first-child{grid-column:1 / -1;width:100%;margin:0 0 3px;}.sound-card-actions a,.sound-card-actions>button:not(:first-child){width:100%;}.title-puff{width:32px;height:32px;}}
 h1,h2,h3,.brand {font-family:'Space Grotesk',sans-serif;letter-spacing:0;}
 button,a,input,select{touch-action:manipulation;}
 .site-header{height:86px;max-width:1240px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 28px;border-bottom:1px solid var(--border);}
