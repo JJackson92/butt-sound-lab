@@ -19,7 +19,7 @@ export const creationSchema = z.object({
   }),
 });
 export type Creation = Omit<z.infer<typeof creationSchema>, "params"> & { params: FartParams };
-export const DEFAULT_CREATION: Creation = { v: 1, name: "The Classic Brap", seed: 12345, source: "synth", env: "dry", echo: 1,
+export const DEFAULT_CREATION: Creation = { v: 1, name: "The Classic Brap", seed: 12345, source: "match", env: "dry", echo: 1,
   params: { cheekSize: 1, cheekShape: 0.5, holeSize: 0.7, pressure: 1, resonance: 0.5, turbulence: 0.5, duration: 1.5, wetness: 0.2, food: "beans" } };
 export function validateCreation(input: unknown): Creation | null {
   const result = creationSchema.safeParse(input);

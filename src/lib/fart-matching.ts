@@ -1,7 +1,6 @@
 import { FART_PRESETS as ORIGINAL_PRESETS, type FartPreset } from "./fart-presets";
 import type { FartParams } from "./fart-synth";
 import measurements from "./fart-acoustics.json";
-import manifest from "../../public/fart-audio-manifest.json";
 
 export type AcousticProfile = {
   pitchHz: number | null;
@@ -19,6 +18,22 @@ export function classifyRecording(profile: AcousticProfile) {
   if (profile.tonality >= 0.4 && profile.pitchHz !== null && profile.pitchHz >= 250) return "squeaky";
   if (profile.tonality < 0.4) return "airy";
   return "rumbly";
+}
+
+// Sputtery amplitude variation plus some broadband noise reads as bubbling/wet.
+export function measuredWetness(profile: AcousticProfile) {
+  return clamp(clamp((profile.variation - 0.25) / 0.5, 0, 1) * 0.7 + clamp(profile.flatness / 0.15, 0, 1) * 0.3, 0, 1);
+}
+
+// Plain-language name built from the measurements, so titles agree with the sliders.
+export function describeRecording(profile: AcousticProfile) {
+  const kind = classifyRecording(profile);
+  const wet = measuredWetness(profile);
+  const length = profile.activeDuration < 0.35 ? "Quick" : profile.activeDuration >= 1 ? "Long" : "";
+  const power = profile.rms >= 0.2 ? "Loud" : profile.rms < 0.06 ? "Soft" : "";
+  const texture = wet >= 0.6 ? "Wet" : wet <= 0.3 ? "Dry" : "";
+  const noun = kind === "squeaky" ? "Squeak" : kind === "airy" ? "Air Blast" : "Rumble";
+  return [length, power, texture, kind === "squeaky" ? "Tight" : kind === "airy" ? "Loose" : "", noun].filter(Boolean).join(" ");
 }
 
 export function measuredParams(profile: AcousticProfile, original: FartParams): FartParams {
@@ -39,11 +54,11 @@ export function measuredParams(profile: AcousticProfile, original: FartParams): 
 
     turbulence: clamp((profile.variation - 0.15) / 0.7, 0, 1),
     duration: clamp(profile.activeDuration, 0.2, 8),
+    wetness: measuredWetness(profile),
   };
 }
 
 const profiles: Record<string, AcousticProfile> = measurements;
-const recordings: Record<string, { name: string }> = manifest;
 
 // Source titles replace invented labels that described a different recording.
 export const FART_PRESETS: FartPreset[] = ORIGINAL_PRESETS.map((preset) => {
@@ -53,8 +68,8 @@ export const FART_PRESETS: FartPreset[] = ORIGINAL_PRESETS.map((preset) => {
   const pitch = kind !== "airy" && profile.pitchHz !== null ? ` · ~${Math.round(profile.pitchHz)} Hz` : "";
   return {
     ...preset,
-    name: recordings[preset.id]?.name ?? preset.name,
-    description: `${kind === "squeaky" ? "Pitched squeak" : kind === "airy" ? "Airy / noise-led" : "Low / mid pitched rumble"}${pitch} · ${profile.activeDuration.toFixed(2)}s active · estimated from audio`,
+    name: describeRecording(profile),
+    description: `${Math.round(measuredWetness(profile) * 100)}% wet · `+`${kind === "squeaky" ? "Pitched squeak" : kind === "airy" ? "Airy / noise-led" : "Low / mid pitched rumble"}${pitch} · ${profile.activeDuration.toFixed(2)}s active · estimated from audio`,
     params: measuredParams(profile, preset.params),
   };
 });
@@ -68,6 +83,8 @@ export function scorePreset(p: FartParams, q: FartParams) {
 
     ((p.resonance ?? 0.5) - (q.resonance ?? 0.5)) ** 2 * 0.8 +
     (p.cheekShape - q.cheekShape) ** 2 * 0.3 +
+    (Math.log((p.duration ?? 1.5) / (q.duration ?? 1.5)) / Math.log(40)) ** 2 * 4 +
+    ((p.wetness ?? 0.3) - (q.wetness ?? 0.3)) ** 2 * 2 +
     (p.food === q.food ? 0 : 0.04)
   );
 }
@@ -82,4 +99,11 @@ export function findNearestPreset(params: FartParams, presets = FART_PRESETS): F
   candidates.sort((a, b) => scorePreset(params, a.params) - scorePreset(params, b.params) || a.id.localeCompare(b.id));
   const best = candidates[0];
   return best && scorePreset(params, best.params) <= 0.45 ? best : null;
+}
+const band = (hole: number) => hole <= 0.55 ? "tight" : hole >= 1.1 ? "loose" : "middle";
+// Lab default: always returns a real recording, preferring the same tight/middle/loose band.
+export function matchRecording(params: FartParams, presets = FART_PRESETS): FartPreset {
+  const same = presets.filter((p) => band(p.params.holeSize) === band(params.holeSize));
+  const pool = same.length ? same : presets;
+  return [...pool].sort((a, b) => scorePreset(params, a.params) - scorePreset(params, b.params) || a.id.localeCompare(b.id))[0];
 }
