@@ -10,6 +10,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { SiteHeader } from "@/components/SiteHeader";
 
 function NotFoundComponent() {
   return (
@@ -80,11 +81,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "Hilarious fart simulator. Tweak cheek size, butthole tightness, and what you ate to craft your perfect toot." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "Fart Simulator — Customize Your Toot" },
       { name: "twitter:description", content: "Hilarious fart simulator. Tweak cheek size, butthole tightness, and what you ate to craft your perfect toot." },
     ],
     links: [
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" },
       {
         rel: "stylesheet",
         href: appCss,
@@ -116,7 +117,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <SiteHeader />
+      <main className="site-content"><Outlet /></main>
+      <footer className="site-footer"><strong>BUTTSOUNDS.COM 💨</strong><span>Advancing absolutely nothing since today.</span><span>FICTIONAL SCIENCE. REAL SOUNDS.</span></footer>
     </QueryClientProvider>
   );
 }
