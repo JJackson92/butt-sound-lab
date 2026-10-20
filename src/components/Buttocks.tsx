@@ -59,6 +59,7 @@ export function Buttocks({ params, jiggle, stink, style = "peach" }: { params: F
         style={{
           animation: jiggle ? "jiggle 0.7s var(--ease-fart)" : undefined,
           transformOrigin: "center bottom",
+          overflow: "visible",
         }}
       >
         <defs>
