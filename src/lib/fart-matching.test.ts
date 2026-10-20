@@ -1,6 +1,6 @@
 import { describe, test } from "node:test";
 import assert from "node:assert/strict";
-import { FART_PRESETS, findNearestPreset, measuredParams, scorePreset } from "./fart-matching";
+import { FART_PRESETS, findNearestPreset, matchRecording, measuredParams, scorePreset } from "./fart-matching";
 import type { FartParams } from "./fart-synth";
 
 const params: FartParams = { cheekSize: 1, cheekShape: 0.5, holeSize: 0.3, pressure: 1, food: "beans" };
@@ -32,5 +32,23 @@ describe("recorded sound matching", () => {
       assert.equal(scorePreset(preset.params, match.params), 0);
       assert.equal(findNearestPreset(preset.params)?.id, match.id);
     }
+  });
+});
+describe("lab slider matching", () => {
+  const base: FartParams = { cheekSize: 1, cheekShape: 0.5, holeSize: 0.8, pressure: 1, wetness: 0.3, duration: 0.5, food: "beans" };
+  test("always returns a real recording", () => {
+    assert.ok(matchRecording({ ...base, pressure: 0.3, holeSize: 0.2 }));
+  });
+  test("tight hole picks a squeak, loose hole picks an air blast", () => {
+    assert.match(matchRecording({ ...base, holeSize: 0.25 }).name, /Squeak/);
+    assert.match(matchRecording({ ...base, holeSize: 1.4 }).name, /Air Blast/);
+  });
+  test("longer duration picks a longer recording", () => {
+    const short = matchRecording({ ...base, duration: 0.2 }).params.duration!;
+    const long = matchRecording({ ...base, duration: 8 }).params.duration!;
+    assert.ok(long > short);
+  });
+  test("higher wetness picks a wetter recording", () => {
+    assert.ok(matchRecording({ ...base, wetness: 1 }).params.wetness! > matchRecording({ ...base, wetness: 0 }).params.wetness!);
   });
 });
