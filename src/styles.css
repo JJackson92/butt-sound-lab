@@ -144,3 +144,31 @@ button,a,input,select{touch-action:manipulation;}
 .butt-style { font: 600 0.75rem/1 var(--font-sans, inherit); letter-spacing: 0.04em; text-transform: uppercase; padding: 0.45rem 0.7rem; border-radius: 999px; border: 1px solid color-mix(in oklch, currentColor 35%, transparent); background: transparent; color: inherit; opacity: 0.75; cursor: pointer; }
 .butt-style:hover { opacity: 1; }
 .butt-style.selected { opacity: 1; background: var(--primary); color: var(--primary-foreground); border-color: var(--primary); }
+
+/* The Wind Ensemble */
+.ensemble-title{font-size:clamp(2rem,4vw,3.4rem);font-weight:900;margin:1.5rem 0 1rem}
+.ensemble{display:grid;grid-template-columns:280px 1fr;gap:1.25rem;padding-bottom:3rem}
+@media (max-width:900px){.ensemble{grid-template-columns:1fr}}
+.ensemble-tray,.ensemble-roll{background:var(--card);border:2px solid var(--border);border-radius:1.25rem;padding:1rem;min-width:0}
+.ensemble-tray h2{display:flex;gap:.4rem;align-items:center;font-weight:800;font-size:1.1rem}
+.ensemble-hint{font-size:.85rem;color:var(--muted-foreground);margin:.4rem 0 .8rem}
+.token-list{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;max-height:560px;overflow:auto}
+@media (max-width:900px){.token-list{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));max-height:none}}
+.token{display:flex;flex-direction:column;align-items:center;gap:.25rem;padding:.4rem;border-radius:.9rem;border:2px solid var(--border);background:var(--background);cursor:grab}
+.token.selected{border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in oklab,var(--primary) 30%,transparent)}
+.token-butt{width:90px;height:70px;display:block;overflow:hidden;pointer-events:none}
+.token-butt>*,.cell-butt>*{transform:scale(.3);transform-origin:top left;width:333%!important;height:333%!important}
+.token-name{font-size:.72rem;font-weight:700;line-height:1.1;text-align:center}
+.ensemble-controls{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;margin-bottom:.75rem}
+.bpm{display:flex;flex-direction:column;gap:.35rem;min-width:180px;flex:1;font-size:.85rem}
+.ensemble-status{font-size:.85rem;margin-bottom:.5rem}
+.roll-scroll{overflow-x:auto}
+.roll{display:grid;gap:4px;min-width:760px}
+.roll-row{display:grid;grid-template-columns:110px repeat(16,1fr);gap:4px}
+.roll-lane{font-size:.75rem;font-weight:800;display:flex;align-items:center}
+.roll-cell{aspect-ratio:1;border-radius:.5rem;background:var(--muted);border:1px solid var(--border);position:relative;overflow:hidden;transition:background .1s}
+.roll-cell.beat{background:color-mix(in oklab,var(--muted) 70%,var(--primary) 12%)}
+.roll-cell.now{outline:3px solid var(--primary)}
+.roll-cell.filled{background:color-mix(in oklab,var(--accent) 50%,var(--background))}
+.cell-butt{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.cell-butt>*{transform:scale(.13);width:770%!important;height:770%!important}
