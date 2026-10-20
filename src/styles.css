@@ -135,3 +135,8 @@ button,a,input,select{touch-action:manipulation;}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
 .location-grid{grid-template-columns:repeat(7,1fr);margin-bottom:4px;}.location-grid .food{height:66px;}.location-emoji{font-size:22px;line-height:1;}.location-grid .food small{white-space:normal;line-height:1.1;text-align:center;}
 @media(max-width:1000px){.location-grid{grid-template-columns:repeat(4,1fr);}}
+
+.butt-styles { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem; margin: 0.25rem 0 0.75rem; }
+.butt-style { font: 600 0.75rem/1 var(--font-sans, inherit); letter-spacing: 0.04em; text-transform: uppercase; padding: 0.45rem 0.7rem; border-radius: 999px; border: 1px solid color-mix(in oklch, currentColor 35%, transparent); background: transparent; color: inherit; opacity: 0.75; cursor: pointer; }
+.butt-style:hover { opacity: 1; }
+.butt-style.selected { opacity: 1; background: var(--primary); color: var(--primary-foreground); border-color: var(--primary); }

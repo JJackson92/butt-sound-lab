@@ -6,7 +6,7 @@ import { Slider } from '@/components/ui/slider';
 import { Input } from '@/components/ui/input';
 import { Buttocks } from './Buttocks';
 import { NewsTicker } from './NewsTicker';
-import { DEFAULT_CREATION, mealPreset, damageRating, mysteryCreation, setSimpleSize, validateCreation, type Creation } from '@/lib/creations';
+import { BUTT_STYLES, DEFAULT_CREATION, mealPreset, damageRating, mysteryCreation, setSimpleSize, validateCreation, type Creation } from '@/lib/creations';
 import { FOODS, pressureToPsi, type FartParams } from '@/lib/fart-synth';
 import { LOCATIONS, applyEnvironment, getAudioContext, type EnvKey } from '@/lib/fart-reverb';
 import { renderCreation, playRendered, stopRendered, wavBlob, deliverAudio } from '@/lib/audio-render';
@@ -53,7 +53,8 @@ export function Lab({ initial, shared = false, home = false }: { initial?: Creat
  <section className="lab-intro"><div><span className="eyebrow"><FlaskConical size={14}/> HUMANITY WAS NOT READY</span><h1>{shared ? c.name : home ? <>BUTT SOUNDS<Wind className="title-puff" aria-hidden/></> : 'FART LAB'}</h1><p>{home ? "The Internet’s Most Unnecessary Sound Laboratory." : shared ? 'A bottled masterpiece. Proceed at your own risk.' : 'Questionable science. Extraordinary results.'}</p><div className="intro-bottom">Create it. Name it. Share it.<span className="specimen">EXPERIMENT NO. {String(c.seed%10000).padStart(4,'0')}</span></div></div></section>
  <div className="lab-grid">
  <section className={`sound-stage ${level>0.65?'powerful':''}`}><div className="stage-top"><span><i className={level?'live-dot active':'live-dot'}/> GAS CHAMBER / 01</span><span>{busy?'PROCESSING':level?'RELEASING':'SYSTEM READY'}</span></div>
- <div className="butt-frame"><Buttocks params={c.params} jiggle={jiggle} stink={jiggle}/></div>
+ <div className="butt-frame"><Buttocks params={c.params} jiggle={jiggle} stink={jiggle} style={c.style}/></div>
+ <div className="butt-styles" role="group" aria-label="Butt style">{BUTT_STYLES.map(b=><button key={b.key} type="button" aria-pressed={(c.style??'peach')===b.key} className={(c.style??'peach')===b.key?'butt-style selected':'butt-style'} onClick={()=>setC({...c,style:b.key})}>{b.label}</button>)}</div>
  <div className="meter-row"><div className="pressure-meter"><div className="meter-bars">{Array.from({length:20},(_,i)=><span key={i} className={i<level*20?'lit':''}/>)}</div><strong>{Math.round(pressureToPsi(c.params.pressure)*level)} <small>PSI</small></strong><span>FART-O-METER</span></div><div className="damage"><span>DAMAGE POTENTIAL</span><strong>{rating.label}</strong><div className="damage-track"><div style={{width:`${rating.score}%`}}/></div></div></div>
  <Button className="rip-button" disabled={busy} onClick={()=>void run()}><Wind size={28}/>{busy?'BUILDING PRESSURE…':'LET IT RIP!'}<ArrowRight size={25}/></Button>
  <div className="stage-bottom"><span>{c.source==='synth'?'CUSTOM SOUND ENGINE':`REAL RECORDING · ${(FART_PRESETS.find(p=>p.id===(c.presetId??matchRecording(c.params).id))?.name??'').toUpperCase()}`}</span><span>{(c.params.duration??1.5).toFixed(1)} SEC / {Math.round((c.params.wetness??0)*100)}% WET</span></div></section>

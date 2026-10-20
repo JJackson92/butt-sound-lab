@@ -10,6 +10,7 @@ export const creationSchema = z.object({
   presetId: z.string().regex(/^p\d{3}$/).optional(),
   env: z.string().refine(v => ENVIRONMENTS.some(e => e.key === v)),
   echo: z.number().min(0).max(1.5),
+  style: z.enum(["peach", "comic", "hologram", "gold", "alien"]).optional(),
   params: z.object({
     cheekSize: z.number().min(0.5).max(2), cheekShape: z.number().min(0).max(1),
     holeSize: z.number().min(0.2).max(1.5), pressure: z.number().min(0.3).max(1.5),
@@ -18,6 +19,10 @@ export const creationSchema = z.object({
     food: z.string().refine(v => FOODS.some(f => f.key === v)),
   }),
 });
+export type ButtStyle = "peach" | "comic" | "hologram" | "gold" | "alien";
+export const BUTT_STYLES: { key: ButtStyle; label: string }[] = [
+  { key: "peach", label: "Soft Peach" }, { key: "comic", label: "Comic" }, { key: "hologram", label: "Hologram" }, { key: "gold", label: "Golden" }, { key: "alien", label: "Alien" },
+];
 export type Creation = Omit<z.infer<typeof creationSchema>, "params"> & { params: FartParams };
 export const DEFAULT_CREATION: Creation = { v: 1, name: "The Classic Brap", seed: 12345, source: "match", env: "dry", echo: 1,
   params: { cheekSize: 1, cheekShape: 0.5, holeSize: 0.7, pressure: 1, resonance: 0.5, turbulence: 0.5, duration: 1.5, wetness: 0.2, food: "beans" } };
@@ -67,7 +72,7 @@ export function creationUrl(c: Creation) { return `https://buttsounds.com/fart/$
 /** Each last meal is a macro preset: picking it moves the sliders to its signature sound. */
 export const MEAL_PRESETS: Record<FoodKey, Omit<FartParams, "food">> = {
   burrito:  { cheekSize: 2.0, cheekShape: 0.7, holeSize: 1.15, pressure: 1.26, resonance: 0.45, turbulence: 0.7,  duration: 2.2, wetness: 0.75 },
-  beans:    { cheekSize: 1.5, cheekShape: 0.6, holeSize: 0.85, pressure: 1.02, resonance: 0.7,  turbulence: 0.45, duration: 1.5, wetness: 0.35 },
+  beans:    { cheekSize: 1.6, cheekShape: 0.7, holeSize: 1.08, pressure: 0.82, resonance: 0.65, turbulence: 0.4,  duration: 1.2, wetness: 0.18 },
   soda:     { cheekSize: 0.8, cheekShape: 0.3, holeSize: 0.35, pressure: 1.38, resonance: 0.6,  turbulence: 0.3,  duration: 0.5, wetness: 0.15 },
   spicy:    { cheekSize: 1.1, cheekShape: 0.5, holeSize: 0.65, pressure: 1.44, resonance: 0.35, turbulence: 0.95, duration: 0.9, wetness: 0.65 },
   cheese:   { cheekSize: 1.7, cheekShape: 0.8, holeSize: 1.30, pressure: 0.72, resonance: 0.5,  turbulence: 0.2,  duration: 2.0, wetness: 0.1 },
