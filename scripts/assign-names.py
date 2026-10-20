@@ -8,10 +8,10 @@ ids=sorted(A)
 def cl(x):return max(0,min(1,x))
 def feat(p):
     pitch=p['pitchHz'] or 0
-    airy=p['flatness']>0.12 or (p['tonality']<0.35)
-    squeak=(not airy) and pitch>=220
+    airy=p['tonality']<0.4  # same rule as classifyRecording
+    squeak=(not airy) and pitch>=250
     wet=cl(cl((p['variation']-.25)/.5)*.7+cl(p['flatness']/.15)*.3)
-    return dict(high=1.0 if squeak else 0.0, low=1.0 if (not airy and not squeak and pitch<160) else 0.0,
+    return dict(high=1.0 if squeak else 0.0, low=1.0 if (not airy and not squeak and pitch<180) else 0.0,
       airy=1.0 if airy else 0.0, wet=wet, loud=cl((p['rms']-.04)/.22), long=cl((p['activeDuration']-.2)/1.3),
       choppy=cl((p['variation']-.2)/.6))
 F={i:feat(A[i]) for i in ids}
