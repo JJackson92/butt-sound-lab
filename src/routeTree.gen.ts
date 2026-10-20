@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EnsembleRouteImport } from './routes/ensemble'
 import { Route as LabRouteImport } from './routes/lab'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as MySoundsRouteImport } from './routes/my-sounds'
@@ -18,6 +19,11 @@ import { Route as FartCreationRouteImport } from './routes/fart.$creation'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnsembleRoute = EnsembleRouteImport.update({
+  id: '/ensemble',
+  path: '/ensemble',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LabRoute = LabRouteImport.update({
@@ -43,6 +49,7 @@ const FartCreationRoute = FartCreationRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ensemble': typeof EnsembleRoute
   '/lab': typeof LabRoute
   '/library': typeof LibraryRoute
   '/my-sounds': typeof MySoundsRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ensemble': typeof EnsembleRoute
   '/lab': typeof LabRoute
   '/library': typeof LibraryRoute
   '/my-sounds': typeof MySoundsRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ensemble': typeof EnsembleRoute
   '/lab': typeof LabRoute
   '/library': typeof LibraryRoute
   '/my-sounds': typeof MySoundsRoute
@@ -65,14 +74,23 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/lab' | '/library' | '/my-sounds' | '/fart/$creation'
+  fullPaths:
+    '/' | '/ensemble' | '/lab' | '/library' | '/my-sounds' | '/fart/$creation'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/lab' | '/library' | '/my-sounds' | '/fart/$creation'
-  id: '__root__' | '/' | '/lab' | '/library' | '/my-sounds' | '/fart/$creation'
+  to: '/' | '/ensemble' | '/lab' | '/library' | '/my-sounds' | '/fart/$creation'
+  id:
+    | '__root__'
+    | '/'
+    | '/ensemble'
+    | '/lab'
+    | '/library'
+    | '/my-sounds'
+    | '/fart/$creation'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EnsembleRoute: typeof EnsembleRoute
   LabRoute: typeof LabRoute
   LibraryRoute: typeof LibraryRoute
   MySoundsRoute: typeof MySoundsRoute
@@ -86,6 +104,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ensemble': {
+      id: '/ensemble'
+      path: '/ensemble'
+      fullPath: '/ensemble'
+      preLoaderRoute: typeof EnsembleRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lab': {
@@ -121,6 +146,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EnsembleRoute: EnsembleRoute,
   LabRoute: LabRoute,
   LibraryRoute: LibraryRoute,
   MySoundsRoute: MySoundsRoute,
