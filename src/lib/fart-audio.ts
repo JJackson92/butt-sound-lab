@@ -24,10 +24,14 @@ export async function loadManifest() {
 }
 
 let currentAudio: HTMLAudioElement | null = null;
-export function stopPresetAudio() { if (currentAudio) { currentAudio.pause(); currentAudio.src = ""; currentAudio = null; } }
+let operation = 0;
+let meterFrame = 0;
+export function stopPresetAudio() { operation++; cancelAnimationFrame(meterFrame); if (currentAudio) { currentAudio.pause(); currentAudio.src = ""; currentAudio = null; } }
 const sourceMap = new WeakMap<HTMLAudioElement, MediaElementAudioSourceNode>();
 
-export async function playPresetAudio(presetId: string, volume = 1): Promise<FartAudioEntry | null> {
+export async function playPresetAudio(presetId: string, volume = 1, onLevel?: (level: number) => void): Promise<FartAudioEntry | null> {
+  stopPresetAudio();
+  const id = operation;
   let m: Record<string, FartAudioEntry>;
   try {
     m = await loadManifest();
@@ -36,7 +40,7 @@ export async function playPresetAudio(presetId: string, volume = 1): Promise<Far
     return null;
   }
   const entry = m[presetId];
-  if (!entry) return null;
+  if (!entry || id !== operation) return null;
   if (currentAudio) {
     currentAudio.pause();
     currentAudio.src = "";
@@ -56,6 +60,19 @@ export async function playPresetAudio(presetId: string, volume = 1): Promise<Far
       sourceMap.set(a, src);
     }
     src.connect(input);
+    if (onLevel) {
+      const analyser = ac.createAnalyser(); analyser.fftSize = 512;
+      src.connect(analyser);
+      const values = new Float32Array(512);
+      const tick = () => {
+        if (currentAudio !== a) return;
+        analyser.getFloatTimeDomainData(values);
+        onLevel(Math.min(1, Math.sqrt(values.reduce((sum, v) => sum + v * v, 0) / values.length) * 4));
+        meterFrame = requestAnimationFrame(tick);
+      };
+      a.onplaying = tick;
+      a.onended = () => { cancelAnimationFrame(meterFrame); onLevel(0); };
+    }
   } catch {
     // ignore — element will play directly
   }

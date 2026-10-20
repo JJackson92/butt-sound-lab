@@ -60,7 +60,7 @@ export function NewsTicker({ trigger }: { trigger: number }) {
   const loop = [...items, ...items];
 
   return (
-    <div className="relative overflow-hidden rounded-lg border-2 border-primary/40 bg-gradient-to-r from-destructive/20 via-card to-destructive/20 shadow-md">
+    <div className="news-ticker relative overflow-hidden rounded-md border border-border bg-card">
       <div className="flex items-stretch">
         <div className="shrink-0 bg-destructive text-destructive-foreground font-black uppercase text-xs px-3 flex items-center tracking-wider">
           <span className="animate-pulse">● Breaking</span>
@@ -72,7 +72,7 @@ export function NewsTicker({ trigger }: { trigger: number }) {
           >
             {loop.map((h, i) => (
               <span key={i} className="flex items-center gap-3">
-                <span className="text-primary">💨</span>
+                <span className="text-primary" aria-hidden>•</span>
                 <span>{h}</span>
               </span>
             ))}

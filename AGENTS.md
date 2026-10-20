@@ -3,4 +3,5 @@
 - Generate acoustic measurements offline with the analysis script, not at page load; this avoids downloading every recording for each visitor.
 - Represent shareable creations as validated versioned settings with a seed and explicit sound source; this keeps guest sharing independent of accounts.
 - Render custom sounds into a seeded browser audio buffer shared by playback and WAV export; this makes replay and downloads identical.
+- Resolve matched playback to an explicit source before sharing and exporting; original downloads are unmodified licensed MP3s, never mislabeled synthesized WAVs.
 - Store guest creations locally and session lab settings separately; this preserves anonymous favorites without introducing community data.
