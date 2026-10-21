@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { playFart, type FartParams } from "@/lib/fart-synth";
 import { BUTT_STYLES, DEFAULT_CREATION, type ButtStyle } from "@/lib/creations";
 import { FART_PRESETS } from "@/lib/fart-matching";
-import { COUNTRIES, fetchTopScores, flagFor, guessCountry, submitScore, type LeaderboardEntry } from "@/lib/leaderboard";
+import { COUNTRIES, fetchTopScores, flagFor, guessCountry, submitScore, type BoardKind, type LeaderboardEntry } from "@/lib/leaderboard";
 import {
   getGameSoundConfig,
   playGameSplat,
