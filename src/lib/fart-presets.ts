@@ -1,4 +1,4 @@
-// Auto-generated. 200 fart presets mapping real-world descriptions to synth params.
+// Auto-generated. 193 fart presets mapping real-world descriptions to synth params.
 import type { FartParams } from './fart-synth';
 
 export type FartPreset = { id: string; name: string; description: string; params: FartParams };
