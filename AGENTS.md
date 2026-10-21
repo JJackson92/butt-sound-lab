@@ -4,4 +4,4 @@
 - Represent shareable creations as validated versioned settings with a seed and explicit sound source; this keeps guest sharing independent of accounts.
 - Render custom sounds into a seeded browser audio buffer shared by playback and WAV export; this makes replay and downloads identical.
 - Resolve matched playback to an explicit source before sharing and exporting; original downloads are unmodified licensed MP3s, never mislabeled synthesized WAVs.
-- Store guest creations locally and session lab settings separately; this preserves anonymous favorites without introducing community data.
+- Store guest creations locally and session lab settings separately; this preserves anonymous favorites without introducing community data.- Keep the Flappy Cheeks leaderboard anonymous (name + country + score only, no accounts); the public.flappy_scores table allows anon SELECT/INSERT with RLS checks on score and field lengths.
