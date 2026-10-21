@@ -240,3 +240,16 @@ button,a,input,select{touch-action:manipulation;}
 .tile-ensemble{background:color-mix(in oklab,var(--cyan) 25%,var(--card));color:var(--foreground)}
 .tile-library{background:var(--studio);color:var(--neon)}
 .tile-mine{background:color-mix(in oklab,var(--coral) 22%,var(--card));color:var(--foreground)}
+
+/* Mobile sticky mini gas chamber */
+.mini-dock{display:none;}
+@media(max-width:700px){
+.mini-dock{display:flex;position:fixed;top:0;left:0;right:0;z-index:30;align-items:center;gap:10px;padding:8px 12px;background:var(--studio);color:var(--studio-foreground);box-shadow:var(--stage-glow);border-bottom:1px solid var(--studio-line);transform:translateY(-110%);transition:transform .25s var(--ease-fart, ease);}
+.mini-dock.show{transform:translateY(0);}
+.mini-butt{width:64px;height:56px;flex-shrink:0;overflow:visible;position:relative;}
+.mini-butt>div{width:100%!important;height:100%!important;}.mini-butt svg{max-width:100%;max-height:56px;}
+.mini-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;}
+.mini-info span{font-family:monospace;font-size:9px;color:var(--studio-muted);}
+.mini-info strong{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mini-rip{flex-shrink:0;background:var(--neon);color:var(--primary-foreground);height:48px;font-size:18px;font-weight:900;padding:0 16px;border-radius:6px;}
+}
