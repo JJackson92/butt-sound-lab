@@ -14,7 +14,30 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      flappy_scores: {
+        Row: {
+          country: string
+          created_at: string
+          id: string
+          name: string
+          score: number
+        }
+        Insert: {
+          country: string
+          created_at?: string
+          id?: string
+          name: string
+          score: number
+        }
+        Update: {
+          country?: string
+          created_at?: string
+          id?: string
+          name?: string
+          score?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
