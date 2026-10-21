@@ -20,6 +20,8 @@ export function Lab({ initial, shared = false, home = false }: { initial?: Creat
  const [busy,setBusy] = useState(false); const [status,setStatus] = useState(''); const [credit,setCredit] = useState<FartAudioEntry|null>(null);
  const [blob,setBlob] = useState<Blob|null>(null); const previous = useRef<{c:Creation;buffer:AudioBuffer|null}|null>(null); const bufferRef = useRef<AudioBuffer|null>(null);
  const request = useRef(0); const [ready,setReady] = useState(false);
+ const ripRef = useRef<HTMLDivElement>(null); const [dock,setDock] = useState(false);
+ useEffect(() => { const el = ripRef.current; if(!el) return; const io = new IntersectionObserver(([e]) => setDock(!e.isIntersecting && e.boundingClientRect.top < 0)); io.observe(el); return () => io.disconnect(); },[]);
  useEffect(() => { if (!initial) { try { const v = validateCreation(JSON.parse(sessionStorage.getItem('buttsounds.lab') ?? 'null')); if(v)setC(v); } catch {} } setReady(true); return () => { request.current++; stopRendered(); stopPresetAudio(); }; },[initial]);
  useEffect(() => { if(ready && !shared) { try {sessionStorage.setItem('buttsounds.lab',JSON.stringify(c));} catch {setStatus('Session storage is unavailable on this device.');} } },[c,ready,shared]);
  const change = (next:Creation) => { request.current++; stopRendered(); stopPresetAudio(); setLevel(0); setBusy(false); setC(next); setBlob(null); setCredit(null); bufferRef.current=null; };
@@ -49,7 +51,13 @@ export function Lab({ initial, shared = false, home = false }: { initial?: Creat
  const save=()=>{try{saveSound(c);setStatus('Your masterpiece has been bottled.');}catch(e){setStatus(e instanceof Error?e.message:'Could not save on this device.');}};
  const mystery=()=>{const next=mysteryCreation(crypto.getRandomValues(new Uint32Array(1))[0]);change(next);void run(next);};
  const rating=damageRating(c.params);
+ const soundName = c.source==='synth' ? 'Custom Sound' : FART_PRESETS.find(p=>p.id===(c.presetId??matchRecording(c.params).id))?.name ?? '';
  return <>
+ <div className={dock?'mini-dock show':'mini-dock'} aria-hidden={!dock}>
+  <div className="mini-butt"><Buttocks params={c.params} jiggle={jiggle} stink={jiggle} style={c.style}/></div>
+  <div className="mini-info"><span>{level?'RELEASING':'READY'} · {Math.round(pressureToPsi(c.params.pressure)*(level||1))} PSI</span><strong>{soundName}</strong></div>
+  <Button className="mini-rip" disabled={busy} tabIndex={dock?0:-1} onClick={()=>void run()}><Wind size={20}/>{busy?'…':'RIP!'}</Button>
+ </div>
  <section className="lab-intro"><div><span className="eyebrow"><FlaskConical size={14}/> HUMANITY WAS NOT READY</span><h1>{shared ? c.name : home ? <>BUTT SOUNDS<Wind className="title-puff" aria-hidden/></> : 'FART LAB'}</h1><p>{home ? "The Internet’s Most Unnecessary Sound Laboratory." : shared ? 'A bottled masterpiece. Proceed at your own risk.' : 'Questionable science. Extraordinary results.'}</p><div className="intro-bottom">Create it. Name it. Share it.<span className="specimen">EXPERIMENT NO. {String(c.seed%10000).padStart(4,'0')}</span></div></div></section>
  <div className="lab-grid">
  <section className={`sound-stage ${level>0.65?'powerful':''}`}><div className="stage-top"><span><i className={level?'live-dot active':'live-dot'}/> GAS CHAMBER / 01</span><span>{busy?'PROCESSING':level?'RELEASING':'SYSTEM READY'}</span></div>
