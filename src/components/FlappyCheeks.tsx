@@ -1,7 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { playFart, type FartParams } from "@/lib/fart-synth";
 import { BUTT_STYLES, DEFAULT_CREATION, type ButtStyle } from "@/lib/creations";
-import { preloadGameSounds, playGameSplat, playGameToot } from "@/lib/game-sounds";
+import { FART_PRESETS } from "@/lib/fart-matching";
+import {
+  getGameSoundConfig,
+  playGameSplat,
+  playGameToot,
+  preloadGameSounds,
+  previewGameSound,
+  setGameSoundConfig,
+  type GameSoundConfig,
+} from "@/lib/game-sounds";
 
 const W = 400, H = 600, CEIL = 24, FLOOR = 60;
 const GRAVITY = 1500, FLAP = -430, SPEED = 150, GAP = 165, SPACING = 220, OBS_W = 64, R = 20;
@@ -43,6 +52,7 @@ export function FlappyCheeks() {
   const [score, setScore] = useState(0);
   const [best, setBest] = useState(0);
   const [style, setStyle] = useState<ButtStyle>("peach");
+  const [sounds, setSounds] = useState<GameSoundConfig>(() => getGameSoundConfig());
   const st = useRef({ y: H / 2, vy: 0, obs: [] as Obs[], puffs: [] as Puff[], scroll: 0, score: 0, shake: 0, phase: "ready" as Phase, style: "peach" as ButtStyle, t: 0 });
 
   useEffect(() => { setBest(Number(localStorage.getItem(BEST_KEY)) || 0); }, []);
@@ -128,8 +138,55 @@ export function FlappyCheeks() {
           <button key={b.key} className={b.key === style ? "active" : ""} onClick={() => setStyle(b.key)} disabled={phase === "play"}>{b.label}</button>
         ))}
       </div>
+      <div className="flappy-sounds" role="group" aria-label="Game sounds">
+        <SoundPicker
+          label="Tap toot"
+          value={sounds.toot}
+          randomLabel="🎲 Random short toots"
+          synthLabel="🔊 Synth toot"
+          onChange={(toot) => { const next = { ...sounds, toot }; setSounds(next); setGameSoundConfig(next); }}
+        />
+        <SoundPicker
+          label="Crash splat"
+          value={sounds.splat}
+          randomLabel="🎲 Random wet splats"
+          synthLabel="🔊 Synth splat"
+          onChange={(splat) => { const next = { ...sounds, splat }; setSounds(next); setGameSoundConfig(next); }}
+        />
+      </div>
       <p className="flappy-best">Personal best: {best}</p>
     </div>
+  );
+}
+
+function SoundPicker(props: {
+  label: string;
+  value: string;
+  randomLabel: string;
+  synthLabel: string;
+  onChange: (value: string) => void;
+}) {
+  const preview = () => {
+    if (props.value === "random") { playGameToot(); return; }
+    if (props.value === "synth") { toot(); return; }
+    if (!previewGameSound(props.value)) playGameToot();
+  };
+  return (
+    <label className="flappy-sound-picker">
+      <span>{props.label}</span>
+      <span className="flappy-sound-row">
+        <select value={props.value} onChange={(e) => props.onChange(e.target.value)}>
+          <option value="random">{props.randomLabel}</option>
+          <option value="synth">{props.synthLabel}</option>
+          <optgroup label="Pick a recording">
+            {FART_PRESETS.map((p) => (
+              <option key={p.id} value={p.id}>{p.name}</option>
+            ))}
+          </optgroup>
+        </select>
+        <button type="button" className="flappy-preview" onClick={preview} aria-label={`Preview ${props.label}`}>▶</button>
+      </span>
+    </label>
   );
 }
 
