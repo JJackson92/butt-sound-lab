@@ -82,8 +82,10 @@ export function FlappyCheeks() {
         }
         if (s.obs[0].x < -OBS_W - 10) { s.obs.shift(); s.obs.push({ x: s.obs[s.obs.length - 1].x + SPACING, gapY: randGap(), scored: false }); }
         const hit = s.y - R < CEIL || s.y + R > H - FLOOR || s.obs.some(o => {
-          if (100 + R < o.x || 100 - R > o.x + OBS_W) return false;
-          return s.y - R + 4 < o.gapY - GAP / 2 || s.y + R - 4 > o.gapY + GAP / 2;
+          const inRolls = !(100 + R < o.x || 100 - R > o.x + OBS_W);
+          const hx = o.x + OBS_W / 2;
+          const inHandle = Math.abs(100 - hx) < R + 6;
+          return (inHandle && s.y - R + 4 < o.gapY - GAP / 2) || (inRolls && s.y + R - 4 > o.gapY + GAP / 2);
         });
         if (hit) {
           s.phase = "over"; s.shake = 0.4; setPhase("over"); splat();
@@ -154,37 +156,59 @@ function draw(ctx: CanvasRenderingContext2D, s: { y: number; vy: number; obs: Ob
   ctx.restore();
 }
 
+// Plunger stuck to the ceiling by its rubber cup, wooden handle hanging down to the gap.
 function drawPlunger(ctx: CanvasRenderingContext2D, x: number, top: number, bottom: number) {
-  const cx = x + OBS_W / 2, cupH = 34;
-  ctx.fillStyle = "#c98b4a"; ctx.fillRect(cx - 7, top, 14, bottom - top - cupH + 4);
-  ctx.fillStyle = "#a96d33"; ctx.fillRect(cx - 7, top, 4, bottom - top - cupH + 4);
-  ctx.fillStyle = "#d62f2f"; ctx.beginPath();
-  ctx.moveTo(cx - 14, bottom - cupH); ctx.lineTo(cx + 14, bottom - cupH);
-  ctx.quadraticCurveTo(cx + OBS_W / 2 + 4, bottom - 6, cx + OBS_W / 2, bottom);
-  ctx.lineTo(cx - OBS_W / 2, bottom); ctx.quadraticCurveTo(cx - OBS_W / 2 - 4, bottom - 6, cx - 14, bottom - cupH);
-  ctx.fill(); ctx.fillStyle = "#8f1d1d"; ctx.fillRect(x, bottom - 5, OBS_W, 5);
-  ctx.fillStyle = "rgba(255,255,255,0.35)"; ctx.fillRect(cx - 8, bottom - cupH + 6, 4, 18);
-  // suction cup on ceiling
-  ctx.fillStyle = "#d62f2f"; ctx.fillRect(cx - 16, top, 32, 6);
+  const cx = x + OBS_W / 2, cupH = 30, cupW = OBS_W + 4;
+  // shadow on ceiling/wall
+  ctx.fillStyle = "rgba(60,50,40,0.12)";
+  ctx.beginPath(); ctx.moveTo(cx + 10, top + cupH); ctx.lineTo(cx + 30, bottom - 10); ctx.lineTo(cx + 20, bottom - 10); ctx.lineTo(cx + 4, top + cupH); ctx.fill();
+  // wooden handle
+  const hw = 12;
+  const wood = ctx.createLinearGradient(cx - hw / 2, 0, cx + hw / 2, 0);
+  wood.addColorStop(0, "#6e4a26"); wood.addColorStop(0.45, "#a9763f"); wood.addColorStop(1, "#5a3a1c");
+  ctx.fillStyle = wood; ctx.fillRect(cx - hw / 2, top + cupH - 4, hw, bottom - top - cupH);
+  ctx.strokeStyle = "rgba(70,40,15,0.45)"; ctx.lineWidth = 1;
+  for (let k = 0; k < 3; k++) { ctx.beginPath(); ctx.moveTo(cx - 3 + k * 3, top + cupH + 10 + k * 17); ctx.lineTo(cx - 2 + k * 3, bottom - 20 - k * 11); ctx.stroke(); }
+  ctx.fillStyle = "#5a3a1c"; ctx.beginPath(); ctx.ellipse(cx, bottom - 2, hw / 2, 3, 0, 0, Math.PI * 2); ctx.fill();
+  // rubber cup (dome flattened against ceiling)
+  const rub = ctx.createRadialGradient(cx - 8, top + 8, 2, cx, top + 10, cupW / 2);
+  rub.addColorStop(0, "#c2563a"); rub.addColorStop(0.6, "#8f3523"); rub.addColorStop(1, "#5e2014");
+  ctx.fillStyle = rub; ctx.beginPath();
+  ctx.moveTo(cx - cupW / 2, top);
+  ctx.bezierCurveTo(cx - cupW / 2, top + cupH * 0.9, cx - 12, top + cupH, cx - 9, top + cupH);
+  ctx.lineTo(cx + 9, top + cupH);
+  ctx.bezierCurveTo(cx + 12, top + cupH, cx + cupW / 2, top + cupH * 0.9, cx + cupW / 2, top);
+  ctx.closePath(); ctx.fill();
+  ctx.fillStyle = "#3d140c"; ctx.fillRect(cx - cupW / 2 - 2, top, cupW + 4, 4); // sealed rim
+  ctx.fillStyle = "#4a1a10"; ctx.beginPath(); ctx.ellipse(cx, top + cupH - 2, 10, 5, 0, 0, Math.PI * 2); ctx.fill(); // collar
+  ctx.fillStyle = "rgba(255,220,200,0.3)"; ctx.beginPath(); ctx.ellipse(cx - 12, top + 10, 6, 3, -0.3, 0, Math.PI * 2); ctx.fill();
 }
 
+// Stack of puffy toilet paper rolls, slightly offset, with quilted texture and a hole on top.
 function drawTP(ctx: CanvasRenderingContext2D, x: number, top: number, bottom: number) {
-  const rollH = 40;
-  for (let y = bottom - rollH, i = 0; y + rollH > top; y -= rollH, i++) {
-    const ry = Math.max(y, top), h = y + rollH - ry;
-    ctx.fillStyle = "#fbfbf7"; ctx.fillRect(x, ry, OBS_W, h);
-    ctx.fillStyle = "#e3e3dc"; ctx.fillRect(x + OBS_W - 10, ry, 10, h);
-    ctx.strokeStyle = "#d4d4cc"; ctx.lineWidth = 1;
-    for (let k = 8; k < h; k += 8) { ctx.beginPath(); ctx.moveTo(x, ry + k); ctx.lineTo(x + OBS_W, ry + k); ctx.stroke(); }
-    ctx.strokeStyle = "#bdbdb4"; ctx.lineWidth = 2; ctx.strokeRect(x, ry, OBS_W, h);
-    if (y <= top) {
-      ctx.fillStyle = "#fbfbf7"; ctx.beginPath(); ctx.ellipse(x + OBS_W / 2, top, OBS_W / 2, 8, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-      ctx.fillStyle = "#b07a45"; ctx.beginPath(); ctx.ellipse(x + OBS_W / 2, top, 10, 4, 0, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = "#fbfbf7"; ctx.fillRect(x + 4, top + 2, 12, 18); // loose tail
-      break;
-    }
-    if (i > 20) break;
-  }
+  const rollH = 38, ry2 = 7, w = OBS_W - 6;
+  const offs = [0, 3, -2, 2, -3, 1];
+  const rolls: number[] = [];
+  for (let y = bottom - rollH; y + rollH > top; y -= rollH) rolls.push(Math.max(y, top));
+  rolls.forEach((ry, i) => {
+    const rx = x + 3 + offs[i % offs.length];
+    const h = (bottom - i * rollH) - ry;
+    const body = ctx.createLinearGradient(rx, 0, rx + w, 0);
+    body.addColorStop(0, "#d9d9d4"); body.addColorStop(0.25, "#ffffff"); body.addColorStop(0.7, "#f1f1ec"); body.addColorStop(1, "#c8c8c2");
+    ctx.fillStyle = body;
+    ctx.beginPath(); ctx.roundRect(rx, ry, w, h, 6); ctx.fill();
+    // quilted dots
+    ctx.fillStyle = "rgba(160,160,150,0.28)";
+    for (let yy = ry + 6; yy < ry + h - 3; yy += 5) for (let xx = rx + 5 + ((yy / 5) % 2) * 2.5; xx < rx + w - 4; xx += 5) ctx.fillRect(xx, yy, 1.4, 1.4);
+    // seam shadow between rolls
+    ctx.fillStyle = "rgba(120,120,110,0.35)"; ctx.beginPath(); ctx.ellipse(rx + w / 2, ry + h, w / 2 - 1, 2.5, 0, 0, Math.PI); ctx.fill();
+  });
+  // top roll face with hole
+  const topX = x + 3 + offs[(rolls.length - 1) % offs.length];
+  ctx.fillStyle = "#fbfbf8"; ctx.beginPath(); ctx.ellipse(topX + w / 2, top, w / 2, ry2, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = "#d4d4ce"; ctx.lineWidth = 1; ctx.stroke();
+  ctx.fillStyle = "#a9a9a2"; ctx.beginPath(); ctx.ellipse(topX + w / 2, top, 9, 3.5, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = "#c79a64"; ctx.beginPath(); ctx.ellipse(topX + w / 2, top + 1, 9, 2.2, 0, 0, Math.PI); ctx.fill();
 }
 
 function drawButt(ctx: CanvasRenderingContext2D, x: number, y: number, tilt: number, style: ButtStyle) {
