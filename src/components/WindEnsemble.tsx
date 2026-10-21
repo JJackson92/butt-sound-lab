@@ -119,20 +119,6 @@ export function WindEnsemble({ initial }: { initial?: string }) {
 
   return (
     <div className="ensemble">
-      <section className="ensemble-tray" aria-label="Butt orchestra">
-        <h2><Music size={18} /> The Butt Orchestra</h2>
-        <p className="ensemble-hint">Drag a butt onto the grid, or tap a butt then tap a square. Your saved sounds from My Sounds appear first.</p>
-        <div className="token-list">
-          {tokens.map((t, i) => (
-            <button key={i} draggable onDragStart={(e) => { e.dataTransfer.setData("text/plain", String(i)); setSelected(i); }}
-              onClick={() => preview(i)} className={i === selected ? "token selected" : "token"} title={t.name}>
-              <span className="token-butt"><Buttocks params={t.params} jiggle={hits[i] ?? 0} stink={hits[i] ?? 0} style={t.style ?? "peach"} /></span>
-              <span className="token-name">{t.name}</span>
-            </button>
-          ))}
-        </div>
-      </section>
-
       <section className="ensemble-roll" aria-label="Piano roll">
         <div className="ensemble-controls">
           <Button onClick={() => (playing ? stop() : void play())} size="lg">{playing ? <><Square size={16} /> Stop</> : <><Play size={16} /> Play</>}</Button>
@@ -160,6 +146,20 @@ export function WindEnsemble({ initial }: { initial?: string }) {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="ensemble-tray" aria-label="Butt orchestra">
+        <h2><Music size={18} /> The Butt Orchestra</h2>
+        <p className="ensemble-hint">Drag a butt onto the grid, or tap a butt then tap a square. Your saved sounds from My Sounds appear first.</p>
+        <div className="token-list">
+          {tokens.map((t, i) => (
+            <button key={i} draggable onDragStart={(e) => { e.dataTransfer.setData("text/plain", String(i)); setSelected(i); }}
+              onClick={() => preview(i)} className={i === selected ? "token selected" : "token"} title={t.name}>
+              <span className="token-butt"><Buttocks params={t.params} jiggle={hits[i] ?? 0} stink={hits[i] ?? 0} style={t.style ?? "peach"} /></span>
+              <span className="token-name">{t.name}</span>
+            </button>
+          ))}
         </div>
       </section>
     </div>

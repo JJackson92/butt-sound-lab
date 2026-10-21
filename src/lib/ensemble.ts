@@ -1,8 +1,8 @@
 // Browser-safe song model for The Wind Ensemble sequencer.
 import { validateCreation, type Creation } from "./creations";
 
-export const STEPS = 16;
-export const LANES = ["High Squeaks", "Mid Braps", "Bass Rumbles", "Wet FX"] as const;
+export const STEPS = 20;
+export const LANES = ["High Squeaks", "Mid Braps", "Bass Rumbles", "Wet FX", "Trumpet Toots", "Silent Stinkers"] as const;
 
 export type Song = { v: 1; bpm: number; tokens: Creation[]; grid: (number | null)[][] };
 
