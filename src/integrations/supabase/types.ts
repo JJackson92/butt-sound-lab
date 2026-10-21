@@ -21,6 +21,7 @@ export type Database = {
           id: string
           name: string
           score: number
+          toots: number
         }
         Insert: {
           country: string
@@ -28,6 +29,7 @@ export type Database = {
           id?: string
           name: string
           score: number
+          toots?: number
         }
         Update: {
           country?: string
@@ -35,6 +37,7 @@ export type Database = {
           id?: string
           name?: string
           score?: number
+          toots?: number
         }
         Relationships: []
       }

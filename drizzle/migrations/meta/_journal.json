@@ -8,6 +8,13 @@
       "when": 1792552970601,
       "tag": "0000_create_flappy_scores",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792554450217,
+      "tag": "0001_add_flappy_toots",
+      "breakpoints": true
     }
   ]
 }
