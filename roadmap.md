@@ -5,3 +5,4 @@
 - [x] Verify creation, save, sharing, remix, export and phone layouts (Chromium; Safari/iOS not verified).
 - [x] Beans gets its own sound; custom butt style picker on the stage, saved in shares.
 - Later: Phase 2 piano/prank; Phase 3 community; Phase 4 further optimization.- [x] The Wind Ensemble: 16-step fart piano roll at /ensemble, saved sounds + starter butts, shareable songs.
+- [x] Flappy Cheeks global leaderboard: name + country submission on game over, top-20 board, stored in Lovable Cloud.

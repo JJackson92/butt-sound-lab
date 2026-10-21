@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { playFart, type FartParams } from "@/lib/fart-synth";
 import { BUTT_STYLES, DEFAULT_CREATION, type ButtStyle } from "@/lib/creations";
 import { FART_PRESETS } from "@/lib/fart-matching";
+import { COUNTRIES, fetchTopScores, flagFor, guessCountry, submitScore, type LeaderboardEntry } from "@/lib/leaderboard";
 import {
   getGameSoundConfig,
   playGameSplat,
@@ -53,6 +54,37 @@ export function FlappyCheeks() {
   const [best, setBest] = useState(0);
   const [style, setStyle] = useState<ButtStyle>("peach");
   const [sounds, setSounds] = useState<GameSoundConfig>(() => getGameSoundConfig());
+  const [board, setBoard] = useState<LeaderboardEntry[]>([]);
+  const [boardError, setBoardError] = useState(false);
+  const [name, setName] = useState("");
+  const [country, setCountry] = useState("US");
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  const loadBoard = () => {
+    fetchTopScores().then(setBoard).catch(() => setBoardError(true));
+  };
+  useEffect(() => { loadBoard(); }, []);
+  useEffect(() => {
+    setName(localStorage.getItem("flappy-cheeks-name") ?? "");
+    setCountry(localStorage.getItem("flappy-cheeks-country") ?? guessCountry());
+  }, []);
+
+  const submit = async () => {
+    if (submitting || submitted || score <= 0) return;
+    setSubmitting(true);
+    try {
+      await submitScore(name, country, score);
+      localStorage.setItem("flappy-cheeks-name", name.trim());
+      localStorage.setItem("flappy-cheeks-country", country);
+      setSubmitted(true);
+      loadBoard();
+    } catch {
+      setBoardError(true);
+    } finally {
+      setSubmitting(false);
+    }
+  };
   const st = useRef({ y: H / 2, vy: 0, obs: [] as Obs[], puffs: [] as Puff[], scroll: 0, score: 0, shake: 0, phase: "ready" as Phase, style: "peach" as ButtStyle, t: 0 });
 
   useEffect(() => { setBest(Number(localStorage.getItem(BEST_KEY)) || 0); }, []);
@@ -75,7 +107,7 @@ export function FlappyCheeks() {
     for (let i = 0; i < 5; i++) s.puffs.push({ x: 100 - 18 + Math.random() * 8, y: s.y + 12 + Math.random() * 10, r: 6 + Math.random() * 6, life: 1 });
     toot();
   };
-  const restart = () => { reset(); st.current.phase = "ready"; setPhase("ready"); };
+  const restart = () => { reset(); st.current.phase = "ready"; setPhase("ready"); setSubmitted(false); };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.code === "Space" || e.code === "ArrowUp") { e.preventDefault(); flap(); } };
@@ -129,6 +161,26 @@ export function FlappyCheeks() {
           <div className="flappy-overlay" onPointerDown={(e) => e.stopPropagation()}>
             <p className="flappy-big">Plunged!</p>
             <p>Score: <b>{score}</b> · Best: <b>{best}</b></p>
+            {score > 0 && !submitted && (
+              <div className="flappy-submit">
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Your name"
+                  maxLength={24}
+                  aria-label="Leaderboard name"
+                />
+                <select value={country} onChange={(e) => setCountry(e.target.value)} aria-label="Your country">
+                  {COUNTRIES.map((c) => (
+                    <option key={c.code} value={c.code}>{c.flag} {c.label}</option>
+                  ))}
+                </select>
+                <button className="flappy-btn" onClick={submit} disabled={submitting || !name.trim()}>
+                  {submitting ? "Saving…" : "Save to Leaderboard"}
+                </button>
+              </div>
+            )}
+            {submitted && <p className="flappy-saved">🏆 Score saved to the leaderboard!</p>}
             <button className="flappy-btn" onClick={restart}>Toot Again</button>
           </div>
         )}
@@ -155,6 +207,22 @@ export function FlappyCheeks() {
         />
       </div>
       <p className="flappy-best">Personal best: {best}</p>
+      <div className="flappy-board">
+        <h2>🏆 Global Leaderboard</h2>
+        {boardError && <p className="flappy-board-empty">Couldn't load the leaderboard right now.</p>}
+        {!boardError && board.length === 0 && <p className="flappy-board-empty">No scores yet — be the first to get plunged!</p>}
+        {board.length > 0 && (
+          <ol className="flappy-board-list">
+            {board.map((e, i) => (
+              <li key={e.id} className={i < 3 ? "top" : ""}>
+                <span className="rank">{i + 1}</span>
+                <span className="who">{flagFor(e.country)} {e.name}</span>
+                <span className="pts">{e.score}</span>
+              </li>
+            ))}
+          </ol>
+        )}
+      </div>
     </div>
   );
 }
