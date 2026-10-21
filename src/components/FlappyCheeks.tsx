@@ -60,11 +60,14 @@ export function FlappyCheeks() {
   const [country, setCountry] = useState("US");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [toots, setToots] = useState(0);
+  const [boardKind, setBoardKind] = useState<BoardKind>("score");
 
-  const loadBoard = () => {
-    fetchTopScores().then(setBoard).catch(() => setBoardError(true));
+  const loadBoard = (kind: BoardKind = boardKind) => {
+    setBoardError(false);
+    fetchTopScores(kind).then(setBoard).catch(() => setBoardError(true));
   };
-  useEffect(() => { loadBoard(); }, []);
+  useEffect(() => { loadBoard(boardKind); }, [boardKind]);
   useEffect(() => {
     setName(localStorage.getItem("flappy-cheeks-name") ?? "");
     setCountry(localStorage.getItem("flappy-cheeks-country") ?? guessCountry());
@@ -74,7 +77,7 @@ export function FlappyCheeks() {
     if (submitting || submitted || score <= 0) return;
     setSubmitting(true);
     try {
-      await submitScore(name, country, score);
+      await submitScore(name, country, score, toots);
       localStorage.setItem("flappy-cheeks-name", name.trim());
       localStorage.setItem("flappy-cheeks-country", country);
       setSubmitted(true);
@@ -85,7 +88,7 @@ export function FlappyCheeks() {
       setSubmitting(false);
     }
   };
-  const st = useRef({ y: H / 2, vy: 0, obs: [] as Obs[], puffs: [] as Puff[], scroll: 0, score: 0, shake: 0, phase: "ready" as Phase, style: "peach" as ButtStyle, t: 0 });
+  const st = useRef({ y: H / 2, vy: 0, obs: [] as Obs[], puffs: [] as Puff[], scroll: 0, score: 0, toots: 0, shake: 0, phase: "ready" as Phase, style: "peach" as ButtStyle, t: 0 });
 
   useEffect(() => { setBest(Number(localStorage.getItem(BEST_KEY)) || 0); }, []);
   useEffect(() => { preloadGameSounds().catch(() => { /* keep synth fallback */ }); }, []);
@@ -93,9 +96,9 @@ export function FlappyCheeks() {
 
   const reset = () => {
     const s = st.current;
-    s.y = H / 2; s.vy = 0; s.obs = []; s.puffs = []; s.score = 0; s.shake = 0;
+    s.y = H / 2; s.vy = 0; s.obs = []; s.puffs = []; s.score = 0; s.shake = 0; s.toots = 0;
     for (let i = 0; i < 3; i++) s.obs.push({ x: W + 80 + i * SPACING, gapY: randGap(), scored: false });
-    setScore(0);
+    setScore(0); setToots(0);
   };
   const randGap = () => CEIL + 70 + Math.random() * (H - CEIL - FLOOR - 140 - GAP) + GAP / 2;
 
@@ -104,6 +107,7 @@ export function FlappyCheeks() {
     if (s.phase === "over") return;
     if (s.phase === "ready") { reset(); s.phase = "play"; setPhase("play"); }
     s.vy = FLAP;
+    s.toots++; setToots(s.toots);
     for (let i = 0; i < 5; i++) s.puffs.push({ x: 100 - 18 + Math.random() * 8, y: s.y + 12 + Math.random() * 10, r: 6 + Math.random() * 6, life: 1 });
     toot();
   };
@@ -160,7 +164,7 @@ export function FlappyCheeks() {
         {phase === "over" && (
           <div className="flappy-overlay" onPointerDown={(e) => e.stopPropagation()}>
             <p className="flappy-big">Plunged!</p>
-            <p>Score: <b>{score}</b> · Best: <b>{best}</b></p>
+            <p>Score: <b>{score}</b> ({toots} toots) · Best: <b>{best}</b></p>
             {score > 0 && !submitted && (
               <div className="flappy-submit">
                 <input
@@ -208,7 +212,10 @@ export function FlappyCheeks() {
       </div>
       <p className="flappy-best">Personal best: {best}</p>
       <div className="flappy-board">
-        <h2>🏆 Global Leaderboard</h2>
+        <div className="butt-styles" role="tablist" aria-label="Leaderboard">
+          <button role="tab" aria-selected={boardKind === "score"} className={boardKind === "score" ? "active" : ""} onClick={() => setBoardKind("score")}>🏆 Global Leaderboard</button>
+          <button role="tab" aria-selected={boardKind === "toots"} className={boardKind === "toots" ? "active" : ""} onClick={() => setBoardKind("toots")}>💨 Most Toots</button>
+        </div>
         {boardError && <p className="flappy-board-empty">Couldn't load the leaderboard right now.</p>}
         {!boardError && board.length === 0 && <p className="flappy-board-empty">No scores yet — be the first to get plunged!</p>}
         {board.length > 0 && (
@@ -217,7 +224,9 @@ export function FlappyCheeks() {
               <li key={e.id} className={i < 3 ? "top" : ""}>
                 <span className="rank">{i + 1}</span>
                 <span className="who">{flagFor(e.country)} {e.name}</span>
-                <span className="pts">{e.score}</span>
+                <span className="pts">
+                  {boardKind === "score" ? <>{e.score} <small>({e.toots} toots)</small></> : <>{e.toots} toots <small>(score {e.score})</small></>}
+                </span>
               </li>
             ))}
           </ol>

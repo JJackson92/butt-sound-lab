@@ -7,24 +7,30 @@ export type LeaderboardEntry = {
   name: string;
   country: string;
   score: number;
+  toots: number;
   created_at: string;
 };
 
-export async function fetchTopScores(limit = 20): Promise<LeaderboardEntry[]> {
+export type BoardKind = "score" | "toots";
+
+// Top scores: ties broken by more toots. Most toots: ties broken by higher score.
+export async function fetchTopScores(kind: BoardKind = "score", limit = 20): Promise<LeaderboardEntry[]> {
+  const [first, second] = kind === "score" ? ["score", "toots"] : ["toots", "score"];
   const { data, error } = await supabase
     .from("flappy_scores")
-    .select("id, name, country, score, created_at")
-    .order("score", { ascending: false })
+    .select("id, name, country, score, toots, created_at")
+    .order(first, { ascending: false })
+    .order(second, { ascending: false })
     .order("created_at", { ascending: true })
     .limit(limit);
   if (error) throw error;
   return data ?? [];
 }
 
-export async function submitScore(name: string, country: string, score: number): Promise<void> {
+export async function submitScore(name: string, country: string, score: number, toots: number): Promise<void> {
   const clean = name.trim().slice(0, 24);
   if (!clean) throw new Error("Name is required");
-  const { error } = await supabase.from("flappy_scores").insert({ name: clean, country, score });
+  const { error } = await supabase.from("flappy_scores").insert({ name: clean, country, score, toots });
   if (error) throw error;
 }
 
