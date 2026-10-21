@@ -164,7 +164,8 @@ button,a,input,select{touch-action:manipulation;}
 .ensemble-status{font-size:.85rem;margin-bottom:.5rem}
 .roll-scroll{overflow-x:auto}
 .roll{display:grid;gap:4px;min-width:760px}
-.roll-row{display:grid;grid-template-columns:110px repeat(16,1fr);gap:4px}
+.roll-row{display:grid;grid-template-columns:110px repeat(20,1fr);gap:4px}
+.roll{min-width:940px}
 .roll-lane{font-size:.75rem;font-weight:800;display:flex;align-items:center}
 .roll-cell{aspect-ratio:1;border-radius:.5rem;background:var(--muted);border:1px solid var(--border);position:relative;overflow:hidden;transition:background .1s}
 .roll-cell.beat{background:color-mix(in oklab,var(--muted) 70%,var(--primary) 12%)}
