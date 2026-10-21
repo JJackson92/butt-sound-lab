@@ -103,7 +103,7 @@ export function FlappyCheeks() {
     for (let i = 0; i < 5; i++) s.puffs.push({ x: 100 - 18 + Math.random() * 8, y: s.y + 12 + Math.random() * 10, r: 6 + Math.random() * 6, life: 1 });
     toot();
   };
-  const restart = () => { reset(); st.current.phase = "ready"; setPhase("ready"); };
+  const restart = () => { reset(); st.current.phase = "ready"; setPhase("ready"); setSubmitted(false); };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.code === "Space" || e.code === "ArrowUp") { e.preventDefault(); flap(); } };
