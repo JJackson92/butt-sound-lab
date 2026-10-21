@@ -4,7 +4,7 @@ import type { FartParams } from './fart-synth';
 export type FartPreset = { id: string; name: string; description: string; params: FartParams };
 
 export const FART_PRESETS: FartPreset[] = [
-
+  [
     {
       "id": "p001",
       "name": "The Classic Brap",
@@ -2707,4 +2707,5 @@ export const FART_PRESETS: FartPreset[] = [
         "food": "salad"
       }
     }
+  ]
 ];
