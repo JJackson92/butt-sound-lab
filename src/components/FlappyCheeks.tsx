@@ -56,8 +56,8 @@ export function FlappyCheeks() {
   const [sounds, setSounds] = useState<GameSoundConfig>(() => getGameSoundConfig());
   const [board, setBoard] = useState<LeaderboardEntry[]>([]);
   const [boardError, setBoardError] = useState(false);
-  const [name, setName] = useState(() => localStorage.getItem("flappy-cheeks-name") ?? "");
-  const [country, setCountry] = useState(() => localStorage.getItem("flappy-cheeks-country") ?? guessCountry());
+  const [name, setName] = useState("");
+  const [country, setCountry] = useState("US");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -65,6 +65,10 @@ export function FlappyCheeks() {
     fetchTopScores().then(setBoard).catch(() => setBoardError(true));
   };
   useEffect(() => { loadBoard(); }, []);
+  useEffect(() => {
+    setName(localStorage.getItem("flappy-cheeks-name") ?? "");
+    setCountry(localStorage.getItem("flappy-cheeks-country") ?? guessCountry());
+  }, []);
 
   const submit = async () => {
     if (submitting || submitted || score <= 0) return;
