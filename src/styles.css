@@ -212,7 +212,13 @@ button,a,input,select{touch-action:manipulation;}
 /* App launcher home */
 .launcher{max-width:880px;margin:0 auto;padding:2.5rem 1.25rem 3.5rem;display:flex;flex-direction:column;gap:1.25rem}
 .launcher-hero{margin-bottom:.5rem}
-.launcher-hero h1{font-size:clamp(2.2rem,7vw,3.6rem);font-weight:900;line-height:1.05;margin:.5rem 0 0}
+.launcher-hero h1{font-size:clamp(1.9rem,6vw,3.2rem);font-weight:900;line-height:1.05;margin:.5rem 0 0}
+.launcher-sub{font-size:1.15rem;font-weight:800;opacity:.75;margin:.4rem 0 0}
+.quote-card{margin:1.5rem 0 0;padding:1rem 1.1rem;border:2px solid var(--border);border-radius:16px;background:var(--card)}
+.quote-body{display:block;width:100%;text-align:left;background:none;border:0;padding:0;margin-top:.5rem;cursor:pointer;color:inherit}
+.quote-body blockquote{margin:0;font-style:italic;font-size:1.1rem;font-weight:600;line-height:1.35}
+.quote-body figcaption{margin-top:.4rem;font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.65}
+.launcher-fund{display:flex;justify-content:flex-end;margin-top:1rem}
 .launch-feature{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;border-radius:var(--radius);background:var(--studio);color:var(--studio-foreground);box-shadow:var(--stage-glow);text-decoration:none;transition:transform .2s var(--ease-fart)}
 .launch-feature:hover{transform:translateY(-2px)}
 .launch-feature-text{flex:1;display:flex;flex-direction:column;gap:.15rem;min-width:0}

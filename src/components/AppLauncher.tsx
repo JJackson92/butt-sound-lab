@@ -3,10 +3,30 @@ import { useEffect, useState } from 'react';
 import { FlaskConical, Gamepad2, Music, Library, Heart, ArrowRight } from 'lucide-react';
 import { fetchTopScores } from '@/lib/leaderboard';
 import { FART_PRESETS } from '@/lib/fart-matching';
+import { ResearchModal } from '@/components/ResearchModal';
+
+const QUOTES: [string, string][] = [
+  ['I toot, therefore I am.', 'René Descartes'],
+  ['To hold it in is human; to let it rip is divine.', 'Alexander Pope'],
+  ['Two roads diverged in a wood, and I took the one that rattled the leaves.', 'Robert Frost'],
+  ['Be the rumble you wish to see in the world.', 'Mahatma Gandhi'],
+  ['An unexamined toot is not worth letting.', 'Socrates'],
+  ['In the middle of difficulty lies flatulence.', 'Albert Einstein'],
+  ['Give me liberty, or give me a bathroom.', 'Patrick Henry'],
+  ['To rip, or not to rip: that is the question.', 'William Shakespeare'],
+  ['Speak softly and carry a powerful cheek.', 'Theodore Roosevelt'],
+  ['Stay hungry. Stay foolish. Avoid the broccoli.', 'Steve Jobs'],
+  ['We choose to toot not because it is easy, but because it is loud.', 'John F. Kennedy'],
+  ['Not all those who rumble are lost.', 'J.R.R. Tolkien'],
+  ['It always seems impossible until it is passed.', 'Nelson Mandela'],
+  ['The journey of a thousand miles begins with a single squeak.', 'Lao Tzu'],
+];
 
 export function AppLauncher() {
   const [best, setBest] = useState<number | null>(null);
+  const [qi, setQi] = useState(0);
   useEffect(() => {
+    setQi(Math.floor(Math.random() * QUOTES.length));
     fetchTopScores('score', 1).then((r) => setBest(r[0]?.score ?? null)).catch(() => {});
   }, []);
   const apps = [
@@ -18,8 +38,9 @@ export function AppLauncher() {
   return (
     <main className="launcher">
       <section className="launcher-hero">
-        <span className="eyebrow">THE INTERNET’S MOST UNNECESSARY SOUND LAB</span>
-        <h1>Pick an app.</h1>
+        <span className="eyebrow">WELCOME</span>
+        <h1>The Internet’s Most Unnecessary Sound Lab</h1>
+        <p className="launcher-sub">Pick an app.</p>
       </section>
       <Link to="/lab" className="launch-feature">
         <span className="app-tile tile-lab"><FlaskConical size={34} strokeWidth={2.2} /></span>
@@ -38,6 +59,14 @@ export function AppLauncher() {
           </Link>
         ))}
       </nav>
+      <figure className="quote-card">
+        <span className="eyebrow">QUOTE OF THE DAY</span>
+        <button type="button" className="quote-body" onClick={() => setQi((i) => (i + 1) % QUOTES.length)} aria-label="Show another quote">
+          <blockquote>“{QUOTES[qi][0]}”</blockquote>
+          <figcaption>— {QUOTES[qi][1]}</figcaption>
+        </button>
+      </figure>
+      <div className="launcher-fund"><ResearchModal /></div>
     </main>
   );
 }
