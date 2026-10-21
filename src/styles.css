@@ -210,26 +210,26 @@ button,a,input,select{touch-action:manipulation;}
 .flappy-board-list .pts { font-weight: 900; font-variant-numeric: tabular-nums; }
 
 /* App launcher home */
-.launcher{max-width:960px;margin:0 auto;padding:2rem 1.25rem 3rem;display:flex;flex-direction:column;gap:2rem}
-.launcher-hero{text-align:center}
-.launcher-hero h1{font-size:clamp(2.6rem,9vw,5rem);font-weight:900;line-height:1;margin:.4rem 0;color:var(--primary)}
-.launcher-hero p{color:var(--muted-foreground);font-weight:600}
-.launcher-stats{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-top:1rem}
-.launcher-stats span{background:var(--card);border:2px solid var(--border);border-radius:999px;padding:.35rem .9rem;font-size:.85rem;font-weight:700}
-.app-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem 1rem}
-@media (min-width:640px){.app-grid{grid-template-columns:repeat(3,1fr)}}
-@media (min-width:900px){.app-grid{grid-template-columns:repeat(5,1fr)}}
-.app-tile-wrap{display:flex;flex-direction:column;align-items:center;gap:.35rem;text-decoration:none;color:var(--foreground)}
-.app-tile{width:104px;height:104px;border-radius:30%;display:grid;place-items:center;color:var(--primary-foreground);position:relative;overflow:hidden;box-shadow:0 6px 0 color-mix(in oklab,var(--foreground) 25%,transparent),0 12px 24px -8px color-mix(in oklab,var(--foreground) 35%,transparent);transition:transform .25s var(--ease-fart),box-shadow .25s var(--ease-fart)}
-.app-tile::after{content:"";position:absolute;inset:0 0 50% 0;background:linear-gradient(to bottom,color-mix(in oklab,var(--primary-foreground) 35%,transparent),transparent);border-radius:30% 30% 0 0}
-.app-tile-wrap:hover .app-tile{transform:translateY(-4px) rotate(-3deg)}
-.app-tile-wrap:active .app-tile{transform:translateY(4px) scale(.95);box-shadow:0 2px 0 color-mix(in oklab,var(--foreground) 25%,transparent)}
-.app-name{font-weight:900;font-size:1rem;text-align:center}
-.app-tag{font-size:.75rem;color:var(--muted-foreground);font-weight:600}
-.tile-lab{background:linear-gradient(145deg,oklch(.75 .2 35),oklch(.6 .22 25))}
-.tile-flappy{background:linear-gradient(145deg,oklch(.75 .17 150),oklch(.55 .17 160))}
-.tile-ensemble{background:linear-gradient(145deg,oklch(.7 .17 290),oklch(.52 .2 280))}
-.tile-library{background:linear-gradient(145deg,oklch(.75 .14 230),oklch(.55 .16 245))}
-.tile-mine{background:linear-gradient(145deg,oklch(.78 .16 0),oklch(.6 .2 10))}
-.instant-rip{align-self:center;display:inline-flex;gap:.5rem;align-items:center;background:var(--primary);color:var(--primary-foreground);font-weight:900;padding:.9rem 1.6rem;border-radius:999px;text-decoration:none;box-shadow:0 5px 0 color-mix(in oklab,var(--primary) 55%,var(--foreground))}
-.instant-rip:active{transform:translateY(3px)}
+.launcher{max-width:880px;margin:0 auto;padding:2.5rem 1.25rem 3.5rem;display:flex;flex-direction:column;gap:1.25rem}
+.launcher-hero{margin-bottom:.5rem}
+.launcher-hero h1{font-size:clamp(2.2rem,7vw,3.6rem);font-weight:900;line-height:1.05;margin:.5rem 0 0}
+.launch-feature{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;border-radius:var(--radius);background:var(--studio);color:var(--studio-foreground);box-shadow:var(--stage-glow);text-decoration:none;transition:transform .2s var(--ease-fart)}
+.launch-feature:hover{transform:translateY(-2px)}
+.launch-feature-text{flex:1;display:flex;flex-direction:column;gap:.15rem;min-width:0}
+.launch-feature-text strong{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:800}
+.launch-feature-text small{font-size:.85rem;color:var(--studio-muted)}
+.launch-arrow{color:var(--neon);flex-shrink:0}
+.app-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
+@media (min-width:760px){.app-grid{grid-template-columns:repeat(4,1fr)}}
+.app-card{display:flex;flex-direction:column;align-items:flex-start;gap:.2rem;padding:1rem;border-radius:var(--radius);background:var(--card);border:1px solid var(--border);box-shadow:var(--card-shadow);text-decoration:none;color:var(--foreground);transition:transform .2s var(--ease-fart),border-color .2s}
+.app-card:hover{transform:translateY(-2px);border-color:var(--primary)}
+.app-card:active,.launch-feature:active{transform:scale(.98)}
+.app-tile{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;flex-shrink:0;margin-bottom:.5rem}
+.launch-feature .app-tile{width:60px;height:60px;border-radius:16px;margin:0}
+.app-name{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1rem}
+.app-tag{font-size:.78rem;color:var(--muted-foreground);font-weight:600}
+.tile-lab{background:var(--neon);color:var(--primary-foreground)}
+.tile-flappy{background:var(--accent);color:var(--primary-foreground)}
+.tile-ensemble{background:color-mix(in oklab,var(--cyan) 25%,var(--card));color:var(--foreground)}
+.tile-library{background:var(--studio);color:var(--neon)}
+.tile-mine{background:color-mix(in oklab,var(--coral) 22%,var(--card));color:var(--foreground)}
