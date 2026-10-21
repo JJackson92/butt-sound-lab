@@ -142,17 +142,6 @@
     "rms": 0.16395,
     "variation": 0.2891
   },
-  "p014": {
-    "sid": 733041,
-    "duration": 1.759,
-    "activeDuration": 0.496,
-    "pitchHz": 888.9,
-    "tonality": 0.8993,
-    "flatness": 0.00029,
-    "lowEnergy": 0.0,
-    "rms": 0.07527,
-    "variation": 0.5088
-  },
   "p015": {
     "sid": 777059,
     "duration": 1.034,
@@ -548,17 +537,6 @@
     "lowEnergy": 0.3708,
     "rms": 0.15871,
     "variation": 0.5374
-  },
-  "p051": {
-    "sid": 733049,
-    "duration": 1.76,
-    "activeDuration": 0.496,
-    "pitchHz": 516.1,
-    "tonality": 0.8062,
-    "flatness": 0.01304,
-    "lowEnergy": 0.0,
-    "rms": 0.0909,
-    "variation": 0.4885
   },
   "p052": {
     "sid": 650670,
@@ -956,17 +934,6 @@
     "rms": 0.21479,
     "variation": 0.2875
   },
-  "p088": {
-    "sid": 733039,
-    "duration": 1.76,
-    "activeDuration": 0.496,
-    "pitchHz": 444.4,
-    "tonality": 0.7617,
-    "flatness": 0.01707,
-    "lowEnergy": 0.0,
-    "rms": 0.09093,
-    "variation": 0.5023
-  },
   "p089": {
     "sid": 163384,
     "duration": 1.544,
@@ -1132,17 +1099,6 @@
     "rms": 0.28504,
     "variation": 0.4593
   },
-  "p104": {
-    "sid": 733038,
-    "duration": 1.757,
-    "activeDuration": 0.512,
-    "pitchHz": 293.6,
-    "tonality": 0.5828,
-    "flatness": 0.04718,
-    "lowEnergy": 0.2158,
-    "rms": 0.10598,
-    "variation": 0.5
-  },
   "p105": {
     "sid": 733052,
     "duration": 1.743,
@@ -1153,17 +1109,6 @@
     "lowEnergy": 0.8001,
     "rms": 0.18109,
     "variation": 0.4072
-  },
-  "p106": {
-    "sid": 733058,
-    "duration": 1.762,
-    "activeDuration": 0.528,
-    "pitchHz": 313.7,
-    "tonality": 0.6659,
-    "flatness": 0.0238,
-    "lowEnergy": 0.0009,
-    "rms": 0.09572,
-    "variation": 0.5201
   },
   "p107": {
     "sid": 733042,
@@ -1186,28 +1131,6 @@
     "lowEnergy": 0.0487,
     "rms": 0.11278,
     "variation": 0.3882
-  },
-  "p109": {
-    "sid": 733059,
-    "duration": 1.763,
-    "activeDuration": 0.496,
-    "pitchHz": 615.4,
-    "tonality": 0.8554,
-    "flatness": 0.0105,
-    "lowEnergy": 0.0,
-    "rms": 0.08784,
-    "variation": 0.5061
-  },
-  "p110": {
-    "sid": 733060,
-    "duration": 1.759,
-    "activeDuration": 0.496,
-    "pitchHz": 615.4,
-    "tonality": 0.8739,
-    "flatness": 0.00111,
-    "lowEnergy": 0.0,
-    "rms": 0.07733,
-    "variation": 0.5023
   },
   "p111": {
     "sid": 253840,

@@ -182,20 +182,6 @@
     }
   },
   {
-    "id": "p014",
-    "name": "Foghorn Leghorn",
-    "description": "Long mournful single note.",
-    "params": {
-      "cheekSize": 1.0,
-      "cheekShape": 0.0,
-      "holeSize": 0.2,
-      "pressure": 1.16,
-      "resonance": 1.0,
-      "turbulence": 1.0,
-      "food": "spicy"
-    }
-  },
-  {
     "id": "p015",
     "name": "Lawnmower Pull",
     "description": "Sputter sputter ROAR.",
@@ -695,20 +681,6 @@
       "holeSize": 0.2,
       "pressure": 1.5,
       "resonance": 0.89,
-      "turbulence": 1.0,
-      "food": "spicy"
-    }
-  },
-  {
-    "id": "p051",
-    "name": "Machine-gun Trumpet",
-    "description": "The trumpet that launched a thousand giggles.",
-    "params": {
-      "cheekSize": 1.05,
-      "cheekShape": 0.15,
-      "holeSize": 0.2,
-      "pressure": 1.31,
-      "resonance": 0.93,
       "turbulence": 1.0,
       "food": "spicy"
     }
@@ -1218,20 +1190,6 @@
     }
   },
   {
-    "id": "p088",
-    "name": "Brassy Drum",
-    "description": "The drum that launched a thousand giggles.",
-    "params": {
-      "cheekSize": 1.05,
-      "cheekShape": 0.16,
-      "holeSize": 0.2,
-      "pressure": 1.26,
-      "resonance": 0.9,
-      "turbulence": 1.0,
-      "food": "spicy"
-    }
-  },
-  {
     "id": "p089",
     "name": "Croaking Sputter",
     "description": "croaking, muffled, and unmistakably eggs-fueled.",
@@ -1442,20 +1400,6 @@
     }
   },
   {
-    "id": "p104",
-    "name": "Steam-train Crackle",
-    "description": "steam-train, foghorn, and unmistakably cheese-fueled.",
-    "params": {
-      "cheekSize": 1.1,
-      "cheekShape": 0.18,
-      "holeSize": 0.2,
-      "pressure": 1.2,
-      "resonance": 0.87,
-      "turbulence": 1.0,
-      "food": "spicy"
-    }
-  },
-  {
     "id": "p105",
     "name": "Stuttering Roar",
     "description": "Sounds like a stuttering roar after too much eggs.",
@@ -1467,20 +1411,6 @@
       "resonance": 1.0,
       "turbulence": 0.01,
       "food": "cheese"
-    }
-  },
-  {
-    "id": "p106",
-    "name": "Stuttering Rumble",
-    "description": "A stuttering rumble with popping undertones.",
-    "params": {
-      "cheekSize": 1.07,
-      "cheekShape": 0.19,
-      "holeSize": 0.2,
-      "pressure": 1.12,
-      "resonance": 0.88,
-      "turbulence": 1.0,
-      "food": "spicy"
     }
   },
   {
@@ -1509,34 +1439,6 @@
       "resonance": 1.0,
       "turbulence": 0.17,
       "food": "soda"
-    }
-  },
-  {
-    "id": "p109",
-    "name": "Sputtering Submarine Burst",
-    "description": "The burst that launched a thousand giggles.",
-    "params": {
-      "cheekSize": 1.04,
-      "cheekShape": 0.12,
-      "holeSize": 0.2,
-      "pressure": 1.31,
-      "resonance": 0.97,
-      "turbulence": 0.81,
-      "food": "spicy"
-    }
-  },
-  {
-    "id": "p110",
-    "name": "Duck Honk",
-    "description": "A duck honk with tickling undertones.",
-    "params": {
-      "cheekSize": 1.0,
-      "cheekShape": 0.15,
-      "holeSize": 0.2,
-      "pressure": 1.14,
-      "resonance": 1.0,
-      "turbulence": 0.69,
-      "food": "spicy"
     }
   },
   {
