@@ -20,8 +20,11 @@ const SPLAT_IDS = Object.keys(profiles)
 export type GameSoundChoice = "random" | "synth" | string;
 export type GameSoundConfig = { toot: GameSoundChoice; splat: GameSoundChoice };
 
-const CONFIG_KEY = "flappy-cheeks-sounds";
-const DEFAULT_CONFIG: GameSoundConfig = { toot: "random", splat: "random" };
+// v2 key: earlier builds defaulted the tap toot to "random"; the new default is
+// a specific clip, so old stored configs are dropped instead of masking it.
+const CONFIG_KEY = "flappy-cheeks-sounds-v2";
+// The tap toot defaults to "Crisp Toot" (p111) — a short, clean pop.
+const DEFAULT_CONFIG: GameSoundConfig = { toot: "p111", splat: "random" };
 
 export function getGameSoundConfig(): GameSoundConfig {
   try {
@@ -29,8 +32,8 @@ export function getGameSoundConfig(): GameSoundConfig {
     if (!raw) return DEFAULT_CONFIG;
     const parsed = JSON.parse(raw) as Partial<GameSoundConfig>;
     return {
-      toot: typeof parsed.toot === "string" ? parsed.toot : "random",
-      splat: typeof parsed.splat === "string" ? parsed.splat : "random",
+      toot: typeof parsed.toot === "string" ? parsed.toot : DEFAULT_CONFIG.toot,
+      splat: typeof parsed.splat === "string" ? parsed.splat : DEFAULT_CONFIG.splat,
     };
   } catch {
     return DEFAULT_CONFIG;
