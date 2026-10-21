@@ -1,7 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { playFart, type FartParams } from "@/lib/fart-synth";
 import { BUTT_STYLES, DEFAULT_CREATION, type ButtStyle } from "@/lib/creations";
-import { preloadGameSounds, playGameSplat, playGameToot } from "@/lib/game-sounds";
+import { FART_PRESETS } from "@/lib/fart-matching";
+import {
+  getGameSoundConfig,
+  playGameSplat,
+  playGameToot,
+  preloadGameSounds,
+  previewGameSound,
+  setGameSoundConfig,
+  type GameSoundConfig,
+} from "@/lib/game-sounds";
 
 const W = 400, H = 600, CEIL = 24, FLOOR = 60;
 const GRAVITY = 1500, FLAP = -430, SPEED = 150, GAP = 165, SPACING = 220, OBS_W = 64, R = 20;
