@@ -1,4 +1,4 @@
-// Auto-generated. 193 fart presets mapping real-world descriptions to synth params.
+// Auto-generated. 190 fart presets mapping real-world descriptions to synth params.
 import type { FartParams } from './fart-synth';
 
 export type FartPreset = { id: string; name: string; description: string; params: FartParams };
@@ -42,7 +42,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.39,
         "holeSize": 0.89,
         "pressure": 1.45,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.16,
         "food": "soda"
       }
@@ -84,7 +84,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.68,
         "holeSize": 1.04,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.17,
         "food": "eggs"
       }
@@ -99,7 +99,7 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 1.39,
         "resonance": 0.82,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -141,7 +141,7 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 1.5,
         "resonance": 0.71,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -165,11 +165,11 @@ export const FART_PRESETS: FartPreset[] = [
       "description": "Deep brass ensemble of one.",
       "params": {
         "cheekSize": 0.99,
-        "cheekShape": 0.0,
+        "cheekShape": 0,
         "holeSize": 0.2,
         "pressure": 1.13,
-        "resonance": 1.0,
-        "turbulence": 1.0,
+        "resonance": 1,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -182,7 +182,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.46,
         "holeSize": 0.84,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.23,
         "food": "eggs"
       }
@@ -225,7 +225,7 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 1.41,
         "resonance": 0.5,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -266,7 +266,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.42,
         "holeSize": 0.62,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.27,
         "food": "soda"
       }
@@ -280,7 +280,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.49,
         "holeSize": 1.08,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.11,
         "food": "eggs"
       }
@@ -351,7 +351,7 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 0.84,
         "resonance": 0.65,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "beans"
       }
     },
@@ -378,7 +378,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.45,
         "holeSize": 0.99,
         "pressure": 1.38,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.14,
         "food": "eggs"
       }
@@ -393,7 +393,7 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 1.5,
         "resonance": 0.57,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -402,11 +402,11 @@ export const FART_PRESETS: FartPreset[] = [
       "name": "Snare Snap",
       "description": "Sharp crisp military drum.",
       "params": {
-        "cheekSize": 1.0,
+        "cheekSize": 1,
         "cheekShape": 0.3,
         "holeSize": 0.57,
         "pressure": 1.34,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.51,
         "food": "soda"
       }
@@ -421,7 +421,7 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 1.5,
         "resonance": 0.8,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -434,7 +434,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.33,
         "holeSize": 0.81,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.18,
         "food": "soda"
       }
@@ -448,7 +448,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.38,
         "holeSize": 0.72,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.32,
         "food": "soda"
       }
@@ -462,8 +462,8 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.54,
         "holeSize": 1.12,
         "pressure": 1.49,
-        "resonance": 1.0,
-        "turbulence": 1.0,
+        "resonance": 1,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -488,9 +488,9 @@ export const FART_PRESETS: FartPreset[] = [
       "params": {
         "cheekSize": 1.1,
         "cheekShape": 0.43,
-        "holeSize": 1.0,
+        "holeSize": 1,
         "pressure": 1.41,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.15,
         "food": "eggs"
       }
@@ -504,7 +504,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.53,
         "holeSize": 0.79,
         "pressure": 0.48,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.59,
         "food": "eggs"
       }
@@ -518,7 +518,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.38,
         "holeSize": 0.73,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.77,
         "food": "spicy"
       }
@@ -526,7 +526,7 @@ export const FART_PRESETS: FartPreset[] = [
     {
       "id": "p039",
       "name": "Whoopee Snort",
-      "description": "Equal parts whoopee and booming \u2014 pure salad energy.",
+      "description": "Equal parts whoopee and booming — pure salad energy.",
       "params": {
         "cheekSize": 0.77,
         "cheekShape": 0.17,
@@ -540,7 +540,7 @@ export const FART_PRESETS: FartPreset[] = [
     {
       "id": "p040",
       "name": "Whispering Screech",
-      "description": "Equal parts whispering and sharp \u2014 pure soda energy.",
+      "description": "Equal parts whispering and sharp — pure soda energy.",
       "params": {
         "cheekSize": 1.27,
         "cheekShape": 0.12,
@@ -574,7 +574,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.52,
         "holeSize": 0.78,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.26,
         "food": "eggs"
       }
@@ -588,7 +588,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.93,
         "holeSize": 1.43,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.02,
         "food": "eggs"
       }
@@ -596,7 +596,7 @@ export const FART_PRESETS: FartPreset[] = [
     {
       "id": "p044",
       "name": "Whoopee Toot",
-      "description": "Equal parts whoopee and helicopter \u2014 pure spicy energy.",
+      "description": "Equal parts whoopee and helicopter — pure spicy energy.",
       "params": {
         "cheekSize": 0.96,
         "cheekShape": 0.34,
@@ -616,7 +616,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.38,
         "holeSize": 0.67,
         "pressure": 0.48,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.12,
         "food": "eggs"
       }
@@ -630,7 +630,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.49,
         "holeSize": 0.99,
         "pressure": 0.7,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.32,
         "food": "eggs"
       }
@@ -687,7 +687,7 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 1.5,
         "resonance": 0.89,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -701,7 +701,7 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 0.86,
         "resonance": 0.64,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "soda"
       }
     },
@@ -715,7 +715,7 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 1.13,
         "resonance": 0.55,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -728,7 +728,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.35,
         "holeSize": 0.52,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.36,
         "food": "soda"
       }
@@ -771,7 +771,7 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.7,
         "pressure": 0.92,
         "resonance": 0.92,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -784,7 +784,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.43,
         "holeSize": 0.95,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.22,
         "food": "soda"
       }
@@ -826,7 +826,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.5,
         "holeSize": 0.9,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.21,
         "food": "soda"
       }
@@ -868,7 +868,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.24,
         "holeSize": 0.55,
         "pressure": 1.09,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.28,
         "food": "soda"
       }
@@ -882,7 +882,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.52,
         "holeSize": 1.06,
         "pressure": 0.67,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.13,
         "food": "eggs"
       }
@@ -896,7 +896,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.44,
         "holeSize": 0.84,
         "pressure": 0.74,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.2,
         "food": "salad"
       }
@@ -924,8 +924,8 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.51,
         "holeSize": 0.93,
         "pressure": 1.23,
-        "resonance": 1.0,
-        "turbulence": 1.0,
+        "resonance": 1,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -934,7 +934,7 @@ export const FART_PRESETS: FartPreset[] = [
       "name": "Bagpipe Bellow",
       "description": "The bellow that launched a thousand giggles.",
       "params": {
-        "cheekSize": 2.0,
+        "cheekSize": 2,
         "cheekShape": 0.37,
         "holeSize": 0.4,
         "pressure": 1.5,
@@ -948,12 +948,12 @@ export const FART_PRESETS: FartPreset[] = [
       "name": "Rumbling Whoosh",
       "description": "The whoosh that launched a thousand giggles.",
       "params": {
-        "cheekSize": 2.0,
+        "cheekSize": 2,
         "cheekShape": 0.31,
         "holeSize": 0.2,
         "pressure": 1.5,
         "resonance": 0.77,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -967,14 +967,14 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 0.82,
         "resonance": 0.65,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "soda"
       }
     },
     {
       "id": "p072",
       "name": "Brassy Snort",
-      "description": "Equal parts brassy and chirping \u2014 pure salad energy.",
+      "description": "Equal parts brassy and chirping — pure salad energy.",
       "params": {
         "cheekSize": 1.05,
         "cheekShape": 0.19,
@@ -988,13 +988,13 @@ export const FART_PRESETS: FartPreset[] = [
     {
       "id": "p073",
       "name": "Whispering Sputter",
-      "description": "Equal parts whispering and duck \u2014 pure cheese energy.",
+      "description": "Equal parts whispering and duck — pure cheese energy.",
       "params": {
         "cheekSize": 1.25,
         "cheekShape": 0.36,
         "holeSize": 0.69,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.41,
         "food": "soda"
       }
@@ -1008,7 +1008,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.63,
         "holeSize": 1.14,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.13,
         "food": "eggs"
       }
@@ -1023,14 +1023,14 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 1.5,
         "resonance": 0.8,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
     {
       "id": "p076",
       "name": "Tin-can Ripper",
-      "description": "Equal parts tin-can and soggy \u2014 pure spicy energy.",
+      "description": "Equal parts tin-can and soggy — pure spicy energy.",
       "params": {
         "cheekSize": 1.08,
         "cheekShape": 0.44,
@@ -1051,7 +1051,7 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 0.72,
         "resonance": 0.49,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "soda"
       }
     },
@@ -1060,7 +1060,7 @@ export const FART_PRESETS: FartPreset[] = [
       "name": "Snare Burst",
       "description": "A submarine burst, snare on the attack.",
       "params": {
-        "cheekSize": 2.0,
+        "cheekSize": 2,
         "cheekShape": 0.4,
         "holeSize": 0.48,
         "pressure": 1.5,
@@ -1092,7 +1092,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.52,
         "holeSize": 0.86,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.28,
         "food": "soda"
       }
@@ -1106,7 +1106,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.39,
         "holeSize": 0.97,
         "pressure": 1.17,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.11,
         "food": "eggs"
       }
@@ -1120,7 +1120,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.52,
         "holeSize": 0.85,
         "pressure": 0.94,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.28,
         "food": "eggs"
       }
@@ -1130,7 +1130,7 @@ export const FART_PRESETS: FartPreset[] = [
       "name": "Whistling Chirp",
       "description": "Classic eggs-induced chirp, whistling all the way.",
       "params": {
-        "cheekSize": 2.0,
+        "cheekSize": 2,
         "cheekShape": 0.07,
         "holeSize": 0.2,
         "pressure": 1.5,
@@ -1148,7 +1148,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.75,
         "holeSize": 1.21,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.08,
         "food": "eggs"
       }
@@ -1204,7 +1204,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.53,
         "holeSize": 0.56,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.39,
         "food": "soda"
       }
@@ -1226,13 +1226,13 @@ export const FART_PRESETS: FartPreset[] = [
     {
       "id": "p091",
       "name": "Echoing Thunderous Sputter",
-      "description": "Equal parts echoing and thunderous \u2014 pure eggs energy.",
+      "description": "Equal parts echoing and thunderous — pure eggs energy.",
       "params": {
         "cheekSize": 1.53,
         "cheekShape": 0.51,
         "holeSize": 0.76,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.29,
         "food": "eggs"
       }
@@ -1274,7 +1274,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.36,
         "holeSize": 0.67,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.27,
         "food": "soda"
       }
@@ -1296,14 +1296,14 @@ export const FART_PRESETS: FartPreset[] = [
     {
       "id": "p096",
       "name": "Chirping Gurgle",
-      "description": "Equal parts chirping and submarine \u2014 pure eggs energy.",
+      "description": "Equal parts chirping and submarine — pure eggs energy.",
       "params": {
         "cheekSize": 1.4,
         "cheekShape": 0.18,
         "holeSize": 0.2,
         "pressure": 1.2,
         "resonance": 0.57,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -1317,7 +1317,7 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 1.41,
         "resonance": 0.82,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -1338,13 +1338,13 @@ export const FART_PRESETS: FartPreset[] = [
     {
       "id": "p099",
       "name": "Motorcycle Croak",
-      "description": "Equal parts motorcycle and sputtering \u2014 pure broccoli energy.",
+      "description": "Equal parts motorcycle and sputtering — pure broccoli energy.",
       "params": {
         "cheekSize": 1.24,
         "cheekShape": 0.8,
         "holeSize": 1.27,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.07,
         "food": "eggs"
       }
@@ -1359,14 +1359,14 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 0.94,
         "resonance": 0.36,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
     {
       "id": "p101",
       "name": "Echoing Whisper",
-      "description": "Equal parts echoing and croaking \u2014 pure cheese energy.",
+      "description": "Equal parts echoing and croaking — pure cheese energy.",
       "params": {
         "cheekSize": 1.49,
         "cheekShape": 0.29,
@@ -1383,10 +1383,10 @@ export const FART_PRESETS: FartPreset[] = [
       "description": "A foghorn boom with wet undertones.",
       "params": {
         "cheekSize": 1.27,
-        "cheekShape": 1.0,
+        "cheekShape": 1,
         "holeSize": 1.46,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.02,
         "food": "cheese"
       }
@@ -1411,10 +1411,10 @@ export const FART_PRESETS: FartPreset[] = [
       "description": "Sounds like a stuttering roar after too much eggs.",
       "params": {
         "cheekSize": 1.26,
-        "cheekShape": 1.0,
+        "cheekShape": 1,
         "holeSize": 1.48,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.01,
         "food": "cheese"
       }
@@ -1425,10 +1425,10 @@ export const FART_PRESETS: FartPreset[] = [
       "description": "A foghorn bark with popping undertones.",
       "params": {
         "cheekSize": 1.28,
-        "cheekShape": 1.0,
+        "cheekShape": 1,
         "holeSize": 1.49,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.01,
         "food": "cheese"
       }
@@ -1438,11 +1438,11 @@ export const FART_PRESETS: FartPreset[] = [
       "name": "Buzzing Toot",
       "description": "buzzing, honking, and unmistakably salad-fueled.",
       "params": {
-        "cheekSize": 1.0,
+        "cheekSize": 1,
         "cheekShape": 0.36,
         "holeSize": 0.86,
         "pressure": 1.1,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.17,
         "food": "soda"
       }
@@ -1456,7 +1456,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.43,
         "holeSize": 0.82,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.29,
         "food": "soda"
       }
@@ -1464,7 +1464,7 @@ export const FART_PRESETS: FartPreset[] = [
     {
       "id": "p112",
       "name": "Rumbling Croak",
-      "description": "Equal parts rumbling and wet \u2014 pure eggs energy.",
+      "description": "Equal parts rumbling and wet — pure eggs energy.",
       "params": {
         "cheekSize": 1.36,
         "cheekShape": 0.18,
@@ -1484,7 +1484,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.3,
         "holeSize": 0.38,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.85,
         "food": "spicy"
       }
@@ -1492,13 +1492,13 @@ export const FART_PRESETS: FartPreset[] = [
     {
       "id": "p114",
       "name": "Kazoo Screech",
-      "description": "Equal parts kazoo and sputtering \u2014 pure cheese energy.",
+      "description": "Equal parts kazoo and sputtering — pure cheese energy.",
       "params": {
         "cheekSize": 1.7,
         "cheekShape": 0.39,
         "holeSize": 0.95,
         "pressure": 1.3,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.28,
         "food": "eggs"
       }
@@ -1512,7 +1512,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.54,
         "holeSize": 1.11,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.16,
         "food": "eggs"
       }
@@ -1526,7 +1526,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.47,
         "holeSize": 1.02,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.13,
         "food": "eggs"
       }
@@ -1536,12 +1536,12 @@ export const FART_PRESETS: FartPreset[] = [
       "name": "Balloon Snort",
       "description": "balloon snort with a whoopee tail.",
       "params": {
-        "cheekSize": 2.0,
+        "cheekSize": 2,
         "cheekShape": 0.33,
         "holeSize": 0.2,
         "pressure": 1.5,
         "resonance": 0.87,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -1553,9 +1553,9 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekSize": 1.49,
         "cheekShape": 0.2,
         "holeSize": 0.2,
-        "pressure": 1.0,
+        "pressure": 1,
         "resonance": 0.56,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -1604,13 +1604,13 @@ export const FART_PRESETS: FartPreset[] = [
     {
       "id": "p122",
       "name": "Popping Whoosh",
-      "description": "Equal parts popping and crisp \u2014 pure spicy energy.",
+      "description": "Equal parts popping and crisp — pure spicy energy.",
       "params": {
         "cheekSize": 1.09,
         "cheekShape": 0.29,
         "holeSize": 0.58,
         "pressure": 1.01,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.55,
         "food": "soda"
       }
@@ -1618,14 +1618,14 @@ export const FART_PRESETS: FartPreset[] = [
     {
       "id": "p123",
       "name": "Foghorn Hiss",
-      "description": "Equal parts foghorn and wet \u2014 pure eggs energy.",
+      "description": "Equal parts foghorn and wet — pure eggs energy.",
       "params": {
         "cheekSize": 1.31,
         "cheekShape": 0.21,
         "holeSize": 0.2,
         "pressure": 0.9,
         "resonance": 0.65,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "beans"
       }
     },
@@ -1639,7 +1639,7 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 1.5,
         "resonance": 0.99,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -1652,7 +1652,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.72,
         "holeSize": 1.13,
         "pressure": 1.26,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.12,
         "food": "eggs"
       }
@@ -1694,7 +1694,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.9,
         "holeSize": 1.4,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.03,
         "food": "eggs"
       }
@@ -1702,7 +1702,7 @@ export const FART_PRESETS: FartPreset[] = [
     {
       "id": "p129",
       "name": "Crisp Boom",
-      "description": "Equal parts crisp and bubbly \u2014 pure eggs energy.",
+      "description": "Equal parts crisp and bubbly — pure eggs energy.",
       "params": {
         "cheekSize": 1.34,
         "cheekShape": 0.24,
@@ -1765,7 +1765,7 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 0.76,
         "resonance": 0.66,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "salad"
       }
     },
@@ -1786,7 +1786,7 @@ export const FART_PRESETS: FartPreset[] = [
     {
       "id": "p135",
       "name": "Whistling Gurgle",
-      "description": "Equal parts whistling and popping \u2014 pure soda energy.",
+      "description": "Equal parts whistling and popping — pure soda energy.",
       "params": {
         "cheekSize": 1.22,
         "cheekShape": 0.26,
@@ -1807,21 +1807,7 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 1.5,
         "resonance": 0.41,
-        "turbulence": 1.0,
-        "food": "spicy"
-      }
-    },
-    {
-      "id": "p137",
-      "name": "Bagpipe Sputter",
-      "description": "bagpipe sputter with a gravelly tail.",
-      "params": {
-        "cheekSize": 1.08,
-        "cheekShape": 0.18,
-        "holeSize": 0.2,
-        "pressure": 1.15,
-        "resonance": 0.87,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -1834,7 +1820,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.89,
         "holeSize": 1.37,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.04,
         "food": "eggs"
       }
@@ -1862,7 +1848,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.46,
         "holeSize": 0.73,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.34,
         "food": "soda"
       }
@@ -1876,7 +1862,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.68,
         "holeSize": 1.18,
         "pressure": 1.41,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.14,
         "food": "eggs"
       }
@@ -1905,7 +1891,7 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 1.5,
         "resonance": 0.8,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -1947,7 +1933,7 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 1.5,
         "resonance": 0.54,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -1960,7 +1946,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.49,
         "holeSize": 0.74,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.26,
         "food": "soda"
       }
@@ -1970,7 +1956,7 @@ export const FART_PRESETS: FartPreset[] = [
       "name": "Crisp Wheeze",
       "description": "Classic cheese-induced wheeze, crisp all the way.",
       "params": {
-        "cheekSize": 2.0,
+        "cheekSize": 2,
         "cheekShape": 0.41,
         "holeSize": 0.47,
         "pressure": 1.5,
@@ -2010,7 +1996,7 @@ export const FART_PRESETS: FartPreset[] = [
     {
       "id": "p151",
       "name": "Duck Chirp",
-      "description": "Equal parts duck and sputtering \u2014 pure soda energy.",
+      "description": "Equal parts duck and sputtering — pure soda energy.",
       "params": {
         "cheekSize": 1.14,
         "cheekShape": 0.28,
@@ -2030,7 +2016,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.61,
         "holeSize": 0.99,
         "pressure": 0.79,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.19,
         "food": "eggs"
       }
@@ -2040,27 +2026,13 @@ export const FART_PRESETS: FartPreset[] = [
       "name": "Dry Sputter",
       "description": "A echoing sputter, dry on the attack.",
       "params": {
-        "cheekSize": 2.0,
+        "cheekSize": 2,
         "cheekShape": 0.36,
         "holeSize": 0.75,
         "pressure": 1.5,
         "resonance": 0.94,
         "turbulence": 0.31,
         "food": "soda"
-      }
-    },
-    {
-      "id": "p154",
-      "name": "Bellowing Toot",
-      "description": "A bellowing toot with machine-gun undertones.",
-      "params": {
-        "cheekSize": 1.0,
-        "cheekShape": 0.14,
-        "holeSize": 0.2,
-        "pressure": 1.11,
-        "resonance": 1.0,
-        "turbulence": 0.72,
-        "food": "spicy"
       }
     },
     {
@@ -2082,7 +2054,7 @@ export const FART_PRESETS: FartPreset[] = [
       "name": "Gurgling Quack",
       "description": "Classic soda-induced quack, gurgling all the way.",
       "params": {
-        "cheekSize": 2.0,
+        "cheekSize": 2,
         "cheekShape": 0.27,
         "holeSize": 0.2,
         "pressure": 1.5,
@@ -2156,7 +2128,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.28,
         "holeSize": 0.46,
         "pressure": 1.36,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.27,
         "food": "soda"
       }
@@ -2170,7 +2142,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.42,
         "holeSize": 0.88,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.16,
         "food": "eggs"
       }
@@ -2180,7 +2152,7 @@ export const FART_PRESETS: FartPreset[] = [
       "name": "Drumroll Snort",
       "description": "A bagpipe snort, drumroll on the attack.",
       "params": {
-        "cheekSize": 2.0,
+        "cheekSize": 2,
         "cheekShape": 0.58,
         "holeSize": 0.2,
         "pressure": 1.5,
@@ -2194,7 +2166,7 @@ export const FART_PRESETS: FartPreset[] = [
       "name": "Brassy Puff",
       "description": "A brassy puff with wet undertones.",
       "params": {
-        "cheekSize": 2.0,
+        "cheekSize": 2,
         "cheekShape": 0.47,
         "holeSize": 0.62,
         "pressure": 1.5,
@@ -2232,23 +2204,9 @@ export const FART_PRESETS: FartPreset[] = [
       }
     },
     {
-      "id": "p167",
-      "name": "Brassy Toot",
-      "description": "The toot that launched a thousand giggles.",
-      "params": {
-        "cheekSize": 1.01,
-        "cheekShape": 0.12,
-        "holeSize": 0.2,
-        "pressure": 1.26,
-        "resonance": 1.0,
-        "turbulence": 0.68,
-        "food": "spicy"
-      }
-    },
-    {
       "id": "p168",
       "name": "Gravelly Squeaker",
-      "description": "Equal parts gravelly and drumroll \u2014 pure beans energy.",
+      "description": "Equal parts gravelly and drumroll — pure beans energy.",
       "params": {
         "cheekSize": 0.97,
         "cheekShape": 0.32,
@@ -2268,7 +2226,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.39,
         "holeSize": 0.84,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.3,
         "food": "soda"
       }
@@ -2282,7 +2240,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.6,
         "holeSize": 0.87,
         "pressure": 0.9,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.22,
         "food": "eggs"
       }
@@ -2311,7 +2269,7 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.2,
         "pressure": 1.19,
         "resonance": 0.48,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -2352,7 +2310,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.29,
         "holeSize": 0.73,
         "pressure": 1.27,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.19,
         "food": "soda"
       }
@@ -2422,7 +2380,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.49,
         "holeSize": 1.09,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.09,
         "food": "eggs"
       }
@@ -2478,7 +2436,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.46,
         "holeSize": 0.86,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.29,
         "food": "eggs"
       }
@@ -2507,7 +2465,7 @@ export const FART_PRESETS: FartPreset[] = [
         "holeSize": 0.4,
         "pressure": 1.5,
         "resonance": 0.71,
-        "turbulence": 1.0,
+        "turbulence": 1,
         "food": "spicy"
       }
     },
@@ -2534,7 +2492,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.48,
         "holeSize": 1.04,
         "pressure": 1.45,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.12,
         "food": "eggs"
       }
@@ -2548,7 +2506,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.53,
         "holeSize": 1.05,
         "pressure": 1.49,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.19,
         "food": "eggs"
       }
@@ -2576,7 +2534,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.61,
         "holeSize": 1.18,
         "pressure": 0.9,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.2,
         "food": "eggs"
       }
@@ -2604,7 +2562,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.37,
         "holeSize": 0.68,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.29,
         "food": "soda"
       }
@@ -2642,7 +2600,7 @@ export const FART_PRESETS: FartPreset[] = [
       "name": "Ripping Croak",
       "description": "A ripping croak with submarine undertones.",
       "params": {
-        "cheekSize": 2.0,
+        "cheekSize": 2,
         "cheekShape": 0.22,
         "holeSize": 0.36,
         "pressure": 0.81,
@@ -2671,10 +2629,10 @@ export const FART_PRESETS: FartPreset[] = [
       "description": "A brassy roar with ripping undertones.",
       "params": {
         "cheekSize": 1.28,
-        "cheekShape": 1.0,
+        "cheekShape": 1,
         "holeSize": 1.49,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.01,
         "food": "cheese"
       }
@@ -2688,7 +2646,7 @@ export const FART_PRESETS: FartPreset[] = [
         "cheekShape": 0.44,
         "holeSize": 0.97,
         "pressure": 1.5,
-        "resonance": 1.0,
+        "resonance": 1,
         "turbulence": 0.14,
         "food": "eggs"
       }
@@ -2696,7 +2654,7 @@ export const FART_PRESETS: FartPreset[] = [
     {
       "id": "p200",
       "name": "Tuba Chirp",
-      "description": "Equal parts tuba and echoing \u2014 pure broccoli energy.",
+      "description": "Equal parts tuba and echoing — pure broccoli energy.",
       "params": {
         "cheekSize": 0.72,
         "cheekShape": 0.19,
@@ -2707,4 +2665,5 @@ export const FART_PRESETS: FartPreset[] = [
         "food": "salad"
       }
     }
+  
 ];
