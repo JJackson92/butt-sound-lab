@@ -156,59 +156,66 @@ function draw(ctx: CanvasRenderingContext2D, s: { y: number; vy: number; obs: Ob
   ctx.restore();
 }
 
-// Plunger stuck to the ceiling by its rubber cup, wooden handle hanging down to the gap.
+// Plunger: big red rubber cup suctioned to the ceiling, wooden handle hanging straight down.
 function drawPlunger(ctx: CanvasRenderingContext2D, x: number, top: number, bottom: number) {
-  const cx = x + OBS_W / 2, cupH = 30, cupW = OBS_W + 4;
-  // shadow on ceiling/wall
-  ctx.fillStyle = "rgba(60,50,40,0.12)";
-  ctx.beginPath(); ctx.moveTo(cx + 10, top + cupH); ctx.lineTo(cx + 30, bottom - 10); ctx.lineTo(cx + 20, bottom - 10); ctx.lineTo(cx + 4, top + cupH); ctx.fill();
+  const cx = x + OBS_W / 2, cupH = 40, cupW = OBS_W + 12, hw = 12;
   // wooden handle
-  const hw = 12;
   const wood = ctx.createLinearGradient(cx - hw / 2, 0, cx + hw / 2, 0);
-  wood.addColorStop(0, "#6e4a26"); wood.addColorStop(0.45, "#a9763f"); wood.addColorStop(1, "#5a3a1c");
-  ctx.fillStyle = wood; ctx.fillRect(cx - hw / 2, top + cupH - 4, hw, bottom - top - cupH);
-  ctx.strokeStyle = "rgba(70,40,15,0.45)"; ctx.lineWidth = 1;
-  for (let k = 0; k < 3; k++) { ctx.beginPath(); ctx.moveTo(cx - 3 + k * 3, top + cupH + 10 + k * 17); ctx.lineTo(cx - 2 + k * 3, bottom - 20 - k * 11); ctx.stroke(); }
-  ctx.fillStyle = "#5a3a1c"; ctx.beginPath(); ctx.ellipse(cx, bottom - 2, hw / 2, 3, 0, 0, Math.PI * 2); ctx.fill();
-  // rubber cup (dome flattened against ceiling)
-  const rub = ctx.createRadialGradient(cx - 8, top + 8, 2, cx, top + 10, cupW / 2);
-  rub.addColorStop(0, "#c2563a"); rub.addColorStop(0.6, "#8f3523"); rub.addColorStop(1, "#5e2014");
+  wood.addColorStop(0, "#7a4f27"); wood.addColorStop(0.4, "#c08a4c"); wood.addColorStop(1, "#5e3c1b");
+  ctx.fillStyle = wood; ctx.fillRect(cx - hw / 2, top + cupH - 6, hw, bottom - top - cupH + 4);
+  ctx.strokeStyle = "rgba(70,40,15,0.5)"; ctx.lineWidth = 1;
+  for (let k = 0; k < 3; k++) { ctx.beginPath(); ctx.moveTo(cx - 3 + k * 3, top + cupH + 8 + k * 15); ctx.lineTo(cx - 2 + k * 3, bottom - 14 - k * 9); ctx.stroke(); }
+  ctx.strokeStyle = "#3b240f"; ctx.lineWidth = 2; ctx.strokeRect(cx - hw / 2, top + cupH - 6, hw, bottom - top - cupH + 4);
+  ctx.fillStyle = "#5e3c1b"; ctx.beginPath(); ctx.ellipse(cx, bottom - 2, hw / 2, 3, 0, 0, Math.PI * 2); ctx.fill();
+  // red rubber dome, flat side pressed against the ceiling
+  const rub = ctx.createRadialGradient(cx - 10, top + 10, 3, cx, top + 12, cupW / 2 + 4);
+  rub.addColorStop(0, "#ff6b52"); rub.addColorStop(0.5, "#e02b1c"); rub.addColorStop(1, "#8e140b");
   ctx.fillStyle = rub; ctx.beginPath();
   ctx.moveTo(cx - cupW / 2, top);
-  ctx.bezierCurveTo(cx - cupW / 2, top + cupH * 0.9, cx - 12, top + cupH, cx - 9, top + cupH);
-  ctx.lineTo(cx + 9, top + cupH);
-  ctx.bezierCurveTo(cx + 12, top + cupH, cx + cupW / 2, top + cupH * 0.9, cx + cupW / 2, top);
+  ctx.bezierCurveTo(cx - cupW / 2 + 2, top + cupH * 0.8, cx - 18, top + cupH, cx, top + cupH);
+  ctx.bezierCurveTo(cx + 18, top + cupH, cx + cupW / 2 - 2, top + cupH * 0.8, cx + cupW / 2, top);
   ctx.closePath(); ctx.fill();
-  ctx.fillStyle = "#3d140c"; ctx.fillRect(cx - cupW / 2 - 2, top, cupW + 4, 4); // sealed rim
-  ctx.fillStyle = "#4a1a10"; ctx.beginPath(); ctx.ellipse(cx, top + cupH - 2, 10, 5, 0, 0, Math.PI * 2); ctx.fill(); // collar
-  ctx.fillStyle = "rgba(255,220,200,0.3)"; ctx.beginPath(); ctx.ellipse(cx - 12, top + 10, 6, 3, -0.3, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = "#5e0d06"; ctx.lineWidth = 2.5; ctx.stroke();
+  // flared lip squished against ceiling
+  ctx.fillStyle = "#b51e12"; ctx.beginPath(); ctx.roundRect(cx - cupW / 2 - 5, top, cupW + 10, 7, 3); ctx.fill();
+  ctx.strokeStyle = "#5e0d06"; ctx.lineWidth = 2; ctx.stroke();
+  // collar where handle enters
+  ctx.fillStyle = "#7a1209"; ctx.beginPath(); ctx.ellipse(cx, top + cupH - 3, 11, 5, 0, 0, Math.PI * 2); ctx.fill();
+  // shine
+  ctx.fillStyle = "rgba(255,255,255,0.45)"; ctx.beginPath(); ctx.ellipse(cx - 16, top + 16, 7, 4, -0.5, 0, Math.PI * 2); ctx.fill();
 }
 
-// Stack of puffy toilet paper rolls, slightly offset, with quilted texture and a hole on top.
+// Off-center stack of cartoon toilet paper rolls, each a cylinder with visible curved seams.
 function drawTP(ctx: CanvasRenderingContext2D, x: number, top: number, bottom: number) {
-  const rollH = 38, ry2 = 7, w = OBS_W - 6;
-  const offs = [0, 3, -2, 2, -3, 1];
+  const rollH = 36, ey = 6, w = OBS_W - 8;
+  const offs = [0, 6, -4, 7, -6, 3, -7, 5];
   const rolls: number[] = [];
   for (let y = bottom - rollH; y + rollH > top; y -= rollH) rolls.push(Math.max(y, top));
   rolls.forEach((ry, i) => {
-    const rx = x + 3 + offs[i % offs.length];
-    const h = (bottom - i * rollH) - ry;
+    const rx = x + 4 + offs[i % offs.length];
+    const rb = bottom - i * rollH;
     const body = ctx.createLinearGradient(rx, 0, rx + w, 0);
-    body.addColorStop(0, "#d9d9d4"); body.addColorStop(0.25, "#ffffff"); body.addColorStop(0.7, "#f1f1ec"); body.addColorStop(1, "#c8c8c2");
+    body.addColorStop(0, "#cfcfc8"); body.addColorStop(0.22, "#ffffff"); body.addColorStop(0.65, "#f3f3ee"); body.addColorStop(1, "#b9b9b2");
     ctx.fillStyle = body;
-    ctx.beginPath(); ctx.roundRect(rx, ry, w, h, 6); ctx.fill();
-    // quilted dots
-    ctx.fillStyle = "rgba(160,160,150,0.28)";
-    for (let yy = ry + 6; yy < ry + h - 3; yy += 5) for (let xx = rx + 5 + ((yy / 5) % 2) * 2.5; xx < rx + w - 4; xx += 5) ctx.fillRect(xx, yy, 1.4, 1.4);
-    // seam shadow between rolls
-    ctx.fillStyle = "rgba(120,120,110,0.35)"; ctx.beginPath(); ctx.ellipse(rx + w / 2, ry + h, w / 2 - 1, 2.5, 0, 0, Math.PI); ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(rx, ry); ctx.lineTo(rx, rb - ey);
+    ctx.ellipse(rx + w / 2, rb - ey, w / 2, ey, 0, Math.PI, 0, true);
+    ctx.lineTo(rx + w, ry); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = "#9d9d96"; ctx.lineWidth = 1.5; ctx.stroke();
+    // embossed quilt texture
+    ctx.fillStyle = "rgba(150,150,140,0.3)";
+    for (let yy = ry + 5; yy < rb - ey - 2; yy += 5) for (let xx = rx + 4 + ((Math.round(yy) / 5) % 2) * 2.5; xx < rx + w - 4; xx += 5) ctx.fillRect(xx, yy, 1.5, 1.5);
+    // sheet edge (loose flap) on alternate rolls
+    if (i % 2 === 0) { ctx.strokeStyle = "rgba(140,140,130,0.6)"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(rx + w * 0.72, ry + 3); ctx.lineTo(rx + w * 0.72, rb - ey); ctx.stroke(); }
+    // shadow cast on the roll below (where this roll overhangs)
+    ctx.fillStyle = "rgba(90,90,80,0.18)"; ctx.beginPath(); ctx.ellipse(rx + w / 2, rb - ey + 3, w / 2, ey, 0, 0, Math.PI); ctx.fill();
   });
-  // top roll face with hole
-  const topX = x + 3 + offs[(rolls.length - 1) % offs.length];
-  ctx.fillStyle = "#fbfbf8"; ctx.beginPath(); ctx.ellipse(topX + w / 2, top, w / 2, ry2, 0, 0, Math.PI * 2); ctx.fill();
-  ctx.strokeStyle = "#d4d4ce"; ctx.lineWidth = 1; ctx.stroke();
-  ctx.fillStyle = "#a9a9a2"; ctx.beginPath(); ctx.ellipse(topX + w / 2, top, 9, 3.5, 0, 0, Math.PI * 2); ctx.fill();
-  ctx.fillStyle = "#c79a64"; ctx.beginPath(); ctx.ellipse(topX + w / 2, top + 1, 9, 2.2, 0, 0, Math.PI); ctx.fill();
+  // top face with cardboard core
+  const tx = x + 4 + offs[(rolls.length - 1) % offs.length] + w / 2;
+  ctx.fillStyle = "#fdfdfb"; ctx.beginPath(); ctx.ellipse(tx, top, w / 2, ey, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = "#9d9d96"; ctx.lineWidth = 1.5; ctx.stroke();
+  ctx.fillStyle = "#b58a58"; ctx.beginPath(); ctx.ellipse(tx, top, 10, 3.8, 0, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = "#5a4430"; ctx.beginPath(); ctx.ellipse(tx, top, 7.5, 2.6, 0, 0, Math.PI * 2); ctx.fill();
 }
 
 function drawButt(ctx: CanvasRenderingContext2D, x: number, y: number, tilt: number, style: ButtStyle) {
