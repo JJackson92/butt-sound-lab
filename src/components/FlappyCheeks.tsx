@@ -191,8 +191,8 @@ function drawTP(ctx: CanvasRenderingContext2D, x: number, top: number, bottom: n
   const rolls: number[] = [];
   for (let y = bottom - rollH; y + rollH > top; y -= rollH) rolls.push(Math.max(y, top));
   rolls.forEach((ry, i) => {
-    const rx = x + 3 + offs[(i + Math.floor(x / 7)) % offs.length & 7] ;
-    const h = (i === rolls.length - 1) ? (bottom - i * rollH) - ry : rollH;
+    const rx = x + 3 + offs[Math.abs(i + Math.floor(x / 97)) % offs.length];
+    const h = (bottom - i * rollH) - ry;
     const body = ctx.createLinearGradient(rx, 0, rx + w, 0);
     body.addColorStop(0, "#d9d9d4"); body.addColorStop(0.25, "#ffffff"); body.addColorStop(0.7, "#f1f1ec"); body.addColorStop(1, "#c8c8c2");
     ctx.fillStyle = body;
@@ -204,7 +204,7 @@ function drawTP(ctx: CanvasRenderingContext2D, x: number, top: number, bottom: n
     ctx.fillStyle = "rgba(120,120,110,0.35)"; ctx.beginPath(); ctx.ellipse(rx + w / 2, ry + h, w / 2 - 1, 2.5, 0, 0, Math.PI); ctx.fill();
   });
   // top roll face with hole
-  const topX = x + 3 + offs[((rolls.length - 1) + Math.floor(x / 7)) % offs.length & 7];
+  const topX = x + 3 + offs[Math.abs(rolls.length - 1 + Math.floor(x / 97)) % offs.length];
   ctx.fillStyle = "#fbfbf8"; ctx.beginPath(); ctx.ellipse(topX + w / 2, top, w / 2, ry2, 0, 0, Math.PI * 2); ctx.fill();
   ctx.strokeStyle = "#d4d4ce"; ctx.lineWidth = 1; ctx.stroke();
   ctx.fillStyle = "#a9a9a2"; ctx.beginPath(); ctx.ellipse(topX + w / 2, top, 9, 3.5, 0, 0, Math.PI * 2); ctx.fill();
