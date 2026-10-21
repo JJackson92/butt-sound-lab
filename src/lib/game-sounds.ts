@@ -16,12 +16,12 @@ const SPLAT_IDS = Object.keys(profiles)
   .sort((a, b) => wetness(profiles[b]) - wetness(profiles[a]))
   .slice(0, 25);
 
-let ready = false;
+let manifest: Record<string, FartAudioEntry> | null = null;
 const warmed: HTMLAudioElement[] = [];
 
 export async function preloadGameSounds(): Promise<void> {
   const m = await loadManifest();
-  ready = true;
+  manifest = m;
   // Warm a few clips so the first tap has low latency.
   for (const id of TOOT_IDS.slice(0, 8)) {
     const url = m[id]?.preview;
@@ -33,9 +33,9 @@ export async function preloadGameSounds(): Promise<void> {
   }
 }
 
-function playFrom(ids: string[], m: Record<string, FartAudioEntry>, volume: number): boolean {
+function playFrom(ids: string[], volume: number): boolean {
   const id = ids[Math.floor(Math.random() * ids.length)];
-  const url = m[id]?.preview;
+  const url = manifest?.[id]?.preview;
   if (!url) return false;
   const a = new Audio(url);
   a.volume = volume;
@@ -44,37 +44,11 @@ function playFrom(ids: string[], m: Record<string, FartAudioEntry>, volume: numb
 }
 
 export function playGameToot(): boolean {
-  if (!ready || TOOT_IDS.length === 0) return false;
-  return playFrom(TOOT_IDS, loaded(), 0.9);
+  if (!manifest || TOOT_IDS.length === 0) return false;
+  return playFrom(TOOT_IDS, 0.9);
 }
 
 export function playGameSplat(): boolean {
-  if (!ready || SPLAT_IDS.length === 0) return false;
-  return playFrom(SPLAT_IDS, loaded(), 1);
+  if (!manifest || SPLAT_IDS.length === 0) return false;
+  return playFrom(SPLAT_IDS, 1);
 }
-
-// loadManifest caches internally; re-importing the module value keeps this cheap.
-let manifestRef: Record<string, FartAudioEntry> | null = null;
-function loaded(): Record<string, FartAudioEntry> {
-  if (!manifestRef) {
-    // Synchronous-ish access: preloadGameSounds resolved the cache already.
-    manifestRef = cachedManifest();
-  }
-  return manifestRef ?? {};
-}
-
-import { loadManifest as loadManifestInner } from "./fart-audio";
-function cachedManifest(): Record<string, FartAudioEntry> | null {
-  // Access the shared cache without triggering another fetch.
-  try {
-    const cached = (loadManifestInner as unknown as { __cache?: Record<string, FartAudioEntry> }).__cache;
-    if (cached) return cached;
-  } catch { /* noop */ }
-  // Fall back to the module's own cache via a fresh awaited load tracked here.
-  return moduleCache;
-}
-
-// Keep a local copy of the manifest filled during preload so playback never awaits.
-let moduleCache: Record<string, FartAudioEntry> | null = null;
-const origPreload = preloadGameSounds;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
