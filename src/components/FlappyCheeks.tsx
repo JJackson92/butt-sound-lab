@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { playFart, type FartParams } from "@/lib/fart-synth";
 import { BUTT_STYLES, DEFAULT_CREATION, type ButtStyle } from "@/lib/creations";
+import { preloadGameSounds, playGameSplat, playGameToot } from "@/lib/game-sounds";
 
 const W = 400, H = 600, CEIL = 24, FLOOR = 60;
 const GRAVITY = 1500, FLAP = -430, SPEED = 150, GAP = 165, SPACING = 220, OBS_W = 64, R = 20;
@@ -16,11 +17,14 @@ type Puff = { x: number; y: number; r: number; life: number };
 type Phase = "ready" | "play" | "over";
 
 function toot(): void {
+  // Real recordings from the library, rotated randomly; synth only as fallback.
+  if (playGameToot()) return;
   const base = DEFAULT_CREATION.params;
   const p: FartParams = { ...base, holeSize: 0.25 + Math.random() * 0.25, pressure: 0.5 + Math.random() * 0.3, duration: 0.18 + Math.random() * 0.12, wetness: 0.1 };
   try { playFart(p); } catch { /* audio unavailable */ }
 }
 function splat(): void {
+  if (playGameSplat()) return;
   const p: FartParams = { ...DEFAULT_CREATION.params, holeSize: 1.3, pressure: 1, duration: 0.8, wetness: 0.9 };
   try { playFart(p); } catch { /* audio unavailable */ }
 }
@@ -42,6 +46,7 @@ export function FlappyCheeks() {
   const st = useRef({ y: H / 2, vy: 0, obs: [] as Obs[], puffs: [] as Puff[], scroll: 0, score: 0, shake: 0, phase: "ready" as Phase, style: "peach" as ButtStyle, t: 0 });
 
   useEffect(() => { setBest(Number(localStorage.getItem(BEST_KEY)) || 0); }, []);
+  useEffect(() => { preloadGameSounds().catch(() => { /* keep synth fallback */ }); }, []);
   useEffect(() => { st.current.style = style; }, [style]);
 
   const reset = () => {
