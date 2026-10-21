@@ -147,8 +147,7 @@ button,a,input,select{touch-action:manipulation;}
 
 /* The Wind Ensemble */
 .ensemble-title{font-size:clamp(2rem,4vw,3.4rem);font-weight:900;margin:1.5rem 0 1rem}
-.ensemble{display:grid;grid-template-columns:280px 1fr;gap:1.25rem;padding-bottom:3rem}
-@media (max-width:900px){.ensemble{grid-template-columns:1fr}}
+.ensemble{display:flex;flex-direction:column;gap:1.25rem;padding-bottom:3rem}
 .ensemble-tray,.ensemble-roll{background:var(--card);border:2px solid var(--border);border-radius:1.25rem;padding:1rem;min-width:0}
 .ensemble-tray h2{display:flex;gap:.4rem;align-items:center;font-weight:800;font-size:1.1rem}
 .ensemble-hint{font-size:.85rem;color:var(--muted-foreground);margin:.4rem 0 .8rem}
