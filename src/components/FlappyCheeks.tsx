@@ -88,6 +88,7 @@ export function FlappyCheeks() {
   const st = useRef({ y: H / 2, vy: 0, obs: [] as Obs[], puffs: [] as Puff[], scroll: 0, score: 0, shake: 0, phase: "ready" as Phase, style: "peach" as ButtStyle, t: 0 });
 
   useEffect(() => { setBest(Number(localStorage.getItem(BEST_KEY)) || 0); }, []);
+  useEffect(() => { (window as unknown as { __flappy?: unknown }).__flappy = st.current; }, []);
   useEffect(() => { preloadGameSounds().catch(() => { /* keep synth fallback */ }); }, []);
   useEffect(() => { st.current.style = style; }, [style]);
 
