@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { FlaskConical, Gamepad2, Music, Library, Heart, Zap } from 'lucide-react';
 import { fetchTopScores } from '@/lib/leaderboard';
 import { FART_PRESETS } from '@/lib/fart-matching';
-import { NewsTicker } from '@/components/NewsTicker';
 
 const APPS = [
   { to: '/lab', name: 'Fart Lab', tag: 'Build your own', Icon: FlaskConical, tone: 'tile-lab' },
@@ -39,7 +38,6 @@ export function AppLauncher() {
         ))}
       </nav>
       <Link to="/lab" className="instant-rip"><Zap size={18} /> Instant Rip — open the Lab</Link>
-      <NewsTicker />
     </main>
   );
 }
