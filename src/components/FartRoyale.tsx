@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Crown, Mic, Play, Square, Upload, SkipForward, Trophy, Swords, User } from "lucide-react";
 import { Buttocks } from "@/components/Buttocks";
 import { BUTT_STYLES, DEFAULT_CREATION, type ButtStyle } from "@/lib/creations";
@@ -100,6 +100,7 @@ function Battle({ roster, onVoted }: { roster: RoyaleFart[]; onVoted: () => void
     <section className="royale-duel">
       {pair.map((f, i) => (
         <article key={f.id} className={`royale-fighter ${i ? "blue" : "red"} ${result ? (result.winner === f.id ? "won" : "lost") : ""}`}>
+          {result?.winner === f.id && <Fireworks />}
           <span className="royale-corner">{i ? "BLUE CORNER" : "RED CORNER"}</span>
           <Avatar f={f} bounce={bounce[i]} />
           <h3>{f.name}</h3>
