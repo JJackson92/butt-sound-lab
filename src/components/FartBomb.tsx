@@ -38,8 +38,40 @@ export function FartBomb() {
   const customPreview = useRef(false);
   const [previewing, setPreviewing] = useState(false);
   const [previewError, setPreviewError] = useState('');
+  const [rec, setRec] = useState<'off' | 'audio' | 'video'>('off');
+  const [recError, setRecError] = useState('');
+  const [clip, setClip] = useState<{ url: string; video: boolean; ext: string } | null>(null);
+  const [recording, setRecording] = useState(false);
+  const stream = useRef<MediaStream | null>(null);
+  const recorder = useRef<MediaRecorder | null>(null);
+  const chunks = useRef<Blob[]>([]);
+  const stopTimer = useRef<number | null>(null);
 
-  useEffect(() => { loadManifest().then(setManifest).catch(() => {}); setFavs(readSounds()); return () => { if (timer.current) clearInterval(timer.current); previewRun.current++; previewAudio.current?.pause(); if (customPreview.current) stopRendered(); }; }, []);
+  const releaseStream = () => { stream.current?.getTracks().forEach((t) => t.stop()); stream.current = null; };
+  const startRecording = () => {
+    const s = stream.current;
+    if (!s || recorder.current) return;
+    try {
+      const r = new MediaRecorder(s);
+      chunks.current = [];
+      r.ondataavailable = (e) => { if (e.data.size) chunks.current.push(e.data); };
+      r.onstop = () => {
+        const type = r.mimeType || (rec === 'video' ? 'video/webm' : 'audio/webm');
+        const blob = new Blob(chunks.current, { type });
+        const ext = type.includes('mp4') ? 'mp4' : type.includes('ogg') ? 'ogg' : 'webm';
+        setClip({ url: URL.createObjectURL(blob), video: type.startsWith('video'), ext });
+        setRecording(false); releaseStream(); recorder.current = null;
+      };
+      r.start(500); recorder.current = r; setRecording(true);
+    } catch { setRecError('Recording is not supported on this browser.'); releaseStream(); }
+  };
+  const stopRecording = () => {
+    if (stopTimer.current) { clearTimeout(stopTimer.current); stopTimer.current = null; }
+    if (recorder.current && recorder.current.state !== 'inactive') recorder.current.stop();
+    else { releaseStream(); recorder.current = null; setRecording(false); }
+  };
+
+  useEffect(() => { loadManifest().then(setManifest).catch(() => {}); setFavs(readSounds()); return () => { if (timer.current) clearInterval(timer.current); previewRun.current++; previewAudio.current?.pause(); if (customPreview.current) stopRendered(); if (stopTimer.current) clearTimeout(stopTimer.current); recorder.current?.state === 'recording' && recorder.current.stop(); releaseStream(); }; }, []);
 
   const pickId = () => {
     if (sound !== 'random') return sound;
@@ -51,6 +83,8 @@ export function FartBomb() {
     if (timer.current) { clearTimeout(timer.current); timer.current = null; }
     setHeadline(AFTERMATH[Math.floor(Math.random() * AFTERMATH.length)]);
     setPhase((p) => (p === 'armed' ? 'boom' : p));
+    // Keep recording 10 more seconds to catch the reaction.
+    if (recorder.current) stopTimer.current = window.setTimeout(stopRecording, 10000);
   };
 
   const stopPreview = () => {
@@ -90,7 +124,7 @@ export function FartBomb() {
     } catch { if (previewRun.current === run) { ended(); setPreviewError('Sound could not play. Try again.'); } }
   };
 
-  const arm = () => {
+  const arm = async () => {
     stopPreview();
     const fav = sound.startsWith('fav:') ? favs[Number(sound.slice(4))] : null;
     const id = fav ? fav.presetId : pickId();
@@ -107,11 +141,19 @@ export function FartBomb() {
       renderCreation(fav).then((b) => { buffer.current = b; }).catch(() => {});
       setPlayed(fav.name);
     } else return;
+    setRecError('');
+    if (clip) { URL.revokeObjectURL(clip.url); setClip(null); }
+    if (rec !== 'off') {
+      try {
+        stream.current = await navigator.mediaDevices.getUserMedia(rec === 'video' ? { audio: true, video: { facingMode: 'user' } } : { audio: true });
+      } catch { setRecError('Camera or microphone access was blocked, so this prank won\u2019t be recorded.'); }
+    }
     setLeft(secs); setPhase('armed');
     const end = Date.now() + secs * 1000;
     timer.current = window.setInterval(() => {
       const r = Math.max(0, Math.ceil((end - Date.now()) / 1000));
       setLeft(r);
+      if (r <= 5) startRecording();
       if (r <= 0) {
         if (timer.current !== null) clearInterval(timer.current);
         // Keep the disguise up until the fart has finished playing.
@@ -124,7 +166,7 @@ export function FartBomb() {
     }, 200);
   };
 
-  const disarm = () => { if (timer.current) { clearInterval(timer.current); clearTimeout(timer.current); } if (audio.current) audio.current.onended = null; timer.current = null; audio.current?.pause(); setPhase('setup'); };
+  const disarm = () => { if (timer.current) { clearInterval(timer.current); clearTimeout(timer.current); } if (audio.current) audio.current.onended = null; timer.current = null; audio.current?.pause(); if (recorder.current) { recorder.current.onstop = null; recorder.current.stop(); recorder.current = null; } if (stopTimer.current) clearTimeout(stopTimer.current); setRecording(false); releaseStream(); setPhase('setup'); };
 
   // Triple-tap the disguise screen to quietly cancel.
   const stealthTap = () => {
@@ -150,6 +192,20 @@ export function FartBomb() {
         <h2>DETONATION SUCCESSFUL</h2>
         <p>{headline}</p>
         <small>Sound used: {played}</small>
+        {recording && (
+          <div className="bomb-rec">
+            <p>🔴 Recording reaction…</p>
+            <button className="bomb-link" onClick={stopRecording}>Stop now</button>
+          </div>
+        )}
+        {clip && (
+          <div className="bomb-rec">
+            <p>🎬 Reaction captured!</p>
+            {clip.video ? <video src={clip.url} controls playsInline /> : <audio src={clip.url} controls />}
+            <a className="bomb-link" href={clip.url} download={`fart-bomb-reaction.${clip.ext}`}>⬇️ Save recording</a>
+          </div>
+        )}
+        {recError && <small role="alert">{recError}</small>}
         <div className="bomb-actions">
           <button className="rip-button bomb-go" onClick={arm}>RE-ARM <span>💣</span></button>
           <button className="bomb-link" onClick={() => setPhase('setup')}>Change settings</button>
@@ -191,6 +247,15 @@ export function FartBomb() {
           <button key={k} className={disguise === k ? 'on' : ''} onClick={() => setDisguise(k)}>{l}</button>
         ))}
       </div>
+      <h3 className="bomb-h">Record the reaction</h3>
+      <div className="bomb-chips">
+        {([['off', '🚫 Off'], ['audio', '🎙️ Audio'], ['video', '🎥 Front camera']] as const).map(([k, l]) => (
+          <button key={k} className={rec === k ? 'on' : ''} onClick={() => setRec(k)}>{l}</button>
+        ))}
+      </div>
+      {rec === 'video' && <p className="bomb-tip">Prop your phone up facing your friend. Recording starts 5s before the fart and ends 10s after.</p>}
+      {rec === 'audio' && <p className="bomb-tip">Recording starts 5s before the fart and ends 10s after.</p>}
+      {recError && <small role="alert">{recError}</small>}
       <p className="bomb-tip">Turn your volume all the way up. Tap the disguise screen 3 times fast to cancel.</p>
       <button className="rip-button bomb-go" onClick={arm} disabled={!manifest}>{manifest ? 'ARM THE BOMB' : 'LOADING…'} <span>💣</span></button>
     </section>
