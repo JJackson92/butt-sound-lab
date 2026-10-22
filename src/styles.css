@@ -376,4 +376,4 @@ button,a,input,select{touch-action:manipulation;}
 .butt-frame svg,.mini-butt svg{height:auto;}
 
 .site-footer .footer-cause{color:var(--foreground);font-weight:700;}
-.site-footer .footer-cause strong{color:var(--foreground);background:var(--accent);border-radius:4px;padding:1px 5px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+.site-footer .footer-cause strong{color:var(--foreground);background:var(--accent);border-radius:4px;padding:1px 5px;white-space:nowrap;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
