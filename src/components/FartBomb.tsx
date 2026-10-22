@@ -7,6 +7,7 @@ import { getAudioContext } from '@/lib/fart-reverb';
 import type { Creation } from '@/lib/creations';
 import { Button } from '@/components/ui/button';
 import { Play, Square } from 'lucide-react';
+import { InflatedCushionIcon } from '@/components/WhoopeeCushionArt';
 
 const TIMES = [10, 30, 60, 120];
 type Disguise = 'black' | 'battery' | 'update';
