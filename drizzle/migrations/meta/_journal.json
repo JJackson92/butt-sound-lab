@@ -15,6 +15,13 @@
       "when": 1792554450217,
       "tag": "0001_add_flappy_toots",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1792638937165,
+      "tag": "0002_fart_royale",
+      "breakpoints": true
     }
   ]
 }

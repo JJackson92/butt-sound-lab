@@ -41,12 +41,97 @@ export type Database = {
         }
         Relationships: []
       }
+      royale_farts: {
+        Row: {
+          audio: string
+          butt_style: string
+          created_at: string
+          device_id: string
+          elo: number
+          id: string
+          losses: number
+          name: string
+          wins: number
+        }
+        Insert: {
+          audio: string
+          butt_style?: string
+          created_at?: string
+          device_id: string
+          elo?: number
+          id?: string
+          losses?: number
+          name: string
+          wins?: number
+        }
+        Update: {
+          audio?: string
+          butt_style?: string
+          created_at?: string
+          device_id?: string
+          elo?: number
+          id?: string
+          losses?: number
+          name?: string
+          wins?: number
+        }
+        Relationships: []
+      }
+      royale_votes: {
+        Row: {
+          created_at: string
+          id: string
+          loser_id: string
+          pair_key: string
+          voter: string
+          winner_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          loser_id: string
+          pair_key: string
+          voter: string
+          winner_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          loser_id?: string
+          pair_key?: string
+          voter?: string
+          winner_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "royale_votes_loser_id_fkey"
+            columns: ["loser_id"]
+            isOneToOne: false
+            referencedRelation: "royale_farts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "royale_votes_winner_id_fkey"
+            columns: ["winner_id"]
+            isOneToOne: false
+            referencedRelation: "royale_farts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      royale_vote: {
+        Args: { _loser: string; _voter: string; _winner: string }
+        Returns: {
+          delta: number
+          loser_elo: number
+          winner_elo: number
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
