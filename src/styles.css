@@ -342,7 +342,7 @@ button,a,input,select{touch-action:manipulation;}
 .royale-fighter{position:relative}
 .royale-fireworks{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:4;border-radius:18px}
 .fw-burst{position:absolute;left:50%;width:0;height:0}
-.fw-spark{position:absolute;left:-3px;top:-3px;width:6px;height:6px;border-radius:50%;opacity:0;box-shadow:0 0 6px 1px rgba(255,255,255,.35);animation:fw-spark .85s cubic-bezier(.2,.7,.3,1) forwards}
+.fw-spark{position:absolute;left:-4px;top:-4px;width:8px;height:8px;border-radius:50%;opacity:0;box-shadow:0 0 8px 2px rgba(255,255,255,.45);animation:fw-spark .9s cubic-bezier(.2,.7,.3,1) forwards}
 @keyframes fw-spark{
 0%{opacity:1;transform:translate(0,0) scale(1)}
 60%{opacity:1}
