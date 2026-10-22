@@ -38,8 +38,40 @@ export function FartBomb() {
   const customPreview = useRef(false);
   const [previewing, setPreviewing] = useState(false);
   const [previewError, setPreviewError] = useState('');
+  const [rec, setRec] = useState<'off' | 'audio' | 'video'>('off');
+  const [recError, setRecError] = useState('');
+  const [clip, setClip] = useState<{ url: string; video: boolean; ext: string } | null>(null);
+  const [recording, setRecording] = useState(false);
+  const stream = useRef<MediaStream | null>(null);
+  const recorder = useRef<MediaRecorder | null>(null);
+  const chunks = useRef<Blob[]>([]);
+  const stopTimer = useRef<number | null>(null);
 
-  useEffect(() => { loadManifest().then(setManifest).catch(() => {}); setFavs(readSounds()); return () => { if (timer.current) clearInterval(timer.current); previewRun.current++; previewAudio.current?.pause(); if (customPreview.current) stopRendered(); }; }, []);
+  const releaseStream = () => { stream.current?.getTracks().forEach((t) => t.stop()); stream.current = null; };
+  const startRecording = () => {
+    const s = stream.current;
+    if (!s || recorder.current) return;
+    try {
+      const r = new MediaRecorder(s);
+      chunks.current = [];
+      r.ondataavailable = (e) => { if (e.data.size) chunks.current.push(e.data); };
+      r.onstop = () => {
+        const type = r.mimeType || (rec === 'video' ? 'video/webm' : 'audio/webm');
+        const blob = new Blob(chunks.current, { type });
+        const ext = type.includes('mp4') ? 'mp4' : type.includes('ogg') ? 'ogg' : 'webm';
+        setClip({ url: URL.createObjectURL(blob), video: type.startsWith('video'), ext });
+        setRecording(false); releaseStream(); recorder.current = null;
+      };
+      r.start(500); recorder.current = r; setRecording(true);
+    } catch { setRecError('Recording is not supported on this browser.'); releaseStream(); }
+  };
+  const stopRecording = () => {
+    if (stopTimer.current) { clearTimeout(stopTimer.current); stopTimer.current = null; }
+    if (recorder.current && recorder.current.state !== 'inactive') recorder.current.stop();
+    else { releaseStream(); recorder.current = null; setRecording(false); }
+  };
+
+  useEffect(() => { loadManifest().then(setManifest).catch(() => {}); setFavs(readSounds()); return () => { if (timer.current) clearInterval(timer.current); previewRun.current++; previewAudio.current?.pause(); if (customPreview.current) stopRendered(); if (stopTimer.current) clearTimeout(stopTimer.current); recorder.current?.state === 'recording' && recorder.current.stop(); releaseStream(); }; }, []);
 
   const pickId = () => {
     if (sound !== 'random') return sound;
