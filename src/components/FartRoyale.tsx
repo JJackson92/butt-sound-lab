@@ -29,7 +29,7 @@ function Fireworks() {
           {Array.from({ length: 10 }, (_, k) => {
             const a = ((k * 36 + b * 14) * Math.PI) / 180;
             const dist = 48 + ((k * 17 + b * 9) % 26);
-            return <i key={k} className="fw-spark" style={{ background: FW_COLORS[(k + b) % FW_COLORS.length], ["--dx" as string]: `${Math.cos(a) * dist}px`, ["--dy" as string]: `${Math.sin(a) * dist}px`, animationDelay: `${d}ms` } as React.CSSProperties} />;
+            return <i key={k} className="fw-spark" style={{ background: FW_COLORS[(k + b) % FW_COLORS.length], ["--dx" as string]: `${Math.cos(a) * dist}px`, ["--dy" as string]: `${Math.sin(a) * dist}px`, animationDelay: `${d}ms` } as CSSProperties} />;
           })}
         </span>
       ))}
