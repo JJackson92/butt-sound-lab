@@ -271,9 +271,9 @@ button,a,input,select{touch-action:manipulation;}
 .bomb-batt{width:70px;height:34px;border:3px solid oklch(.85 0 0);border-radius:6px;margin:0 auto;padding:3px;position:relative}.bomb-batt i{display:block;width:8%;height:100%;background:oklch(.6 .22 25);border-radius:2px}
 .bomb-spin{width:40px;height:40px;border:4px solid oklch(.35 0 0);border-top-color:oklch(.85 0 0);border-radius:50%;margin:0 auto;animation:bomb-spin 1s linear infinite}
 @keyframes bomb-spin{to{transform:rotate(360deg)}}
-.bomb-hero{position:relative;display:flow-root;padding:0;isolation:isolate}
-.bomb-hero-cloud{position:absolute;left:0;top:50%;transform:translateY(-50%);width:190px;height:110px;opacity:.6;pointer-events:none;z-index:-1}
-.bomb-hero-title{position:relative;text-shadow:0 2px 0 var(--background),0 0 18px var(--background)}
+.bomb-hero{position:relative;display:flow-root;padding:0;isolation:isolate;text-align:center;overflow:hidden;max-width:560px;margin:0 auto}
+.bomb-hero-cloud{position:absolute;left:50%;top:0;bottom:0;transform:translateX(-50%);width:auto;height:100%;max-width:100%;opacity:.6;pointer-events:none;z-index:-1}
+.bomb-hero-title{position:relative;text-align:center;text-shadow:0 2px 0 var(--background),0 0 18px var(--background)}
 .bomb-preview{display:flex;align-items:center;gap:10px;margin:10px 0;min-height:36px}
 .bomb-preview small{color:var(--muted-foreground);font-size:12px}
 .mc-cap{transform-box:fill-box;transform-origin:50% 70%;animation:mc-billow 5.5s ease-in-out infinite}
