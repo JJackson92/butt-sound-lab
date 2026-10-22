@@ -3,6 +3,7 @@ import { Crown, Mic, Play, Square, Upload, SkipForward, Trophy, Swords, User } f
 import { Buttocks } from "@/components/Buttocks";
 import { BUTT_STYLES, DEFAULT_CREATION, type ButtStyle } from "@/lib/creations";
 import { MAX_SECONDS, audioDuration, audioUrl, castVote, deviceId, enterRoyale, fetchRoster, pairKey, pickPair, type RoyaleFart } from "@/lib/royale";
+import { playFanfare } from "@/lib/fanfare";
 
 type Tab = "battle" | "enter" | "mine" | "fame";
 const SEEN_KEY = "fart-royale-seen";
@@ -89,8 +90,10 @@ function Battle({ roster, onVoted }: { roster: RoyaleFart[]; onVoted: () => void
     if (!pair || result) return;
     const w = pair[i], l = pair[1 - i];
     const s = remember(w.id, l.id);
+    player?.pause();
     try { const r = await castVote(w.id, l.id); setResult({ winner: w.id, delta: r?.delta ?? 0 }); onVoted(); }
     catch { setResult({ winner: w.id, delta: 0 }); }
+    playFanfare();
     setTimeout(() => next(s), 1600);
   };
 
