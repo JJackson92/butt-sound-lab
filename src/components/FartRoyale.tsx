@@ -85,7 +85,7 @@ function Battle({ roster, onVoted }: { roster: RoyaleFart[]; onVoted: () => void
           <span className="royale-corner">{i ? "BLUE CORNER" : "RED CORNER"}</span>
           <Avatar f={f} bounce={bounce[i]} />
           <h3>{f.name}</h3>
-          {result && <p className="royale-reveal">{rate(f)}% win rate · {result.winner === f.id ? `+${result.delta}` : `−${result.delta}`} pts</p>}
+          {result && <p className="royale-reveal">{rate(result.winner === f.id ? { ...f, wins: f.wins + 1 } : { ...f, losses: f.losses + 1 })}% win rate · {result.winner === f.id ? `+${result.delta}` : `−${result.delta}`} pts</p>}
           <button className="royale-listen" onClick={() => listen(i)}><Play size={16} /> Listen</button>
           <button className="royale-vote" disabled={!!result} onClick={() => vote(i)}><Crown size={16} /> Crown {i ? "B" : "A"}</button>
         </article>
