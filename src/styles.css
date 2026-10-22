@@ -289,3 +289,11 @@ button,a,input,select{touch-action:manipulation;}
 .bomb-rec p{margin:0;font-weight:800}
 .bomb-rec video{width:100%;max-width:360px;border-radius:14px;background:var(--studio)}
 .bomb-rec audio{width:100%;max-width:360px}
+@media(max-width:700px){
+.page-shell:has(.bomb-hero){padding-top:4px}
+.bomb-hero-title{margin:.35rem 0 .4rem;font-size:2rem}
+.bomb-card{padding:14px}
+.bomb-card .bomb-h{margin:10px 0 6px}
+.bomb-card .bomb-steps,.bomb-card .bomb-tip{margin-bottom:6px}
+.bomb-card .select-label{margin-bottom:6px}
+}
