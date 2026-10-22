@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FartBomb } from "@/components/FartBomb";
+import { MushroomCloud } from "@/components/MushroomCloud";
 import { pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/fart-bomb")({
@@ -10,7 +11,10 @@ export const Route = createFileRoute("/fart-bomb")({
 function BombPage() {
   return (
     <main className="page-shell">
-      <h1 className="ensemble-title">Fart Bomb</h1>
+      <header className="bomb-hero">
+        <MushroomCloud className="bomb-hero-cloud" />
+        <h1 className="ensemble-title bomb-hero-title">Fart Bomb</h1>
+      </header>
       <FartBomb />
     </main>
   );
