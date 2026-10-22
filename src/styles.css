@@ -262,7 +262,7 @@ button,a,input,select{touch-action:manipulation;}
 .bomb-chips{display:flex;flex-wrap:wrap;gap:8px}
 .bomb-chips button{border:1px solid var(--border);background:var(--secondary);border-radius:999px;padding:8px 14px;font-size:13px;font-weight:600}
 .bomb-chips button.on{background:var(--primary);color:var(--primary-foreground);border-color:var(--primary)}
-.bomb-go{margin-top:14px}.bomb-go:disabled{opacity:.6}
+.bomb-go{margin-top:14px;justify-content:center;gap:16px}.bomb-go:disabled{opacity:.6}
 .bomb-go>span{display:flex;align-items:center}
 .bomb-go>span>svg{width:54px;height:38px;filter:drop-shadow(0 3px 3px rgba(0,0,0,.35))}
 .bomb-boom{text-align:center}.bomb-emoji{font-size:72px}.bomb-boom h2{font-size:26px;font-weight:900;margin:6px 0}.bomb-boom small{color:var(--muted-foreground)}
