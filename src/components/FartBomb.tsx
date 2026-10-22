@@ -192,6 +192,20 @@ export function FartBomb() {
         <h2>DETONATION SUCCESSFUL</h2>
         <p>{headline}</p>
         <small>Sound used: {played}</small>
+        {recording && (
+          <div className="bomb-rec">
+            <p>🔴 Recording reaction…</p>
+            <button className="bomb-link" onClick={stopRecording}>Stop now</button>
+          </div>
+        )}
+        {clip && (
+          <div className="bomb-rec">
+            <p>🎬 Reaction captured!</p>
+            {clip.video ? <video src={clip.url} controls playsInline /> : <audio src={clip.url} controls />}
+            <a className="bomb-link" href={clip.url} download={`fart-bomb-reaction.${clip.ext}`}>⬇️ Save recording</a>
+          </div>
+        )}
+        {recError && <small role="alert">{recError}</small>}
         <div className="bomb-actions">
           <button className="rip-button bomb-go" onClick={arm}>RE-ARM <span>💣</span></button>
           <button className="bomb-link" onClick={() => setPhase('setup')}>Change settings</button>
@@ -233,6 +247,15 @@ export function FartBomb() {
           <button key={k} className={disguise === k ? 'on' : ''} onClick={() => setDisguise(k)}>{l}</button>
         ))}
       </div>
+      <h3 className="bomb-h">Record the reaction</h3>
+      <div className="bomb-chips">
+        {([['off', '🚫 Off'], ['audio', '🎙️ Audio'], ['video', '🎥 Front camera']] as const).map(([k, l]) => (
+          <button key={k} className={rec === k ? 'on' : ''} onClick={() => setRec(k)}>{l}</button>
+        ))}
+      </div>
+      {rec === 'video' && <p className="bomb-tip">Prop your phone up facing your friend. Recording starts 5s before the fart and ends 10s after.</p>}
+      {rec === 'audio' && <p className="bomb-tip">Recording starts 5s before the fart and ends 10s after.</p>}
+      {recError && <small role="alert">{recError}</small>}
       <p className="bomb-tip">Turn your volume all the way up. Tap the disguise screen 3 times fast to cancel.</p>
       <button className="rip-button bomb-go" onClick={arm} disabled={!manifest}>{manifest ? 'ARM THE BOMB' : 'LOADING…'} <span>💣</span></button>
     </section>
