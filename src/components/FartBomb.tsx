@@ -141,11 +141,19 @@ export function FartBomb() {
       renderCreation(fav).then((b) => { buffer.current = b; }).catch(() => {});
       setPlayed(fav.name);
     } else return;
+    setRecError('');
+    if (clip) { URL.revokeObjectURL(clip.url); setClip(null); }
+    if (rec !== 'off') {
+      try {
+        stream.current = await navigator.mediaDevices.getUserMedia(rec === 'video' ? { audio: true, video: { facingMode: 'user' } } : { audio: true });
+      } catch { setRecError('Camera or microphone access was blocked, so this prank won\u2019t be recorded.'); }
+    }
     setLeft(secs); setPhase('armed');
     const end = Date.now() + secs * 1000;
     timer.current = window.setInterval(() => {
       const r = Math.max(0, Math.ceil((end - Date.now()) / 1000));
       setLeft(r);
+      if (r <= 5) startRecording();
       if (r <= 0) {
         if (timer.current !== null) clearInterval(timer.current);
         // Keep the disguise up until the fart has finished playing.
@@ -158,7 +166,7 @@ export function FartBomb() {
     }, 200);
   };
 
-  const disarm = () => { if (timer.current) { clearInterval(timer.current); clearTimeout(timer.current); } if (audio.current) audio.current.onended = null; timer.current = null; audio.current?.pause(); setPhase('setup'); };
+  const disarm = () => { if (timer.current) { clearInterval(timer.current); clearTimeout(timer.current); } if (audio.current) audio.current.onended = null; timer.current = null; audio.current?.pause(); if (recorder.current) { recorder.current.onstop = null; recorder.current.stop(); recorder.current = null; } if (stopTimer.current) clearTimeout(stopTimer.current); setRecording(false); releaseStream(); setPhase('setup'); };
 
   // Triple-tap the disguise screen to quietly cancel.
   const stealthTap = () => {
