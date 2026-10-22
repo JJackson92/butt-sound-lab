@@ -207,7 +207,7 @@ export function FartBomb() {
         )}
         {recError && <small role="alert">{recError}</small>}
         <div className="bomb-actions">
-          <button className="rip-button bomb-go" onClick={arm}>RE-ARM <span>🎈</span></button>
+          <button className="rip-button bomb-go" onClick={arm}>RE-ARM <span><InflatedCushionIcon /></span></button>
           <button className="bomb-link" onClick={() => setPhase('setup')}>Change settings</button>
         </div>
       </section>
@@ -257,7 +257,7 @@ export function FartBomb() {
       {rec === 'audio' && <p className="bomb-tip">Recording starts 5s before the fart and ends 10s after.</p>}
       {recError && <small role="alert">{recError}</small>}
       <p className="bomb-tip">Turn your volume all the way up. Tap the disguise screen 3 times fast to cancel.</p>
-      <button className="rip-button bomb-go" onClick={arm} disabled={!manifest}>{manifest ? 'ARM THE CUSHION' : 'LOADING…'} <span>🎈</span></button>
+      <button className="rip-button bomb-go" onClick={arm} disabled={!manifest}>{manifest ? 'ARM THE CUSHION' : 'LOADING…'} <span><InflatedCushionIcon /></span></button>
     </section>
   );
 }
