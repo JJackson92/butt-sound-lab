@@ -2,9 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 import { loadManifest, type FartAudioEntry } from '@/lib/fart-audio';
 import { FART_PRESETS } from '@/lib/fart-matching';
 import { readSounds } from '@/lib/guest-sounds';
-import { renderCreation, playRendered } from '@/lib/audio-render';
+import { renderCreation, playRendered, stopRendered } from '@/lib/audio-render';
 import { getAudioContext } from '@/lib/fart-reverb';
 import type { Creation } from '@/lib/creations';
+import { Button } from '@/components/ui/button';
+import { Play, Square } from 'lucide-react';
 
 const TIMES = [10, 30, 60, 120];
 type Disguise = 'black' | 'battery' | 'update';
@@ -31,8 +33,13 @@ export function FartBomb() {
   const taps = useRef<number[]>([]);
   const buffer = useRef<AudioBuffer | null>(null);
   const [favs, setFavs] = useState<Creation[]>([]);
+  const previewAudio = useRef<HTMLAudioElement | null>(null);
+  const previewRun = useRef(0);
+  const customPreview = useRef(false);
+  const [previewing, setPreviewing] = useState(false);
+  const [previewError, setPreviewError] = useState('');
 
-  useEffect(() => { loadManifest().then(setManifest).catch(() => {}); setFavs(readSounds()); return () => { if (timer.current) clearInterval(timer.current); }; }, []);
+  useEffect(() => { loadManifest().then(setManifest).catch(() => {}); setFavs(readSounds()); return () => { if (timer.current) clearInterval(timer.current); previewRun.current++; previewAudio.current?.pause(); if (customPreview.current) stopRendered(); }; }, []);
 
   const pickId = () => {
     if (sound !== 'random') return sound;
@@ -46,7 +53,45 @@ export function FartBomb() {
     setPhase((p) => (p === 'armed' ? 'boom' : p));
   };
 
+  const stopPreview = () => {
+    previewRun.current++;
+    previewAudio.current?.pause();
+    previewAudio.current = null;
+    if (customPreview.current) { stopRendered(); customPreview.current = false; }
+    setPreviewing(false);
+  };
+
+  useEffect(() => { stopPreview(); setPreviewError(''); }, [sound]);
+
+  const preview = async () => {
+    if (previewing) { stopPreview(); return; }
+    stopPreview();
+    const run = previewRun.current;
+    const fav = sound.startsWith('fav:') ? favs[Number(sound.slice(4))] : null;
+    const id = fav ? fav.presetId : pickId();
+    const url = id && (!fav || fav.source === 'recording') ? manifest?.[id]?.preview : undefined;
+    setPreviewError('');
+    setPreviewing(true);
+    const ended = () => { if (previewRun.current === run) { customPreview.current = false; setPreviewing(false); } };
+    try {
+      if (url) {
+        const a = new Audio(url);
+        previewAudio.current = a;
+        a.onended = ended;
+        a.onerror = () => { ended(); setPreviewError('Sound could not play. Try again.'); };
+        await a.play();
+      } else if (fav) {
+        getAudioContext();
+        const b = await renderCreation(fav);
+        if (previewRun.current !== run) return;
+        customPreview.current = true;
+        playRendered(b, () => {}, ended);
+      } else { ended(); setPreviewError('Sound is not available yet.'); }
+    } catch { if (previewRun.current === run) { ended(); setPreviewError('Sound could not play. Try again.'); } }
+  };
+
   const arm = () => {
+    stopPreview();
     const fav = sound.startsWith('fav:') ? favs[Number(sound.slice(4))] : null;
     const id = fav ? fav.presetId : pickId();
     const url = id && (!fav || fav.source === 'recording') ? manifest?.[id]?.preview : undefined;
@@ -68,7 +113,7 @@ export function FartBomb() {
       const r = Math.max(0, Math.ceil((end - Date.now()) / 1000));
       setLeft(r);
       if (r <= 0) {
-        clearInterval(timer.current!);
+        if (timer.current !== null) clearInterval(timer.current);
         // Keep the disguise up until the fart has finished playing.
         timer.current = window.setTimeout(finish, 20000);
         const s = audio.current;
@@ -130,6 +175,12 @@ export function FartBomb() {
           {favs.map((f, i) => <option key={i} value={`fav:${i}`}>💾 {f.name}</option>)}
         </select>
       </label>
+      <div className="bomb-preview">
+        <Button variant="outline" onClick={preview} disabled={!manifest} aria-label={previewing ? 'Stop sound preview' : 'Preview sound'}>
+          {previewing ? <Square /> : <Play />} {previewing ? 'Stop preview' : 'Preview sound'}
+        </Button>
+        {previewError && <small role="alert">{previewError}</small>}
+      </div>
       <h3 className="bomb-h">Timer</h3>
       <div className="bomb-chips">
         {TIMES.map((t) => <button key={t} className={secs === t ? 'on' : ''} onClick={() => setSecs(t)}>{t < 60 ? `${t}s` : `${t / 60} min`}</button>)}
