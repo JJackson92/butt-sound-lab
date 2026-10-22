@@ -8,3 +8,4 @@
 - Keep the Flappy Cheeks leaderboard anonymous (name + country + score only, no accounts); the public.flappy_scores table allows anon SELECT/INSERT with RLS checks on score and field lengths.
 - Keep Fart Royale anonymous (localStorage device id, no accounts); Elo and win/loss changes happen only through the royale_vote database function so clients can't edit scores, and uploads live in the private royale-audio bucket served by signed links.
 - Keep non-fart game flourishes (like the Royale win fanfare) in browser-safe lib modules that schedule onto an injected BaseAudioContext with a plain note table; this keeps them testable offline and free of audio downloads.
+- Sign-in is optional (Google + email link) and only syncs My Sounds via public.saved_sounds; localStorage stays the UI's source of truth so every feature works signed out.
