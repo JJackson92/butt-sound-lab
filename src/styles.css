@@ -323,7 +323,7 @@ button,a,input,select{touch-action:manipulation;}
 .royale-fighter.won{transform:scale(1.04);box-shadow:0 0 0 4px var(--neon)}.royale-fighter.lost{opacity:.55}
 .royale-fighter h3{margin:0;text-align:center;font-weight:800;font-size:1rem}
 .royale-corner{font-size:10px;letter-spacing:.1em;font-weight:800;opacity:.7}
-.royale-avatar{width:100%;max-width:150px;aspect-ratio:1;overflow:hidden;pointer-events:none;position:relative}.royale-avatar{display:grid;place-items:center}.royale-avatar>*{flex:none;transform:scale(.36)}
+.royale-avatar{width:100%;max-width:150px;aspect-ratio:1;overflow:hidden;pointer-events:none;position:relative}.royale-avatar{display:grid;place-items:center}.royale-avatar>*{position:absolute!important;left:50%;top:50%;transform:translate(-50%,-50%) scale(.36)}
 .royale-reveal{margin:0;font-size:12px;font-weight:700}
 .royale-listen,.royale-vote,.royale-skip,.royale-play{display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:12px;font-weight:800;padding:9px 12px;border:1px solid var(--border);background:var(--muted);color:var(--foreground)}
 .royale-vote{background:var(--primary);color:var(--primary-foreground);border-color:var(--primary);width:100%}
