@@ -11,6 +11,7 @@ import {
 
 import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/SiteHeader";
+import { ResearchModal } from "@/components/ResearchModal";
 
 function NotFoundComponent() {
   return (
