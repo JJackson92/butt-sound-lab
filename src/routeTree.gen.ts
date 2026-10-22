@@ -16,6 +16,7 @@ import { Route as FlappyCheeksRouteImport } from './routes/flappy-cheeks'
 import { Route as LabRouteImport } from './routes/lab'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as MySoundsRouteImport } from './routes/my-sounds'
+import { Route as WhoopeeCushionRouteImport } from './routes/whoopee-cushion'
 import { Route as FartCreationRouteImport } from './routes/fart.$creation'
 
 const IndexRoute = IndexRouteImport.update({
@@ -53,6 +54,11 @@ const MySoundsRoute = MySoundsRouteImport.update({
   path: '/my-sounds',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WhoopeeCushionRoute = WhoopeeCushionRouteImport.update({
+  id: '/whoopee-cushion',
+  path: '/whoopee-cushion',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FartCreationRoute = FartCreationRouteImport.update({
   id: '/fart/$creation',
   path: '/fart/$creation',
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/lab': typeof LabRoute
   '/library': typeof LibraryRoute
   '/my-sounds': typeof MySoundsRoute
+  '/whoopee-cushion': typeof WhoopeeCushionRoute
   '/fart/$creation': typeof FartCreationRoute
 }
 export interface FileRoutesByTo {
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/lab': typeof LabRoute
   '/library': typeof LibraryRoute
   '/my-sounds': typeof MySoundsRoute
+  '/whoopee-cushion': typeof WhoopeeCushionRoute
   '/fart/$creation': typeof FartCreationRoute
 }
 export interface FileRoutesById {
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/lab': typeof LabRoute
   '/library': typeof LibraryRoute
   '/my-sounds': typeof MySoundsRoute
+  '/whoopee-cushion': typeof WhoopeeCushionRoute
   '/fart/$creation': typeof FartCreationRoute
 }
 export interface FileRouteTypes {
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/lab'
     | '/library'
     | '/my-sounds'
+    | '/whoopee-cushion'
     | '/fart/$creation'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/lab'
     | '/library'
     | '/my-sounds'
+    | '/whoopee-cushion'
     | '/fart/$creation'
   id:
     | '__root__'
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
     | '/lab'
     | '/library'
     | '/my-sounds'
+    | '/whoopee-cushion'
     | '/fart/$creation'
   fileRoutesById: FileRoutesById
 }
@@ -131,6 +143,7 @@ export interface RootRouteChildren {
   LabRoute: typeof LabRoute
   LibraryRoute: typeof LibraryRoute
   MySoundsRoute: typeof MySoundsRoute
+  WhoopeeCushionRoute: typeof WhoopeeCushionRoute
   FartCreationRoute: typeof FartCreationRoute
 }
 
@@ -185,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MySoundsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/whoopee-cushion': {
+      id: '/whoopee-cushion'
+      path: '/whoopee-cushion'
+      fullPath: '/whoopee-cushion'
+      preLoaderRoute: typeof WhoopeeCushionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/fart/$creation': {
       id: '/fart/$creation'
       path: '/fart/$creation'
@@ -203,6 +223,7 @@ const rootRouteChildren: RootRouteChildren = {
   LabRoute: LabRoute,
   LibraryRoute: LibraryRoute,
   MySoundsRoute: MySoundsRoute,
+  WhoopeeCushionRoute: WhoopeeCushionRoute,
   FartCreationRoute: FartCreationRoute,
 }
 export const routeTree = rootRouteImport
