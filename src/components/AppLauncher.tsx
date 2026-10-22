@@ -34,7 +34,7 @@ export function AppLauncher() {
     { to: '/ensemble', name: 'Wind Ensemble', tag: 'Compose songs', Icon: Music, tone: 'tile-ensemble' },
     { to: '/library', name: 'Sound Library', tag: `${FART_PRESETS.length} recordings`, Icon: Library, tone: 'tile-library' },
     { to: '/my-sounds', name: 'My Sounds', tag: 'Your favorites', Icon: Heart, tone: 'tile-mine' },
-    { to: '/fart-bomb', name: 'Fart Bomb', tag: 'Prank a friend', Icon: Bomb, tone: 'tile-bomb' },
+    { to: '/whoopee-cushion', name: 'Whoopee Cushion', tag: 'Prank a friend', Icon: Bomb, tone: 'tile-bomb' },
   ] as const;
   return (
     <main className="launcher">
