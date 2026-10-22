@@ -1,19 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FartBomb } from "@/components/FartBomb";
-import { MushroomCloud } from "@/components/MushroomCloud";
+import { WhoopeeCushionArt } from "@/components/WhoopeeCushionArt";
 import { pageHead } from "@/lib/seo";
 
-export const Route = createFileRoute("/fart-bomb")({
-  head: () => pageHead("Fart Bomb — Timed Fart Prank | ButtSounds.com", "Pick a real fart sound, set a timer, hide your phone near a friend and walk away. Disguise screens keep the prank secret.", "/fart-bomb"),
-  component: BombPage,
+export const Route = createFileRoute("/whoopee-cushion")({
+  head: () => pageHead("Whoopee Cushion — Timed Fart Prank | ButtSounds.com", "Pick a real fart sound, set a timer, hide your phone near a friend and walk away. Disguise screens keep the prank secret.", "/whoopee-cushion"),
+  component: CushionPage,
 });
 
-function BombPage() {
+function CushionPage() {
   return (
     <main className="page-shell">
       <header className="bomb-hero">
-        <MushroomCloud className="bomb-hero-cloud" />
-        <h1 className="ensemble-title bomb-hero-title">Fart Bomb</h1>
+        <WhoopeeCushionArt className="bomb-hero-cloud" />
+        <h1 className="ensemble-title bomb-hero-title">Whoopee Cushion</h1>
       </header>
       <FartBomb />
     </main>
