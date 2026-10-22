@@ -306,3 +306,41 @@ button,a,input,select{touch-action:manipulation;}
 .bomb-card .select-label select{padding-top:6px;padding-bottom:6px}
 .bomb-card .bomb-steps{font-size:12px}
 }
+
+/* Fart Royale */
+.tile-royale{background:color-mix(in oklab,var(--accent) 24%,var(--card));color:var(--foreground)}
+.royale{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.royale-champ{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:16px;border:2px solid var(--accent);background:color-mix(in oklab,var(--accent) 14%,var(--card));color:var(--foreground);text-align:left}
+.royale-champ span{flex:1;display:flex;flex-direction:column}.royale-champ small{font-size:10px;letter-spacing:.08em;opacity:.75}.royale-champ strong{font-size:1.1rem}.royale-champ em{font-style:normal;font-size:12px;opacity:.8}
+.royale-crown{color:var(--accent);animation:royale-spin 3s ease-in-out infinite;display:inline-block}
+@keyframes royale-spin{0%,100%{transform:rotate(-8deg) scale(1)}50%{transform:rotate(8deg) scale(1.12)}}
+.royale-tabs,.royale-mode,.royale-styles{display:flex;gap:6px;flex-wrap:wrap}
+.royale-tabs button,.royale-mode button,.royale-styles button{display:inline-flex;align-items:center;gap:5px;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--foreground);font-size:13px;font-weight:700}
+.royale-tabs button.on,.royale-mode button.on,.royale-styles button.on{background:var(--primary);color:var(--primary-foreground);border-color:var(--primary)}
+.royale-duel{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.royale-fighter{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 10px;border-radius:18px;background:var(--card);border:3px solid var(--border);transition:transform .3s var(--ease-fart,ease),opacity .3s}
+.royale-fighter.red{border-color:color-mix(in oklab,var(--destructive) 60%,var(--border))}.royale-fighter.blue{border-color:color-mix(in oklab,var(--cyan) 60%,var(--border))}
+.royale-fighter.won{transform:scale(1.04);box-shadow:0 0 0 4px var(--neon)}.royale-fighter.lost{opacity:.55}
+.royale-fighter h3{margin:0;text-align:center;font-weight:800;font-size:1rem}
+.royale-corner{font-size:10px;letter-spacing:.1em;font-weight:800;opacity:.7}
+.royale-avatar{width:100%;max-width:150px;aspect-ratio:1}.royale-avatar>*{width:100%;height:100%}
+.royale-reveal{margin:0;font-size:12px;font-weight:700}
+.royale-listen,.royale-vote,.royale-skip,.royale-play{display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:12px;font-weight:800;padding:9px 12px;border:1px solid var(--border);background:var(--muted);color:var(--foreground)}
+.royale-vote{background:var(--primary);color:var(--primary-foreground);border-color:var(--primary);width:100%}
+.royale-listen{width:100%}.royale-vote:disabled,.royale-skip:disabled{opacity:.5}
+.royale-vs{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);background:var(--foreground);color:var(--background);font-weight:900;padding:6px 10px;border-radius:999px;font-size:14px}
+.royale-skip{grid-column:1/-1;justify-self:center}
+.royale-empty{text-align:center;padding:30px 10px;opacity:.85;display:flex;flex-direction:column;align-items:center;gap:10px}
+.royale-error{color:var(--destructive);font-weight:700;font-size:13px;margin:0}
+.royale-enter{display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:18px;background:var(--card);border:1px solid var(--border)}
+.royale-enter input:not([type=file]){width:100%;margin-top:6px;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--background);color:var(--foreground)}
+.royale-mic,.royale-drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:26px;border-radius:18px;border:2px dashed var(--border);background:var(--muted);color:var(--foreground);font-weight:700;cursor:pointer;text-align:center}
+.royale-mic.live{border-style:solid;border-color:var(--destructive);animation:royale-pulse 1s infinite}
+@keyframes royale-pulse{50%{box-shadow:0 0 0 10px color-mix(in oklab,var(--destructive) 25%,transparent)}}
+.royale-preview{width:100%}.royale-submit{justify-content:center}.royale-submit:disabled{opacity:.5}
+.royale-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.royale-list li{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:var(--card);border:1px solid var(--border)}
+.royale-list li div{flex:1;display:flex;flex-direction:column;min-width:0}.royale-list small{opacity:.75;font-size:12px}
+.royale-list li.top1{border-color:var(--accent);background:color-mix(in oklab,var(--accent) 12%,var(--card))}
+.royale-rank{width:24px;text-align:center;font-weight:900}.royale-elo{font-weight:900}.royale-play{padding:7px}
+@media(prefers-reduced-motion:reduce){.royale-crown,.royale-mic.live{animation:none}}
