@@ -11,6 +11,7 @@ import {
 
 import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/SiteHeader";
+import { ResearchModal } from "@/components/ResearchModal";
 
 function NotFoundComponent() {
   return (
@@ -120,7 +121,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <SiteHeader />
       <main className="site-content"><Outlet /></main>
-      <footer className="site-footer"><strong>BUTTSOUNDS.COM 💨</strong><span>Advancing absolutely nothing since today.</span><span>FICTIONAL SCIENCE. REAL SOUNDS.</span></footer>
+      <footer className="site-footer"><strong>BUTTSOUNDS.COM 💨</strong><ResearchModal /><span>Advancing absolutely nothing since today.</span><span>FICTIONAL SCIENCE. REAL SOUNDS.</span></footer>
     </QueryClientProvider>
   );
 }
