@@ -10,3 +10,4 @@
 - [x] Fit the Fart Bomb cloud behind its original title position and verify sound preview.
 - [x] Whoopee Cushion: replace the balloon in ARM THE CUSHION with an inflated cushion icon.
 - [x] Whoopee Cushion: center "ARM THE CUSHION" in the green button.
+- [x] Home screen: Whoopee Cushion tile now shows an inflated cushion picture.

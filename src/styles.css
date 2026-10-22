@@ -254,6 +254,7 @@ button,a,input,select{touch-action:manipulation;}
 .mini-rip{flex-shrink:0;background:var(--neon);color:var(--primary-foreground);height:48px;font-size:18px;font-weight:900;padding:0 16px;border-radius:6px;}
 }
 .tile-bomb{background:color-mix(in oklab,var(--destructive) 20%,var(--card));color:var(--foreground)}
+.tile-cushion{width:44px;height:30px;display:block;filter:drop-shadow(0 2px 2px rgba(0,0,0,.2))}
 .app-grid>.app-card:nth-child(5){grid-column:span 2}
 @media (min-width:760px){.app-grid{grid-template-columns:repeat(5,1fr)}.app-grid>.app-card:nth-child(5){grid-column:auto}}
 .bomb-card{max-width:560px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:var(--card-shadow)}
