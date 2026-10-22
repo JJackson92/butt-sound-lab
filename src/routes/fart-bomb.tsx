@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FartBomb } from "@/components/FartBomb";
+import { MushroomCloud } from "@/components/MushroomCloud";
 import { pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/fart-bomb")({
