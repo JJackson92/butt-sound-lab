@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
-import { FlaskConical, Gamepad2, Music, Library, Heart, ArrowRight, Crown } from 'lucide-react';
+import { FlaskConical, Gamepad2, Music, Library, Heart, ArrowRight, Swords } from 'lucide-react';
 import { InflatedCushionIcon } from '@/components/WhoopeeCushionArt';
 import { fetchTopScores } from '@/lib/leaderboard';
 import { FART_PRESETS } from '@/lib/fart-matching';
@@ -33,10 +33,10 @@ export function AppLauncher() {
   const apps = [
     { to: '/flappy-cheeks', name: 'Flappy Cheeks', tag: best !== null ? `Record: ${best}` : 'Arcade game', tile: <Gamepad2 size={26} strokeWidth={2.2} />, tone: 'tile-flappy' },
     { to: '/ensemble', name: 'Wind Ensemble', tag: 'Compose songs', tile: <Music size={26} strokeWidth={2.2} />, tone: 'tile-ensemble' },
+    { to: '/whoopee-cushion', name: 'Whoopee', tag: 'Prank a friend', tile: <InflatedCushionIcon className="tile-cushion" />, tone: 'tile-bomb' },
+    { to: '/royale', name: 'Fart Royale', tag: 'Battle for the crown', tile: <Swords size={26} strokeWidth={2.2} />, tone: 'tile-royale' },
     { to: '/library', name: 'Sound Library', tag: `${FART_PRESETS.length} recordings`, tile: <Library size={26} strokeWidth={2.2} />, tone: 'tile-library' },
     { to: '/my-sounds', name: 'My Sounds', tag: 'Your favorites', tile: <Heart size={26} strokeWidth={2.2} />, tone: 'tile-mine' },
-    { to: '/whoopee-cushion', name: 'Whoopee Cushion', tag: 'Prank a friend', tile: <InflatedCushionIcon className="tile-cushion" />, tone: 'tile-bomb' },
-    { to: '/royale', name: 'Fart Royale', tag: 'Battle for the crown', tile: <Crown size={26} strokeWidth={2.2} />, tone: 'tile-royale' },
   ] as const;
   return (
     <main className="launcher">
