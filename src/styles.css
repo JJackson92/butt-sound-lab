@@ -297,3 +297,9 @@ button,a,input,select{touch-action:manipulation;}
 .bomb-card .bomb-steps,.bomb-card .bomb-tip{margin-bottom:6px}
 .bomb-card .select-label{margin-bottom:6px}
 }
+@media(max-width:700px){
+.bomb-card .bomb-chips{gap:6px}
+.bomb-card .bomb-chips button{padding:6px 10px;font-size:12px}
+.bomb-card .select-label select{padding-top:6px;padding-bottom:6px}
+.bomb-card .bomb-steps{font-size:12px}
+}
