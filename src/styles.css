@@ -255,6 +255,23 @@ button,a,input,select{touch-action:manipulation;}
 .tile-bomb{background:color-mix(in oklab,var(--destructive) 20%,var(--card));color:var(--foreground)}
 .tile-cushion{width:32px;height:22px;display:block;filter:drop-shadow(0 2px 2px rgba(0,0,0,.2))}
 @media (min-width:760px){.app-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){
+.site-content:has(.launcher){padding-top:8px}
+.launcher{padding:6px 14px 20px;gap:10px}
+.launcher-hero{margin-bottom:0}
+.launcher-hero .eyebrow{font-size:1.75rem}
+.launcher-hero h1{margin:.25rem 0 0}
+.launcher-sub{margin:.25rem 0 0}
+.launch-feature{padding:.75rem .9rem;gap:.75rem}
+.launch-feature-text strong{font-size:1.25rem}
+.launch-feature-text small{font-size:.78rem}
+.app-grid{gap:.6rem}
+.app-card{padding:.7rem;gap:.15rem}
+.app-tile{margin-bottom:.35rem}
+.quote-card{margin-top:.25rem;padding:.8rem .9rem}
+.quote-body{margin-top:.35rem}
+.quote-body blockquote{font-size:1rem}
+}
 .bomb-card{max-width:560px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:var(--card-shadow)}
 .bomb-steps,.bomb-tip{font-size:13px;color:var(--muted-foreground);margin-bottom:8px}
 .bomb-h{font-size:14px;font-weight:700;margin:16px 0 8px}
