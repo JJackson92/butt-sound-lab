@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Crown, Mic, Play, Square, Upload, SkipForward, Trophy, Swords, User } from "lucide-react";
 import { Buttocks } from "@/components/Buttocks";
 import { BUTT_STYLES, DEFAULT_CREATION, type ButtStyle } from "@/lib/creations";
@@ -17,6 +17,24 @@ const rate = (f: RoyaleFart) => (f.wins + f.losses ? Math.round((100 * f.wins) /
 
 function Avatar({ f, bounce }: { f: RoyaleFart; bounce: number }) {
   return <div className="royale-avatar"><Buttocks params={DEFAULT_CREATION.params} jiggle={bounce} stink={bounce} style={f.butt_style as ButtStyle} /></div>;
+}
+
+const FW_COLORS = ["var(--neon)", "var(--coral)", "var(--cyan)", "#ffd166"];
+function Fireworks() {
+  const bursts = [0, 160, 320];
+  return (
+    <div className="royale-fireworks" aria-hidden>
+      {bursts.map((d, b) => (
+        <span key={b} className="fw-burst" style={{ top: `${30 + b * 12}%` }}>
+          {Array.from({ length: 10 }, (_, k) => {
+            const a = ((k * 36 + b * 14) * Math.PI) / 180;
+            const dist = 48 + ((k * 17 + b * 9) % 26);
+            return <i key={k} className="fw-spark" style={{ background: FW_COLORS[(k + b) % FW_COLORS.length], ["--dx" as string]: `${Math.cos(a) * dist}px`, ["--dy" as string]: `${Math.sin(a) * dist}px`, animationDelay: `${d}ms` } as CSSProperties} />;
+          })}
+        </span>
+      ))}
+    </div>
+  );
 }
 
 export function FartRoyale() {
@@ -82,6 +100,7 @@ function Battle({ roster, onVoted }: { roster: RoyaleFart[]; onVoted: () => void
     <section className="royale-duel">
       {pair.map((f, i) => (
         <article key={f.id} className={`royale-fighter ${i ? "blue" : "red"} ${result ? (result.winner === f.id ? "won" : "lost") : ""}`}>
+          {result?.winner === f.id && <Fireworks />}
           <span className="royale-corner">{i ? "BLUE CORNER" : "RED CORNER"}</span>
           <Avatar f={f} bounce={bounce[i]} />
           <h3>{f.name}</h3>
