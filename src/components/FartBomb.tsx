@@ -83,6 +83,8 @@ export function FartBomb() {
     if (timer.current) { clearTimeout(timer.current); timer.current = null; }
     setHeadline(AFTERMATH[Math.floor(Math.random() * AFTERMATH.length)]);
     setPhase((p) => (p === 'armed' ? 'boom' : p));
+    // Keep recording 10 more seconds to catch the reaction.
+    if (recorder.current) stopTimer.current = window.setTimeout(stopRecording, 10000);
   };
 
   const stopPreview = () => {
