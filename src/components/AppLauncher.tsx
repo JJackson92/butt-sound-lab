@@ -4,7 +4,6 @@ import { FlaskConical, Gamepad2, Music, Library, Heart, ArrowRight, Swords } fro
 import { InflatedCushionIcon } from '@/components/WhoopeeCushionArt';
 import { fetchTopScores } from '@/lib/leaderboard';
 import { FART_PRESETS } from '@/lib/fart-matching';
-import { ResearchModal } from '@/components/ResearchModal';
 
 const QUOTES: [string, string][] = [
   ['I toot, therefore I am.', 'René Descartes'],
@@ -69,7 +68,6 @@ export function AppLauncher() {
           <figcaption>— {QUOTES[qi][1]}</figcaption>
         </button>
       </figure>
-      <div className="launcher-fund"><ResearchModal /></div>
     </main>
   );
 }
