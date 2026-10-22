@@ -8,5 +8,5 @@
 - [x] Flappy Cheeks global leaderboard: name + country submission on game over, top-20 board, stored in Lovable Cloud.
 - [x] Removed ten rejected recordings from the archive; library now holds 190 sounds.
 - [x] Fit the Fart Bomb cloud behind its original title position and verify sound preview.
-- [ ] Whoopee Cushion: replace the balloon in ARM THE CUSHION with an inflated cushion icon.
-- [ ] Whoopee Cushion: center "ARM THE CUSHION" in the green button.
+- [x] Whoopee Cushion: replace the balloon in ARM THE CUSHION with an inflated cushion icon.
+- [x] Whoopee Cushion: center "ARM THE CUSHION" in the green button.
