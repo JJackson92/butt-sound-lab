@@ -12,12 +12,12 @@ export function saveSound(c: Creation) {
   const valid = validateCreation(c); if (!valid) throw new Error('Give your masterpiece a valid name first.');
   const key = encodeCreation(valid);
   writeSounds([valid, ...readSounds().filter(s => encodeCreation(s) !== key)]);
-  void currentUserId().then(uid => uid && supabase.from('saved_sounds').upsert({ user_id: uid, sound_key: key, data: valid as never }));
+  void currentUserId().then(async uid => { if (uid) await supabase.from('saved_sounds').upsert({ user_id: uid, sound_key: key, data: valid as never }); });
 }
 export function removeSound(c: Creation) {
   const key = encodeCreation(c);
   writeSounds(readSounds().filter(s => encodeCreation(s) !== key));
-  void currentUserId().then(uid => uid && supabase.from('saved_sounds').delete().eq('user_id', uid).eq('sound_key', key));
+  void currentUserId().then(async uid => { if (uid) await supabase.from('saved_sounds').delete().eq('user_id', uid).eq('sound_key', key); });
 }
 
 /** Merge local and cloud libraries after sign-in: upload local-only sounds, pull cloud-only ones. */
