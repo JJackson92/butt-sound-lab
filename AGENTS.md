@@ -5,3 +5,4 @@
 - Render custom sounds into a seeded browser audio buffer shared by playback and WAV export; this makes replay and downloads identical.
 - Resolve matched playback to an explicit source before sharing and exporting; original downloads are unmodified licensed MP3s, never mislabeled synthesized WAVs.
 - Store guest creations locally and session lab settings separately; this preserves anonymous favorites without introducing community data.- Keep the Flappy Cheeks leaderboard anonymous (name + country + score only, no accounts); the public.flappy_scores table allows anon SELECT/INSERT with RLS checks on score and field lengths.
+- Keep Fart Royale anonymous (localStorage device id, no accounts); Elo and win/loss changes happen only through the royale_vote database function so clients can't edit scores, and uploads live in the private royale-audio bucket served by signed links.
