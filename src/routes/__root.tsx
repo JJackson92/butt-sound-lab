@@ -121,7 +121,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <SiteHeader />
       <main className="site-content"><Outlet /></main>
-      <footer className="site-footer"><strong>BUTTSOUNDS.COM 💨</strong><ResearchModal /><span>Advancing absolutely nothing since today.</span><span>FICTIONAL SCIENCE. REAL SOUNDS.</span></footer>
+      <footer className="site-footer"><strong>BUTTSOUNDS.COM 💨</strong><ResearchModal /><span className="footer-cause">10% of all donations go to <strong>The Anal Cancer Foundation</strong> (seriously)</span><span>Advancing absolutely nothing since today.</span><span>FICTIONAL SCIENCE. REAL SOUNDS.</span></footer>
     </QueryClientProvider>
   );
 }
