@@ -44,6 +44,7 @@ export function ResearchModal({ onOpen }: { onOpen?: () => void }) {
         <Button asChild size="lg" className="research-cta">
           <a href={KOFI_URL} target="_blank" rel="noopener noreferrer"><Heart size={17} /> Support ${amount}{monthly ? '/mo' : ''} on Ko-fi</a>
         </Button>
+        <p className="research-cause">10% of all donations go to <strong>The Anal Cancer Foundation</strong> (seriously)</p>
         <p className="research-note">On Ko-fi, enter ${amount}{monthly ? ' and tick "Make this monthly"' : ''}.</p>
         <Button variant="ghost" size="sm" onClick={() => setStamped(true)}><Stamp size={15} /> Print tax deduction certificate</Button>
         {stamped && <div className="research-stamp">OFFICIALLY DENIED<br /><small>Not tax deductible. Deeply appreciated.</small></div>}
