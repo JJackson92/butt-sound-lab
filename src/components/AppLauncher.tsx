@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
-import { FlaskConical, Gamepad2, Music, Library, Heart, ArrowRight, PartyPopper } from 'lucide-react';
+import { FlaskConical, Gamepad2, Music, Library, Heart, ArrowRight } from 'lucide-react';
+import { InflatedCushionIcon } from '@/components/WhoopeeCushionArt';
 import { fetchTopScores } from '@/lib/leaderboard';
 import { FART_PRESETS } from '@/lib/fart-matching';
 import { ResearchModal } from '@/components/ResearchModal';
@@ -30,11 +31,11 @@ export function AppLauncher() {
     fetchTopScores('score', 1).then((r) => setBest(r[0]?.score ?? null)).catch(() => {});
   }, []);
   const apps = [
-    { to: '/flappy-cheeks', name: 'Flappy Cheeks', tag: best !== null ? `Record: ${best}` : 'Arcade game', Icon: Gamepad2, tone: 'tile-flappy' },
-    { to: '/ensemble', name: 'Wind Ensemble', tag: 'Compose songs', Icon: Music, tone: 'tile-ensemble' },
-    { to: '/library', name: 'Sound Library', tag: `${FART_PRESETS.length} recordings`, Icon: Library, tone: 'tile-library' },
-    { to: '/my-sounds', name: 'My Sounds', tag: 'Your favorites', Icon: Heart, tone: 'tile-mine' },
-    { to: '/whoopee-cushion', name: 'Whoopee Cushion', tag: 'Prank a friend', Icon: PartyPopper, tone: 'tile-bomb' },
+    { to: '/flappy-cheeks', name: 'Flappy Cheeks', tag: best !== null ? `Record: ${best}` : 'Arcade game', tile: <Gamepad2 size={26} strokeWidth={2.2} />, tone: 'tile-flappy' },
+    { to: '/ensemble', name: 'Wind Ensemble', tag: 'Compose songs', tile: <Music size={26} strokeWidth={2.2} />, tone: 'tile-ensemble' },
+    { to: '/library', name: 'Sound Library', tag: `${FART_PRESETS.length} recordings`, tile: <Library size={26} strokeWidth={2.2} />, tone: 'tile-library' },
+    { to: '/my-sounds', name: 'My Sounds', tag: 'Your favorites', tile: <Heart size={26} strokeWidth={2.2} />, tone: 'tile-mine' },
+    { to: '/whoopee-cushion', name: 'Whoopee Cushion', tag: 'Prank a friend', tile: <InflatedCushionIcon className="tile-cushion" />, tone: 'tile-bomb' },
   ] as const;
   return (
     <main className="launcher">
@@ -52,9 +53,9 @@ export function AppLauncher() {
         <ArrowRight className="launch-arrow" size={22} />
       </Link>
       <nav className="app-grid" aria-label="Apps">
-        {apps.map(({ to, name, tag, Icon, tone }) => (
+        {apps.map(({ to, name, tag, tile, tone }) => (
           <Link key={to} to={to} className="app-card">
-            <span className={`app-tile ${tone}`}><Icon size={26} strokeWidth={2.2} /></span>
+            <span className={`app-tile ${tone}`}>{tile}</span>
             <span className="app-name">{name}</span>
             <span className="app-tag">{tag}</span>
           </Link>
