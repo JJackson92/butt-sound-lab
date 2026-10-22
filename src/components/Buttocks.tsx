@@ -1,5 +1,6 @@
 import { FartParams } from "@/lib/fart-synth";
 import type { ButtStyle } from "@/lib/creations";
+import { useId } from "react";
 
 type Look = { stops: [string, string, string, string]; stroke?: string; strokeW?: number; shine: string; hole: [string, string]; ring: string; grid?: boolean };
 const LOOKS: Record<ButtStyle, Look> = {
@@ -27,7 +28,8 @@ export function Buttocks({ params, jiggle, stink, style = "peach" }: { params: F
   const rightCX = cx + cheekRX - overlap;
   const holeCY = cy + cheekRY * 0.05;
   const L = LOOKS[style] ?? LOOKS.peach;
-  const id = `b-${style}`;
+  const uid = useId().replace(/:/g, "");
+  const id = `b-${style}-${uid}`;
 
   return (
     <div className="relative flex items-center justify-center" style={{ width: w + 80, height: h + 120 }}>
@@ -55,6 +57,7 @@ export function Buttocks({ params, jiggle, stink, style = "peach" }: { params: F
       <svg
         width={w}
         height={h}
+        preserveAspectRatio="xMidYMid meet"
         viewBox={`0 0 ${w} ${h}`}
         key={jiggle}
         style={{
@@ -78,7 +81,7 @@ export function Buttocks({ params, jiggle, stink, style = "peach" }: { params: F
             <stop offset="100%" stopColor={L.stops[3]} />
           </radialGradient>
           {/* Deep crack shadow */}
-          <radialGradient id="crack" cx="50%" cy="50%" r="50%">
+          <radialGradient id={`${id}-crack`} cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="oklch(0.35 0.1 35 / 0.85)" />
             <stop offset="60%" stopColor="oklch(0.5 0.12 40 / 0.4)" />
             <stop offset="100%" stopColor="oklch(0.6 0.12 45 / 0)" />
@@ -89,14 +92,14 @@ export function Buttocks({ params, jiggle, stink, style = "peach" }: { params: F
             <stop offset="100%" stopColor={L.hole[1]} />
           </radialGradient>
           {/* Soft contact shadow under butt */}
-          <radialGradient id="ground" cx="50%" cy="50%" r="50%">
+          <radialGradient id={`${id}-ground`} cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="oklch(0.25 0.03 30 / 0.45)" />
             <stop offset="100%" stopColor="oklch(0.25 0.03 30 / 0)" />
           </radialGradient>
         </defs>
 
         {/* Ground shadow */}
-        <ellipse cx={cx} cy={h - 8} rx={cheekW * 0.95} ry={14} fill="url(#ground)" />
+        <ellipse cx={cx} cy={h - 8} rx={cheekW * 0.95} ry={14} fill={`url(#${id}-ground)`} />
 
         {/* Right cheek (drawn first so left overlaps it slightly — straight-on symmetric look) */}
         <ellipse cx={rightCX} cy={cy} rx={cheekRX} ry={cheekRY} fill={`url(#${id}-cheekR)`} stroke={L.stroke} strokeWidth={L.strokeW} />
@@ -158,12 +161,12 @@ export function Buttocks({ params, jiggle, stink, style = "peach" }: { params: F
         {jiggle > 0 && (
           <g key={`ripple-${jiggle}`}>
             <defs>
-              <clipPath id={`cheekClip-${jiggle}`}>
+              <clipPath id={`${id}-clip-${jiggle}`}>
                 <ellipse cx={leftCX} cy={cy} rx={cheekRX} ry={cheekRY} />
                 <ellipse cx={rightCX} cy={cy} rx={cheekRX} ry={cheekRY} />
               </clipPath>
             </defs>
-            <g clipPath={`url(#cheekClip-${jiggle})`}>
+            <g clipPath={`url(#${id}-clip-${jiggle})`}>
               {[0, 0.14, 0.28].map((delay, i) => (
                 <ellipse
                   key={i}
