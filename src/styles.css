@@ -374,3 +374,6 @@ button,a,input,select{touch-action:manipulation;}
 @media(prefers-reduced-motion:reduce){.royale-crown,.royale-mic.live{animation:none}}
 .account-btn{white-space:nowrap;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:6px 12px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--foreground);cursor:pointer}.account-btn:hover{border-color:var(--primary)}
 .butt-frame svg,.mini-butt svg{height:auto;}
+
+.site-footer .footer-cause{color:var(--foreground);font-weight:700;max-width:34ch;}
+.site-footer .footer-cause strong{color:var(--foreground);background:var(--accent);border-radius:4px;padding:1px 5px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
