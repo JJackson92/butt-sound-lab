@@ -124,7 +124,7 @@ export function FartBomb() {
     } catch { if (previewRun.current === run) { ended(); setPreviewError('Sound could not play. Try again.'); } }
   };
 
-  const arm = () => {
+  const arm = async () => {
     stopPreview();
     const fav = sound.startsWith('fav:') ? favs[Number(sound.slice(4))] : null;
     const id = fav ? fav.presetId : pickId();
